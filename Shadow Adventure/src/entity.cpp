@@ -56,9 +56,17 @@ void Entity::move(char type, std::vector<std::vector<char>> board) // move entit
 		}
 	}
 }
+void Entity::setPos(std::vector<int> std_x, std::vector<int> std_y)
+{
+	x = std_x;
+	y = std_y;
+}
 bool Entity::voidUnder(std::vector<std::vector<char>> board)
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == '-') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || 
+		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' || 
+		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '-' ||  
+		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F') return true;
 
 	return false;
 }
@@ -82,5 +90,10 @@ bool Entity::ladder(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1]][y[y.size() - 1]] == '|') return true;
 
+	return false;
+}
+bool Entity::limit(std::vector<std::vector<char>> board)
+{
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
 	return false;
 }

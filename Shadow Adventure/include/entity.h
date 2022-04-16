@@ -11,12 +11,14 @@ private:
 	char character; // symbol for entity
 
 public:
-	Entity(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity); // constructor
-	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>> board);// place entity on map
-	std::vector<std::vector<char>> kill(std::vector<std::vector<char>> board);// delete entity from map
-	void move(char type, std::vector<std::vector<char>> board); // move entity on map
-	bool voidUnder(std::vector<std::vector<char>> board);
-	bool collisions(std::vector<std::vector<char>> board, int type);
+	Entity(std::vector<int>, std::vector<int>, char, bool); // constructor
+	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>);// place entity on map
+	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>);// delete entity from map
+	void move(char, std::vector<std::vector<char>>); // move entity on map
+	void setPos(std::vector<int>, std::vector<int>);
+	bool voidUnder(std::vector<std::vector<char>>);
+	bool collisions(std::vector<std::vector<char>>, int);
 	bool getGravity();
-	bool ladder(std::vector<std::vector<char>> board);
+	bool ladder(std::vector<std::vector<char>>);
+	bool limit(std::vector<std::vector<char>>);
 };
