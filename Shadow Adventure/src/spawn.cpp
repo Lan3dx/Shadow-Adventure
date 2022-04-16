@@ -3,11 +3,13 @@
 
 #include "../include/entity.h"
 #include "../include/map.h"
+#include "../include/logger.h"
 
 void animatedDrop(Entity& entity, std::vector<std::vector<char>>& board, char type)
 {	
 	if (entity.limit(board))
 	{
+		clog("info", "player-info");
 		entity.setPos({ 39, 40, 41 }, { 5, 5, 5 });
 		board = entity.kill(board);
 		board = board_init();
