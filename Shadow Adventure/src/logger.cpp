@@ -1,6 +1,5 @@
 #include <ctime>
 #include <fstream>
-#include <string>
 
 #include "../include/logger.h"
 
@@ -21,9 +20,9 @@ std::string getDate()
 	return std::to_string(1900 + newtime.tm_year) + "-" + std::to_string(1 + newtime.tm_mon) + "-" + std::to_string(newtime.tm_mday);
 }
 
-inline void clog(std::string type, std::string logMsg)
+void clog(std::string type, std::string logMsg)
 {
-	std::string filePath = "../logs/" + getDate() + ".txt";
+	std::string filePath = "logs/" + getDate() + ".txt";
 	std::string now = getTime();
 	std::ofstream ofs(filePath.c_str(), std::ios_base::out | std::ios_base::app);
 	ofs << now << "[" << type << "]: " << logMsg << '\n';
