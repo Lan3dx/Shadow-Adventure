@@ -18,7 +18,7 @@ int main()
 	auto board = board_init();  // Define board
 	Entity player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true); // Player Creation
 
-	while (true) // Main loop
+	while (true) // Main program loop
 	{
 		if (GetAsyncKeyState((unsigned short)'W')) control(std::ref(player), std::ref(board), 72);
 		if (GetAsyncKeyState((unsigned short)'A')) control(std::ref(player), std::ref(board), 75);
