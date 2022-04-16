@@ -152,6 +152,7 @@
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\logger.h" />
     <ClInclude Include="include\map.h" />
+    <ClInclude Include="include\gravity.h" />
     <ClInclude Include="include\spawn.h" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="src\entity.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\map.cpp" />
+    <ClCompile Include="src\gravity.cpp" />
     <ClCompile Include="src\spawn.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

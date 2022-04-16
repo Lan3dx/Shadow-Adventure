@@ -1,34 +1,39 @@
 #include "../include/control.h"
 
-void control(Entity& entity, std::vector<std::vector<char>>& board, int key)
+std::vector<Entity> control(std::vector<Entity> entity, std::vector<std::vector<char>>& board, int key)
 {
-	if (!entity.collisions(board, key)) // if there are no walls near the player
+	for (int i = 0; i < entity.size(); i++)
 	{
-		board = entity.kill(board); // kill a character on the map
-		board = board_init(); // clear board
-
-		if (key == 72) // jump
+		if (!entity[i].collisions(board, key)) // if there are no walls near the player
 		{
-			if (entity.voidUnder(board))
+			board = entity[i].kill(board); // kill a character on the map
+			board = board_init(); // clear board
+
+			if (key == 72) // jump
 			{
-				if (entity.ladder(board)) // if the player is on the ladder, then raise him by 1 element
+				if (entity[i].voidUnder(board))
 				{
-					entity.move('u', board);
-					Sleep(60);
-				}
-				else // else by 3 elements
-				{
-					for (int i = 0; i < 3; i++)
+					if (entity[i].ladder(board)) // if the player is on the ladder, then raise him by 1 element
 					{
-						entity.move('u', board);
+						entity[i].move('u', board);
+						Sleep(60);
+					}
+					else // else by 3 elements
+					{
+						for (int j = 0; j < 3; j++)
+						{
+							entity[i].move('u', board);
+						}
 					}
 				}
 			}
+			else if (key == 80) { entity[i].move('d', board); } // down
+			else if (key == 75) { entity[i].move('l', board); } // Left
+			else if (key == 77) { entity[i].move('r', board); } // Right
+			Sleep(10);
+			board = entity[i].spawn(board); // spawn a character on the map
 		}
-		else if (key == 80) { entity.move('d', board); } // down
-		else if (key == 75) { entity.move('l', board); } // Left
-		else if (key == 77) { entity.move('r', board); } // Right
-		Sleep(10);
-		board = entity.spawn(board); // spawn a character on the map
 	}
+
+	return entity;
 }

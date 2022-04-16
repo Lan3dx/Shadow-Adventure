@@ -1,6 +1,13 @@
 #pragma once
 
-#include <vector>
-#include "entity.h"
+class EntityList
+{
+private:
+	std::vector<Entity> list;
 
-void animatedDrop(Entity& entity, std::vector<std::vector<char>>& board, char type);
+public:
+	EntityList();
+	void add(Entity);
+	void set(std::vector<Entity>);
+	std::vector<Entity> get();
+};

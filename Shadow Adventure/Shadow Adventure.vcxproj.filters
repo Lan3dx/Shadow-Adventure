@@ -29,6 +29,9 @@
     <ClInclude Include="include\map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\gravity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\spawn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,7 +40,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\spawn.cpp">
+    <ClCompile Include="src\gravity.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="src\map.cpp">
@@ -53,6 +56,9 @@
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="src\config.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\spawn.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
