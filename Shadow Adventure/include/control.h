@@ -2,8 +2,10 @@
 
 #include <vector>
 #include <Windows.h>
+#include <map>
+#include <string>
 
 #include "entity.h"
 #include "map.h"
 
-Entity control(Entity entity, std::vector<std::vector<char>>& board, int key);
+std::map <std::string, Entity> control(std::map <std::string, Entity>, std::vector<std::vector<char>>&, int);

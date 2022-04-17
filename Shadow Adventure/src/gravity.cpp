@@ -1,16 +1,16 @@
 #include <vector>
 #include <Windows.h>
 #include <map>
+#include <iostream>
 
-#include "../include/logger.h"
 #include "../include/entity.h"
 #include "../include/map.h"
 #include "../include/gravity.h"
 
-std::map <std::string, Entity> animatedDrop(EntityMap entMap, std::vector<std::vector<char>>& board)
+std::map <std::string, Entity> animatedDrop(std::map <std::string, Entity> entMap, std::vector<std::vector<char>>& board)
 {
-	auto entityMp = entMap.get();
-	for (auto& entityS : entityMp)
+	std::map <std::string, Entity> nentMap;
+	for (auto& entityS : entMap)
 	{
 		Entity entity = entityS.second;
 		if (entity.limit(board))
@@ -39,7 +39,7 @@ std::map <std::string, Entity> animatedDrop(EntityMap entMap, std::vector<std::v
 				}
 			}
 		}
-		entMap.add(entityS.first, entityS.second);
+		nentMap.insert(std::make_pair(entityS.first, entity));
 	}
-	return entityMp;
+	return nentMap;
 }

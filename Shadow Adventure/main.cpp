@@ -24,14 +24,15 @@ int main()
 
 	while (true) // Main program loop
 	{
-		if (GetAsyncKeyState((unsigned short)'W')) entMap.add("player", control(entMap.find("player"), std::ref(board), 72));
-		if (GetAsyncKeyState((unsigned short)'A')) entMap.add("player", control(entMap.find("player"), std::ref(board), 75));
-		if (GetAsyncKeyState((unsigned short)'S')) entMap.add("player", control(entMap.find("player"), std::ref(board), 80));
-		if (GetAsyncKeyState((unsigned short)'D')) entMap.add("player", control(entMap.find("player"), std::ref(board), 77));
-		if (GetAsyncKeyState((unsigned short)'R')) { entMap.rem("player"); entMap.add("player", control(entMap.find("player"), std::ref(board), 0)); }
+		if (GetAsyncKeyState((unsigned short)'W')) entMap.set(control(entMap.get(), std::ref(board), 72));
+		if (GetAsyncKeyState((unsigned short)'A')) entMap.set(control(entMap.get(), std::ref(board), 75));
+		if (GetAsyncKeyState((unsigned short)'S')) entMap.set(control(entMap.get(), std::ref(board), 80));
+		if (GetAsyncKeyState((unsigned short)'D')) entMap.set(control(entMap.get(), std::ref(board), 77));
+		if (GetAsyncKeyState((unsigned short)'R')) { entMap.rem("player"); entMap.add("player", player); }
 		if (GetAsyncKeyState((unsigned short)'K')) { entMap.rem("player"); board = board_init(); }
 
-		entMap.set(animatedDrop(std::ref(entMap),std::ref(board)));
+		entMap.set(animatedDrop(entMap.get(), std::ref(board)));
+
 		clear(); // clear screen
 		render(board); // screen output
 	}

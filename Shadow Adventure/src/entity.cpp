@@ -102,3 +102,11 @@ bool Entity::limit(std::vector<std::vector<char>> board)
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
 	return false;
 }
+std::vector<int> Entity::getX()
+{
+	return x;
+}
+std::vector<int> Entity::getY()
+{
+	return y;
+}
