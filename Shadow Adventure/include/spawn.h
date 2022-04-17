@@ -1,13 +1,15 @@
 #pragma once
 
-class EntityList
+class EntityMap
 {
 private:
-	std::vector<Entity> list;
+	std::map<std::string, Entity> list;
 
 public:
-	EntityList();
-	void add(Entity);
-	void set(std::vector<Entity>);
-	std::vector<Entity> get();
+	EntityMap();
+	void set(std::map <std::string, Entity>);
+	Entity find(std::string);
+	void rem(std::string);
+	void add(std::string, Entity);
+	std::map<std::string, Entity> get();
 };

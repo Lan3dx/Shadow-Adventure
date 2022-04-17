@@ -1,21 +1,42 @@
+#include <map>
+#include <string>
 #include <vector>
 
 #include "..\include\entity.h"
 #include "..\include\spawn.h"
 
-EntityList::EntityList()
+EntityMap::EntityMap()
 {
 	list = {};
 }
-void EntityList::add(Entity ent)
+void EntityMap::add(std::string key, Entity ent)
 {
-	list.push_back(ent);
+	list.insert(std::make_pair(key, ent));
 }
-void EntityList::set(std::vector<Entity> entList)
+void EntityMap::rem(std::string key)
 {
-	list = entList;
+	if (list.contains(key))
+	{
+		std::map <std::string, Entity>::iterator iter;
+		iter = list.find(key);
+		list.erase(iter);
+	}
 }
-std::vector<Entity> EntityList::get()
+Entity EntityMap::find(std::string key)
+{
+	if (list.contains(key))
+	{
+		std::map <std::string, Entity>::iterator iter;
+		iter = list.find(key);
+		return iter->second;
+	}
+}
+void EntityMap::set(std::map <std::string, Entity>mp)
+{
+	list = mp;
+}
+std::map<std::string, Entity> EntityMap::get()
 {
 	return list;
 }
+

@@ -1,5 +1,6 @@
 // Importing threads and vectors
 #include <vector>
+#include <map>
 #include <iostream>
 #include <windows.h>
 #include <WinUser.h>
@@ -17,20 +18,20 @@ int main()
 	std_config(); // Customizes the console window
 
 	auto board = board_init();  // Define board
-	Entity player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true); // Player Creation
-	EntityList entList;
-	entList.set({ player });
+	Entity player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd'); // Player Creation
+	EntityMap entMap;
+	entMap.add("player", player);
 
 	while (true) // Main program loop
 	{
-		if (GetAsyncKeyState((unsigned short)'W')) entList.set(control(entList.get(), std::ref(board), 72));
-		if (GetAsyncKeyState((unsigned short)'A')) entList.set(control(entList.get(), std::ref(board), 75));
-		if (GetAsyncKeyState((unsigned short)'S')) entList.set(control(entList.get(), std::ref(board), 80));
-		if (GetAsyncKeyState((unsigned short)'D')) entList.set(control(entList.get(), std::ref(board), 77));
-		if (GetAsyncKeyState((unsigned short)'R')) { entList.set({}); entList.add(player); entList.set(Respawn(entList.get(), std::ref(board), 0)); }
-		if (GetAsyncKeyState((unsigned short)'K')) { entList.set({}); board = board_init(); }
+		if (GetAsyncKeyState((unsigned short)'W')) entMap.add("player", control(entMap.find("player"), std::ref(board), 72));
+		if (GetAsyncKeyState((unsigned short)'A')) entMap.add("player", control(entMap.find("player"), std::ref(board), 75));
+		if (GetAsyncKeyState((unsigned short)'S')) entMap.add("player", control(entMap.find("player"), std::ref(board), 80));
+		if (GetAsyncKeyState((unsigned short)'D')) entMap.add("player", control(entMap.find("player"), std::ref(board), 77));
+		if (GetAsyncKeyState((unsigned short)'R')) { entMap.rem("player"); entMap.add("player", control(entMap.find("player"), std::ref(board), 0)); }
+		if (GetAsyncKeyState((unsigned short)'K')) { entMap.rem("player"); board = board_init(); }
 
-		entList.set(animatedDrop(entList.get(), std::ref(board), 'd'));
+		entMap.set(animatedDrop(std::ref(entMap),std::ref(board)));
 		clear(); // clear screen
 		render(board); // screen output
 	}

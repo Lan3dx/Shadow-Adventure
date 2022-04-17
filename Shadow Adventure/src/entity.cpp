@@ -1,8 +1,9 @@
 #include "../include/entity.h"
 
-Entity::Entity(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity) // constructor
+Entity::Entity(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt) // constructor
 {
 	gravity = stdGravity;
+	GType = Gt;
 	x = stdX;
 	y = stdY;
 	character = stdChar;
@@ -85,6 +86,10 @@ bool Entity::getGravity()
 {
 	if (gravity) return true;
 	else return false;
+}
+char Entity::getGType()
+{
+	return GType;
 }
 bool Entity::ladder(std::vector<std::vector<char>> board)
 {

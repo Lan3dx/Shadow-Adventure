@@ -1,53 +1,45 @@
 #include <vector>
 #include <Windows.h>
+#include <map>
 
 #include "../include/logger.h"
 #include "../include/entity.h"
 #include "../include/map.h"
 #include "../include/gravity.h"
 
-std::vector<Entity> Respawn(std::vector<Entity> entity, std::vector<std::vector<char>>& board, int pos)
+std::map <std::string, Entity> animatedDrop(EntityMap entMap, std::vector<std::vector<char>>& board)
 {
-	clog("info", "player respawned");
-	entity[pos].setPos({ 39, 40, 41 }, { 5, 5, 5 });
-	board = entity[pos].kill(board);
-	board = board_init();
-	board = entity[pos].spawn(board);
-
-	return entity;
-}
-
-std::vector<Entity> animatedDrop(std::vector<Entity> entity, std::vector<std::vector<char>>& board, char type)
-{	
-	for (int i = 0; i < entity.size(); i++)
+	auto entityMp = entMap.get();
+	for (auto& entityS : entityMp)
 	{
-		if (entity[i].limit(board))
+		Entity entity = entityS.second;
+		if (entity.limit(board))
 		{
-			clog("info", "player dead");
-			entity[i].setPos({ 39, 40, 41 }, { 5, 5, 5 });
-			board = entity[i].kill(board);
+			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 });
+			board = entity.kill(board);
 			board = board_init();
-			entity[i].move(type, board);
-			board = entity[i].spawn(board);
+			entity.move(entity.getGType(), board);
+			board = entity.spawn(board);
 		}
 
-		if (entity[i].getGravity())
+		if (entity.getGravity())
 		{
-			if (!entity[i].voidUnder(board))
+			if (!entity.voidUnder(board))
 			{
-				if (!entity[i].ladder(board))
+				if (!entity.ladder(board))
 				{
-					if (!entity[i].collisions(board, type))
+					if (!entity.collisions(board, entity.getGType()))
 					{
-						board = entity[i].kill(board);
+						board = entity.kill(board);
 						board = board_init();
-						entity[i].move(type, board);
-						board = entity[i].spawn(board);
+						entity.move(entity.getGType(), board);
+						board = entity.spawn(board);
 						Sleep(30);
 					}
 				}
 			}
 		}
+		entMap.add(entityS.first, entityS.second);
 	}
-	return entity;	
+	return entityMp;
 }

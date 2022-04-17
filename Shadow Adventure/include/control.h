@@ -6,4 +6,4 @@
 #include "entity.h"
 #include "map.h"
 
-std::vector<Entity> control(std::vector<Entity> entity, std::vector<std::vector<char>>& board, int key);
+Entity control(Entity entity, std::vector<std::vector<char>>& board, int key);

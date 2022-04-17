@@ -2,6 +2,6 @@
 
 #include <vector>
 #include "entity.h"
+#include "spawn.h"
 
-std::vector<Entity> Respawn(std::vector<Entity>, std::vector<std::vector<char>>&, int);
-std::vector<Entity> animatedDrop(std::vector<Entity>, std::vector<std::vector<char>>&, char);
+std::map <std::string, Entity> animatedDrop(EntityMap entity, std::vector<std::vector<char>>& board);
