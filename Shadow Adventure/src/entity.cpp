@@ -26,6 +26,14 @@ std::vector<std::vector<char>> Entity::kill(std::vector<std::vector<char>> board
 
 	return board;
 }
+std::vector<int> Entity::getX()
+{
+	return x;
+}
+std::vector<int> Entity::getY()
+{
+	return y;
+}
 void Entity::move(char type, std::vector<std::vector<char>> board) // move entity on map
 {
 	if (type == 'r') // right
@@ -62,6 +70,24 @@ void Entity::setPos(std::vector<int> std_x, std::vector<int> std_y)
 	x = std_x;
 	y = std_y;
 }
+void Entity::setX(int stdx)
+{
+	x.clear();
+	x.push_back(stdx);
+}
+void Entity::setY(int stdy)
+{
+	y.clear();
+	y.push_back(stdy);
+}
+void Entity::setX(std::vector<int> stdx)
+{
+	x = stdx;
+}
+void Entity::setY(std::vector<int> stdy)
+{
+	y = stdy;
+}
 bool Entity::voidUnder(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || 
@@ -87,10 +113,6 @@ bool Entity::getGravity()
 	if (gravity) return true;
 	else return false;
 }
-char Entity::getGType()
-{
-	return GType;
-}
 bool Entity::ladder(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1]][y[y.size() - 1]] == '|') return true;
@@ -102,11 +124,13 @@ bool Entity::limit(std::vector<std::vector<char>> board)
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
 	return false;
 }
-std::vector<int> Entity::getX()
+bool Entity::touch(std::vector<std::vector<char>> board)
 {
-	return x;
+	if (board[x[x.size() - 1]][y[y.size() - 1]+1] != ' ' && board[x[x.size() - 1]][y[y.size() - 1]+1] != 'P') return true;
+	if (board[x[x.size() - 1]][y[y.size() - 1]-1] != ' ' && board[x[x.size() - 1]][y[y.size() - 1]-1] != 'P') return true;
+	return false;
 }
-std::vector<int> Entity::getY()
+char Entity::getGType()
 {
-	return y;
+	return GType;
 }

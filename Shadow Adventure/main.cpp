@@ -19,6 +19,7 @@ int main()
 
 	auto board = board_init();  // Define board
 	Entity player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd'); // Player Creation
+	Entity arrow(std::vector<int>{}, std::vector<int>{}, 'B', true, 'r'); 
 	EntityMap entMap;
 	entMap.add("player", player);
 
@@ -30,8 +31,17 @@ int main()
 		if (GetAsyncKeyState((unsigned short)'D')) entMap.set(control(entMap.get(), std::ref(board), 77));
 		if (GetAsyncKeyState((unsigned short)'R')) { entMap.rem("player"); entMap.add("player", player); }
 		if (GetAsyncKeyState((unsigned short)'K')) { entMap.rem("player"); board = board_init(); }
-
-		entMap.set(animatedDrop(entMap.get(), std::ref(board)));
+		if (GetAsyncKeyState((unsigned short)'Q'))
+		{
+			if (!entMap.get().contains("arrow"))
+			{
+				arrow.setX(entMap.find("player").getX()[0]);
+				arrow.setY(entMap.find("player").getY()[0]);
+				entMap.add("arrow", arrow);
+			}
+		}
+		entMap.set(gravitation(entMap.get(), std::ref(board)));
+		entMap.set(spawn(entMap.get(), std::ref(board)));
 
 		clear(); // clear screen
 		render(board); // screen output

@@ -23,6 +23,11 @@ public:
 	char getGType();
 	bool ladder(std::vector<std::vector<char>>);
 	bool limit(std::vector<std::vector<char>>);
+	bool touch(std::vector<std::vector<char>>);
 	std::vector<int> getX();
 	std::vector<int> getY();
+	void setX(int);
+	void setY(int);
+	void setX(std::vector<int>);
+	void setY(std::vector<int>);
 };

@@ -11,7 +11,6 @@ std::map <std::string, Entity> control(std::map <std::string, Entity> entMap, st
 		if (!entity.collisions(board, key)) // if there are no walls near the player
 		{
 			board = entity.kill(board); // kill a character on the map
-			board = board_init(); // clear board
 
 			if (key == 72) // jump
 			{
