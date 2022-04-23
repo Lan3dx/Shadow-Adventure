@@ -56,6 +56,9 @@
     <ClInclude Include="include\sys\render.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\sys\constants.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -154,6 +154,7 @@
     <ClInclude Include="include\gravity.h" />
     <ClInclude Include="include\spawn.h" />
     <ClInclude Include="include\sys\config.h" />
+    <ClInclude Include="include\sys\constants.h" />
     <ClInclude Include="include\sys\includes.h" />
     <ClInclude Include="include\sys\logger.h" />
     <ClInclude Include="include\sys\render.h" />

@@ -1,4 +1,5 @@
 #include "include/sys/includes.h"
+#include "include/sys/constants.h"
 
 int main()
 {
@@ -12,25 +13,24 @@ int main()
 	while (true) // Main program loop
 	{
 		
-		if (GetAsyncKeyState((unsigned short)'W')) players.set(control(std::ref(players), "player", std::ref(board), 72));
-		if (GetAsyncKeyState((unsigned short)'A')) players.set(control(std::ref(players), "player", std::ref(board), 75));
-		if (GetAsyncKeyState((unsigned short)'S')) players.set(control(std::ref(players), "player", std::ref(board), 80));
-		if (GetAsyncKeyState((unsigned short)'D')) players.set(control(std::ref(players), "player", std::ref(board), 77));
-		if (GetAsyncKeyState((unsigned short)'R')) { players.rem("player"); PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd'); players.add("player", player); }
-		if (GetAsyncKeyState((unsigned short)'K')) { players.rem("player"); board = board_init(); }
+		if (GetAsyncKeyState((unsigned short)'W'))	  players.set(control(std::ref(players), "player", std::ref(board), 72));
+		if (GetAsyncKeyState((unsigned short)'A'))	  players.set(control(std::ref(players), "player", std::ref(board), 75));
+		if (GetAsyncKeyState((unsigned short)'S'))	  players.set(control(std::ref(players), "player", std::ref(board), 80));
+		if (GetAsyncKeyState((unsigned short)'D'))	  players.set(control(std::ref(players), "player", std::ref(board), 77));
+		if (GetAsyncKeyState((unsigned short)'R'))	{ players.rem("player"); PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd'); players.add("player", player); }
+		if (GetAsyncKeyState((unsigned short)'K'))  { players.rem("player"); bullets.set({}); board = board_init(); }
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
 			if (players.get().contains("player"))
 			{
-				if (!bullets.get().contains("bullet"))
+				for (int b = 0; b < MAX_AMMO; b++)
 				{
-					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
-					bullets.add("bullet", bullet);
-				}
-				else if (!bullets.get().contains("bullet1"))
-				{
-					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
-					bullets.add("bullet1", bullet);
+					if (!bullets.get().contains("bullet" + std::to_string(b)))
+					{
+						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
+						bullets.add("bullet" + std::to_string(b), bullet);
+						break;
+					}
 				}
 			}
 		}
@@ -38,15 +38,14 @@ int main()
 		{
 			if (players.get().contains("player"))
 			{
-				if (!bullets.get().contains("bullet"))
+				for (int b = 0; b < MAX_AMMO; b++)
 				{
-					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
-					bullets.add("bullet", bullet);
-				}
-				else if (!bullets.get().contains("bullet1"))
-				{
-					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
-					bullets.add("bullet1", bullet);
+					if (!bullets.get().contains("bullet" + std::to_string(b)))
+					{
+						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
+						bullets.add("bullet" + std::to_string(b), bullet);
+						break;
+					}
 				}
 			}
 		}
