@@ -1,6 +1,6 @@
-#include "../include/entity.h"
+#include "../../include/entities/player.h"
 
-Entity::Entity(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt) // constructor
+PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt) // constructor
 {
 	gravity = stdGravity;
 	GType = Gt;
@@ -8,7 +8,8 @@ Entity::Entity(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	y = stdY;
 	character = stdChar;
 }
-std::vector<std::vector<char>> Entity::spawn(std::vector<std::vector<char>> board) // place entity on map
+
+std::vector<std::vector<char>> PLAYER::spawn(std::vector<std::vector<char>> board) // place entity on map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
@@ -17,7 +18,7 @@ std::vector<std::vector<char>> Entity::spawn(std::vector<std::vector<char>> boar
 
 	return board;
 }
-std::vector<std::vector<char>> Entity::kill(std::vector<std::vector<char>> board) // delete entity from map
+std::vector<std::vector<char>> PLAYER::kill(std::vector<std::vector<char>> board) // delete entity from map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
@@ -26,15 +27,17 @@ std::vector<std::vector<char>> Entity::kill(std::vector<std::vector<char>> board
 
 	return board;
 }
-std::vector<int> Entity::getX()
+
+std::vector<int> PLAYER::getX()
 {
 	return x;
 }
-std::vector<int> Entity::getY()
+std::vector<int> PLAYER::getY()
 {
 	return y;
 }
-void Entity::move(char type, std::vector<std::vector<char>> board) // move entity on map
+
+void PLAYER::move(char type, std::vector<std::vector<char>> board) // move entity on map
 {
 	if (type == 'r') // right
 	{
@@ -65,30 +68,13 @@ void Entity::move(char type, std::vector<std::vector<char>> board) // move entit
 		}
 	}
 }
-void Entity::setPos(std::vector<int> std_x, std::vector<int> std_y)
+void PLAYER::setPos(std::vector<int> std_x, std::vector<int> std_y)
 {
 	x = std_x;
 	y = std_y;
 }
-void Entity::setX(int stdx)
-{
-	x.clear();
-	x.push_back(stdx);
-}
-void Entity::setY(int stdy)
-{
-	y.clear();
-	y.push_back(stdy);
-}
-void Entity::setX(std::vector<int> stdx)
-{
-	x = stdx;
-}
-void Entity::setY(std::vector<int> stdy)
-{
-	y = stdy;
-}
-bool Entity::voidUnder(std::vector<std::vector<char>> board)
+
+bool PLAYER::voidUnder(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || 
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' || 
@@ -97,7 +83,7 @@ bool Entity::voidUnder(std::vector<std::vector<char>> board)
 
 	return false;
 }
-bool Entity::collisions(std::vector<std::vector<char>> board, int type)
+bool PLAYER::collisions(std::vector<std::vector<char>> board, int type)
 {
 	if (type == 80) if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#') return true;
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
@@ -108,29 +94,24 @@ bool Entity::collisions(std::vector<std::vector<char>> board, int type)
 
 	return false;
 }
-bool Entity::getGravity()
+bool PLAYER::getGravity()
 {
 	if (gravity) return true;
 	else return false;
 }
-bool Entity::ladder(std::vector<std::vector<char>> board)
+bool PLAYER::ladder(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1]][y[y.size() - 1]] == '|') return true;
 
 	return false;
 }
-bool Entity::limit(std::vector<std::vector<char>> board)
+bool PLAYER::limit(std::vector<std::vector<char>> board)
 {
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
 	return false;
 }
-bool Entity::touch(std::vector<std::vector<char>> board)
-{
-	if (board[x[x.size() - 1]][y[y.size() - 1]+1] != ' ' && board[x[x.size() - 1]][y[y.size() - 1]+1] != 'P') return true;
-	if (board[x[x.size() - 1]][y[y.size() - 1]-1] != ' ' && board[x[x.size() - 1]][y[y.size() - 1]-1] != 'P') return true;
-	return false;
-}
-char Entity::getGType()
+
+char PLAYER::getGType()
 {
 	return GType;
 }

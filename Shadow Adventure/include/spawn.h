@@ -1,15 +1,30 @@
 #pragma once
 
-class EntityMap
+#include <map>
+#include <string>
+
+#include "..\include\entities\bullet.h"
+#include "..\include\entities\player.h"
+
+class PMAP
 {
 private:
-	std::map<std::string, Entity> list;
-
+	std::map<std::string, PLAYER> list;
 public:
-	EntityMap();
-	void set(std::map <std::string, Entity>);
-	Entity find(std::string);
+	void set(std::map <std::string, PLAYER>);
 	void rem(std::string);
-	void add(std::string, Entity);
-	std::map<std::string, Entity> get();
+	void add(std::string, PLAYER);
+	PLAYER find(std::string);
+	std::map<std::string, PLAYER> get();
+};
+class BMAP
+{
+private:
+	std::map<std::string, BULLET> list;
+public:
+	void set(std::map <std::string, BULLET>);
+	void rem(std::string);
+	void add(std::string, BULLET);
+	BULLET find(std::string);
+	std::map<std::string, BULLET> get();
 };

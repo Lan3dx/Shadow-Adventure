@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include "..\include\config.h"
+#include "..\..\include\sys\config.h"
 
 // clearing the console screen
 void clear()

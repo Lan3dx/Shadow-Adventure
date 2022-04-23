@@ -1,50 +1,36 @@
-#include <Windows.h>
-#include <map>
-#include <iostream>
-
-#include "../include/entity.h"
-#include "../include/map.h"
 #include "../include/gravity.h"
+#include <vector>
 
-std::map <std::string, Entity> spawn(std::map <std::string, Entity> entMap, std::vector<std::vector<char>>& board)
+std::map < std::string, BULLET > gravitation(BMAP& bullets, std::vector<std::vector<char>>& board)
 {
-	board = board_init();
-	std::map <std::string, Entity> nentMap;
-	for (auto& entityS : entMap)
+	auto entityMap = bullets.get();
+	std::map < std::string, BULLET > nbm = {};
+	for (auto& entityS : entityMap)
 	{
-		Entity entity = entityS.second;
-		board = entity.kill(board);
-		board = entity.spawn(board);
-		nentMap.insert(std::make_pair(entityS.first, entity));
+		BULLET entity = entityS.second;
+
+		board = board_init();
+		if (entity.touch(board))
+		{
+			bullets.rem(entityS.first);
+		}
+		nbm.insert(std::make_pair(entityS.first, entity));
 	}
-	return nentMap;
+	return nbm;
 }
-
-std::map <std::string, Entity> gravitation(std::map <std::string, Entity> entMap, std::vector<std::vector<char>>& board)
+std::map < std::string, PLAYER > gravitation(PMAP& players, std::vector<std::vector<char>>& board)
 {
-	std::map <std::string, Entity> nentMap;
-	for (auto& entityS : entMap)
+	auto entityMap = players.get();
+	std::map < std::string, PLAYER > npm = {};
+	for (auto& entityS : entityMap)
 	{
-		Entity entity = entityS.second;
+		PLAYER entity = entityS.second;
 		if (entity.limit(board))
 		{
-			if (entityS.first == "player")
-			{
-				entity.setPos({ 39, 40, 41 }, { 5, 5, 5 });
-				board = entity.kill(board);
-				entity.move(entity.getGType(), board);
-				board = entity.spawn(board);
-			}
-		}
-		if (entityS.first == "arrow")
-		{
-			if (entity.touch(board))
-			{
-				std::map <std::string, Entity>::iterator iter;
-				iter = entMap.find(entityS.first);
-				entMap.erase(iter);
-				continue;
-			}
+			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 });
+			board = entity.kill(board);
+			entity.move(entity.getGType(), board);
+			board = entity.spawn(board);
 		}
 
 		if (entity.getGravity())
@@ -64,7 +50,7 @@ std::map <std::string, Entity> gravitation(std::map <std::string, Entity> entMap
 				}
 			}
 		}
-		nentMap.insert(std::make_pair(entityS.first, entity));
+		npm.insert(std::make_pair(entityS.first, entity));
 	}
-	return nentMap;
+	return npm;
 }

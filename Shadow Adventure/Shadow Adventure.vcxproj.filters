@@ -12,18 +12,21 @@
     <Filter Include="Source Files\src">
       <UniqueIdentifier>{99396e01-3e85-4d77-9aab-adc4470b4545}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{996b7c92-dd95-4cb9-9cc4-eed353893964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\entities">
+      <UniqueIdentifier>{0e4228c5-e0c3-496b-8783-83cb55d01d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\sys">
+      <UniqueIdentifier>{4ba010fd-12f7-439f-9dff-2d1ce452f40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sys">
+      <UniqueIdentifier>{23b55911-8a3f-4655-a000-c6d6e529c11d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\control.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\map.h">
@@ -34,6 +37,24 @@
     </ClInclude>
     <ClInclude Include="include\spawn.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\player.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\config.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\includes.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\logger.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\bullet.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\render.h">
+      <Filter>Header Files\sys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,20 +67,26 @@
     <ClCompile Include="src\map.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\logger.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
     <ClCompile Include="src\control.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\config.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="src\spawn.cpp">
       <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\player.cpp">
+      <Filter>Source Files\src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys\config.cpp">
+      <Filter>Source Files\src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys\logger.cpp">
+      <Filter>Source Files\src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\bullet.cpp">
+      <Filter>Source Files\src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys\render.cpp">
+      <Filter>Source Files\src\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

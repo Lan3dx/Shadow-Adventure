@@ -1,42 +1,47 @@
 #include "../include/control.h"
+#include <iostream>
 
-std::map <std::string, Entity> control(std::map <std::string, Entity> entMap, std::vector<std::vector<char>>& board, int key)
+std::map < std::string, PLAYER > control(PMAP& players, std::string selected, std::vector<std::vector<char>>& board, int key)
 {
-	if (entMap.contains("player"))
+	if (players.get().contains(selected))
 	{
-		std::map <std::string, Entity>::iterator iter;
-		iter = entMap.find("player");
-		auto& entity = iter->second;
+		std::map < std::string, PLAYER > npm;
+		PLAYER player = players.find(selected);
 
-		if (!entity.collisions(board, key)) // if there are no walls near the player
+		if (!player.collisions(board, key)) // if there are no walls near the player
 		{
-			board = entity.kill(board); // kill a character on the map
+			board = player.kill(board); // kill a character on the map
 
 			if (key == 72) // jump
 			{
-				if (entity.voidUnder(board))
+				if (player.voidUnder(board))
 				{
-					if (entity.ladder(board)) // if the player is on the ladder, then raise him by 1 element
+					board = board_init();
+					if (player.ladder(board)) // if the player is on the ladder, then raise him by 1 element
 					{
-						entity.move('u', board);
+						player.move('u', board);
 						Sleep(60);
 					}
 					else // else by 3 elements
 					{
 						for (int j = 0; j < 3; j++)
 						{
-							entity.move('u', board);
+							player.move('u', board);
 						}
 					}
 				}
 			}
-			else if (key == 80) { entity.move('d', board); } // down
-			else if (key == 75) { entity.move('l', board); } // Left
-			else if (key == 77) { entity.move('r', board); } // Right
+			else if (key == 80) { player.move('d', board); } // down
+			else if (key == 75) { player.move('l', board); } // Left
+			else if (key == 77) { player.move('r', board); } // Right
+
 			Sleep(10);
-			board = entity.spawn(board); // spawn a character on the map
-			entMap.insert(std::make_pair("player", entity));
+			board = board_init();
+			board = player.spawn(board); // spawn a character on the map
+			npm.insert(std::make_pair(selected, player));
+
+			return npm;
 		}
 	}
-	return entMap;
+	return players.get();
 }

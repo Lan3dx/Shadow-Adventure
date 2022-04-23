@@ -1,8 +1,13 @@
 #pragma once
 
-#include <vector>
-#include "entity.h"
-#include "spawn.h"
+#include <Windows.h>
+#include <map>
+#include <iostream>
 
-std::map <std::string, Entity> spawn(std::map <std::string, Entity>  entity, std::vector<std::vector<char>>& board);
-std::map <std::string, Entity> gravitation(std::map <std::string, Entity>  entity, std::vector<std::vector<char>>& board);
+#include "../include/entities/player.h"
+#include "../include/entities/bullet.h"
+#include "../include/spawn.h"
+#include "../include/map.h"
+
+std::map < std::string, PLAYER > gravitation(PMAP& players, std::vector<std::vector<char>>& board);
+std::map < std::string, BULLET > gravitation(BMAP& bullets, std::vector<std::vector<char>>& board);

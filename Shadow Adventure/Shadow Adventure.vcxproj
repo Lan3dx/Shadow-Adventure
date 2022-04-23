@@ -147,23 +147,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\config.h" />
     <ClInclude Include="include\control.h" />
-    <ClInclude Include="include\entity.h" />
-    <ClInclude Include="include\logger.h" />
+    <ClInclude Include="include\entities\bullet.h" />
+    <ClInclude Include="include\entities\player.h" />
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\gravity.h" />
     <ClInclude Include="include\spawn.h" />
+    <ClInclude Include="include\sys\config.h" />
+    <ClInclude Include="include\sys\includes.h" />
+    <ClInclude Include="include\sys\logger.h" />
+    <ClInclude Include="include\sys\render.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\control.cpp" />
-    <ClCompile Include="src\entity.cpp" />
-    <ClCompile Include="src\logger.cpp" />
+    <ClCompile Include="src\entities\bullet.cpp" />
+    <ClCompile Include="src\entities\player.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\gravity.cpp" />
     <ClCompile Include="src\spawn.cpp" />
+    <ClCompile Include="src\sys\config.cpp" />
+    <ClCompile Include="src\sys\logger.cpp" />
+    <ClCompile Include="src\sys\render.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
