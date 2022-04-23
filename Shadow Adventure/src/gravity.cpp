@@ -13,12 +13,14 @@ std::map < std::string, BULLET > gravitation(BMAP& bullets, std::vector<std::vec
 		if (entity.touch(board))
 		{
 			bullets.rem(entityS.first);
-			return nbm;
 		}
-		board = entity.kill(board);
-		entity.move(entity.getGType());
-		board = entity.spawn(board);
-		nbm.insert(std::make_pair(entityS.first, entity));
+		else
+		{
+			board = entity.kill(board);
+			entity.move(entity.getGType());
+			board = entity.spawn(board);
+			nbm.insert(std::make_pair(entityS.first, entity));
+		}
 	}
 	return nbm;
 }

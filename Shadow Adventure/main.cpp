@@ -27,7 +27,7 @@ int main()
 					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
 					bullets.add("bullet", bullet);
 				}
-				if (!bullets.get().contains("bullet1"))
+				else if (!bullets.get().contains("bullet1"))
 				{
 					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
 					bullets.add("bullet1", bullet);
@@ -43,7 +43,7 @@ int main()
 					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
 					bullets.add("bullet", bullet);
 				}
-				if (!bullets.get().contains("bullet1"))
+				else if (!bullets.get().contains("bullet1"))
 				{
 					BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
 					bullets.add("bullet1", bullet);
