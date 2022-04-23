@@ -24,7 +24,7 @@ public:
 	bool ladder(std::vector<std::vector<char>>);
 	bool limit(std::vector<std::vector<char>>);
 
-	void move(char, std::vector<std::vector<char>>); // move entity on map
+	void move(char); // move entity on map
 	void setPos(std::vector<int>, std::vector<int>);
 
 	char getGType();

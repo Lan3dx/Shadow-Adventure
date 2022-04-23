@@ -19,21 +19,21 @@ std::map < std::string, PLAYER > control(PMAP& players, std::string selected, st
 					board = board_init();
 					if (player.ladder(board)) // if the player is on the ladder, then raise him by 1 element
 					{
-						player.move('u', board);
+						player.move('u');
 						Sleep(60);
 					}
 					else // else by 3 elements
 					{
 						for (int j = 0; j < 3; j++)
 						{
-							player.move('u', board);
+							player.move('u');
 						}
 					}
 				}
 			}
-			else if (key == 80) { player.move('d', board); } // down
-			else if (key == 75) { player.move('l', board); } // Left
-			else if (key == 77) { player.move('r', board); } // Right
+			else if (key == 80) { player.move('d'); } // down
+			else if (key == 75) { player.move('l'); } // Left
+			else if (key == 77) { player.move('r'); } // Right
 
 			Sleep(10);
 			board = board_init();

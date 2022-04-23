@@ -1,8 +1,17 @@
 #include "..\..\include\sys\render.h"
 
-void entitiesRender(std::vector<std::vector<char>> map, PMAP, BMAP)
+void entitiesRender(PMAP players, BMAP bullets, std::vector<std::vector<char>>& board)
 {
-
+	for (auto& entityS : players.get())
+	{
+		board = entityS.second.kill(board);
+		board = entityS.second.spawn(board);
+	}
+	for (auto& entityS : bullets.get())
+	{
+		board = entityS.second.kill(board);
+		board = entityS.second.spawn(board);
+	}
 }
 
 void render(std::vector<std::vector<char>> map) // output

@@ -37,7 +37,7 @@ std::vector<int> PLAYER::getY()
 	return y;
 }
 
-void PLAYER::move(char type, std::vector<std::vector<char>> board) // move entity on map
+void PLAYER::move(char type) // move entity on map
 {
 	if (type == 'r') // right
 	{

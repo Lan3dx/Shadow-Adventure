@@ -14,6 +14,7 @@ public:
 
 	void setX(int);
 	void setY(int);
+	void move(char);
 
 	int getX();
 	int getY();
@@ -22,4 +23,7 @@ public:
 	bool touch(std::vector<std::vector<char>>);
 
 	char getGType();
+
+	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>);// place entity on map
+	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>);// place entity on map
 };
