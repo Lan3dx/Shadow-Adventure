@@ -1,3 +1,3 @@
 #pragma once
 
-static int MAX_AMMO = 10;
+static int8_t MAX_AMMO = 10;

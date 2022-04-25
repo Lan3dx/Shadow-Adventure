@@ -22,9 +22,9 @@ std::map < std::string, PLAYER > control(PMAP& players, std::string selected, st
 						player.move('u');
 						Sleep(60);
 					}
-					else // else by 3 elements
+					else // else by 4 elements
 					{
-						for (int j = 0; j < 3; j++)
+						for (int j = 0; j < 4; j++)
 						{
 							player.move('u');
 						}
@@ -35,7 +35,6 @@ std::map < std::string, PLAYER > control(PMAP& players, std::string selected, st
 			else if (key == 75) { player.move('l'); } // Left
 			else if (key == 77) { player.move('r'); } // Right
 
-			Sleep(10);
 			board = board_init();
 			board = player.spawn(board); // spawn a character on the map
 			npm.insert(std::make_pair(selected, player));

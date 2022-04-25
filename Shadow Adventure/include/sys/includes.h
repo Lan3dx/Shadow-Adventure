@@ -6,6 +6,8 @@
 #include <iostream>
 #include <windows.h>
 #include <WinUser.h>
+#include <thread>
+#include <future>
 
 // user's libs
 #include "config.h"

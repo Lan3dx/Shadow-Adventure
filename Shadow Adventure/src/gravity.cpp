@@ -1,7 +1,7 @@
 #include "../include/gravity.h"
 #include <vector>
 
-std::map < std::string, BULLET > gravitation(BMAP& bullets, std::vector<std::vector<char>>& board)
+std::map < std::string, BULLET > gravitationB(BMAP& bullets, std::vector<std::vector<char>>& board)
 {
 	auto entityMap = bullets.get();
 	std::map < std::string, BULLET > nbm = {};
@@ -24,7 +24,7 @@ std::map < std::string, BULLET > gravitation(BMAP& bullets, std::vector<std::vec
 	}
 	return nbm;
 }
-std::map < std::string, PLAYER > gravitation(PMAP& players, std::vector<std::vector<char>>& board)
+std::map < std::string, PLAYER > gravitationP(PMAP& players, std::vector<std::vector<char>>& board)
 {
 	auto entityMap = players.get();
 	std::map < std::string, PLAYER > npm = {};
