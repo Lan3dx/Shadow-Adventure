@@ -31,7 +31,20 @@ std::map < std::string, PLAYER > control(PMAP& players, std::string selected, st
 					}
 				}
 			}
-			else if (key == 80) { player.move('d'); } // down
+			else if (key == 80) 
+			{ 
+				if (player.limit(board))
+				{
+					player.setPos({ 39, 40, 41 }, { 5, 5, 5 });
+					board = player.kill(board);
+					player.move(player.getGType());
+					board = player.spawn(board);
+				}
+				else
+				{
+					player.move('d');
+				}
+			} // down
 			else if (key == 75) { player.move('l'); } // Left
 			else if (key == 77) { player.move('r'); } // Right
 

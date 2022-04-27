@@ -51,7 +51,6 @@ std::map < std::string, PLAYER > gravitationP(PMAP& players, std::vector<std::ve
 						board = board_init();
 						entity.move(entity.getGType());
 						board = entity.spawn(board);
-						Sleep(30);
 					}
 				}
 			}

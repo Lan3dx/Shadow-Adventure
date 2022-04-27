@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <map>
 #include <iostream>
-
+ 
 #include "../include/entities/player.h"
 #include "../include/entities/bullet.h"
 #include "../include/spawn.h"
