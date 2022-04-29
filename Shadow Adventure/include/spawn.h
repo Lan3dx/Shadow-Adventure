@@ -6,25 +6,26 @@
 #include "..\include\entities\bullet.h"
 #include "..\include\entities\player.h"
 
-class PMAP
+class PMAP // players map
 {
 private:
-	std::map<std::string, PLAYER> list;
+	std::map<std::string, PLAYER> list; // map
 public:
-	void set(std::map <std::string, PLAYER>);
-	void rem(std::string);
-	void add(std::string, PLAYER);
-	PLAYER find(std::string);
-	std::map<std::string, PLAYER> get();
+	void set(std::map <std::string, PLAYER>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, PLAYER); // add some element in map
+	PLAYER find(std::string); // find some element
+	std::map<std::string, PLAYER> get(); // get some element in map
 };
-class BMAP
+
+class BMAP // bullets map
 {
 private:
-	std::map<std::string, BULLET> list;
+	std::map<std::string, BULLET> list; // map
 public:
-	void set(std::map <std::string, BULLET>);
-	void rem(std::string);
-	void add(std::string, BULLET);
-	BULLET find(std::string);
-	std::map<std::string, BULLET> get();
+	void set(std::map <std::string, BULLET>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, BULLET); // add some element in map
+	BULLET find(std::string); // find some element
+	std::map<std::string, BULLET> get(); // get some element in map
 };

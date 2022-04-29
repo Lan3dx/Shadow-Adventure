@@ -5,7 +5,7 @@
 // clearing the console screen
 void clear()
 {
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 }); // clear screen of console
 }
 
 // basic console settings

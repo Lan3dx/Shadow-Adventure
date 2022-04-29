@@ -6,19 +6,49 @@ int main()
 	std_config(); // Customizes the console window
 
 	auto board = board_init();  // Define board
-	int cooldown = 0;
+	int cooldown = 0; // {temp} cooldown for player movement
 
-	PMAP players;
-	BMAP bullets; 
+	PMAP players; // players map
+	BMAP bullets; // bullets map
 
 	while (true) // Main program loop
 	{
-		if (GetAsyncKeyState((unsigned short)'W')) { auto afunc = std::async(control, std::ref(players), "player", std::ref(board), 72); players.set(afunc.get()); }
-		if (GetAsyncKeyState((unsigned short)'A')) { if (cooldown == 0) { cooldown = 2; auto afunc = std::async(control, std::ref(players), "player", std::ref(board), 75); players.set(afunc.get()); } }
-		if (GetAsyncKeyState((unsigned short)'S')) { auto afunc = std::async(control, std::ref(players), "player", std::ref(board), 80); players.set(afunc.get()); }
-		if (GetAsyncKeyState((unsigned short)'D')) { if (cooldown == 0) { cooldown = 2; auto afunc = std::async(control, std::ref(players), "player", std::ref(board), 77); players.set(afunc.get()); } }
-		if (GetAsyncKeyState((unsigned short)'R')) { players.rem("player"); PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd'); players.add("player", player); }
-		if (GetAsyncKeyState((unsigned short)'K')) { players.rem("player"); bullets.set({}); board = board_init(); }
+		if (GetAsyncKeyState((unsigned short)'W')) 
+		{ 
+			control (&players, "player", std::ref(board), 72); 
+		}
+		if (GetAsyncKeyState((unsigned short)'A')) 
+		{ 
+			if (cooldown == 0)
+			{
+				cooldown = 2; 
+				control(&players, "player", std::ref(board), 75);
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)'S')) 
+		{
+			control(&players, "player", std::ref(board), 80);
+		}
+		if (GetAsyncKeyState((unsigned short)'D'))
+		{
+			if (cooldown == 0)
+			{
+				cooldown = 2; 
+				control(&players, "player", std::ref(board), 77);
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)'R'))
+		{
+			players.rem("player");
+			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd');
+			players.add("player", player);
+		}
+		if (GetAsyncKeyState((unsigned short)'K')) 
+		{ 
+			players.rem("player"); 
+			bullets.set({}); 
+			board = board_init(); 
+		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
 			if (players.get().contains("player"))
@@ -50,17 +80,17 @@ int main()
 			}
 		}
 
-		auto a_bulletG = std::async(gravitationB, std::ref(bullets), std::ref(board));
-		bullets.set(a_bulletG.get());
+		auto a_bulletG = std::thread(gravitationB, &bullets, std::ref(board)); // bullet gravity
+		a_bulletG.join();
 
-		auto a_playerG = std::async(gravitationP, std::ref(players), std::ref(board));
-		players.set(a_playerG.get());
+		auto a_playerG = std::thread(gravitationP, &players, std::ref(board)); // player gravity
+		a_playerG.join();
 
-		if (cooldown > 0)
+		if (cooldown > 0) // cooldown for player's movement (A), (D)
 			cooldown -= 1;
 
-		entitiesRender(players, bullets, std::ref(board));
 		clear(); // clear screen
+		entitiesRender(players, bullets, std::ref(board)); // output all entitis
 		render(board); // screen output
 	}
 

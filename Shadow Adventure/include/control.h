@@ -9,4 +9,4 @@
 #include "spawn.h"
 #include "map.h"
 
-std::map < std::string, PLAYER > control(PMAP&, std::string, std::vector<std::vector<char>>&, int);
+void control(PMAP*, std::string, std::vector<std::vector<char>>&, int); // selected player control func

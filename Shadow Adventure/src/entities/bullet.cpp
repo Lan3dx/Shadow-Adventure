@@ -2,36 +2,37 @@
 
 BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt) // constructor
 {
-	gravity = stdGravity;
-	GType = Gt;
-	x = stdX;
-	y = stdY;
-	character = stdChar;
+	gravity = stdGravity; // gravity
+	GType = Gt; // ggravity type
+	x = stdX; // pos x
+	y = stdY; // pos y
+	character = stdChar; // symbol
 }
 
 void BULLET::move(char type) // move entity on map
 {
-	if (type == 'r') {y += 1;}
-	if (type == 'l') {y -= 1;}
-	if (type == 'u'){x -= 1;}
-	if (type == 'd') {x += 1;}
+	if (type == 'r') {y += 1;} // right
+	if (type == 'l') {y -= 1;} // left
+	if (type == 'u'){x -= 1;} // up
+	if (type == 'd') {x += 1;} // down
 }
-void BULLET::setX(int stdx) { x = stdx; }
-void BULLET::setY(int stdy) { y = stdy; }
 
-int BULLET::getX() { return x; }
-int BULLET::getY() { return y; }
+void BULLET::setX(int stdx) { x = stdx; } // set x
+void BULLET::setY(int stdy) { y = stdy; } // set y
 
-bool BULLET::getGravity() { return gravity; }
-bool BULLET::touch(std::vector<std::vector<char>> board)
+int BULLET::getX() { return x; } // get x
+int BULLET::getY() { return y; } // get y
+
+bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)
+bool BULLET::touch(std::vector<std::vector<char>> board) // if the bullet hit the wall
 {
-	if (board[x][y] != ' ' &&
+	if (board[x][y] != ' ' &&  // bullet touch ' ' or '|' then return false
 		board[x][y] != '|')
-		return true;
-	return false;
+		return false;
+	return true;
 }
 
-char BULLET::getGType() { return GType; }
+char BULLET::getGType() { return GType; } // get gravity type
 
-std::vector<std::vector<char>> BULLET::spawn(std::vector<std::vector<char>> board) { board[x][y] = character; return board; }
-std::vector<std::vector<char>> BULLET::kill(std::vector<std::vector<char>> board) { board[x][y] = ' '; return board; }
+std::vector<std::vector<char>> BULLET::spawn(std::vector<std::vector<char>> board) { board[x][y] = character; return board; } // spawn bullet
+std::vector<std::vector<char>> BULLET::kill(std::vector<std::vector<char>> board) { board[x][y] = ' '; return board; } // kill bullet

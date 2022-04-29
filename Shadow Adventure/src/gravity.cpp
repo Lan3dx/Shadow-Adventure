@@ -1,61 +1,64 @@
 #include "../include/gravity.h"
-#include <vector>
 
-std::map < std::string, BULLET > gravitationB(BMAP& bullets, std::vector<std::vector<char>>& board)
+void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravity func for bullets
 {
-	auto entityMap = bullets.get();
-	std::map < std::string, BULLET > nbm = {};
+	auto entityMap = bullets->get(); // old bullet map
+	std::map < std::string, BULLET > nbm = {}; // new bullet map
 	for (auto& entityS : entityMap)
 	{
 		BULLET entity = entityS.second;
 
-		board = board_init();
-		if (entity.touch(board))
+		board = board_init(); // clear map
+		if (!entity.touch(board)) // if the bullet hit the wall
 		{
-			bullets.rem(entityS.first);
+			bullets->rem(entityS.first); // remove entities from the map
 		}
 		else
 		{
-			board = entity.kill(board);
-			entity.move(entity.getGType());
-			board = entity.spawn(board);
-			nbm.insert(std::make_pair(entityS.first, entity));
+			if (entity.getGravity()) // if bullet have gravity
+			{
+				board = entity.kill(board); // kill bullet
+				entity.move(entity.getGType()); // move bullet
+				board = entity.spawn(board); // spawn bullet
+				nbm.insert(std::make_pair(entityS.first, entity)); // add bullet to new bullets map
+			}
 		}
 	}
-	return nbm;
+	bullets->set(nbm); // set old bullets map
 }
-std::map < std::string, PLAYER > gravitationP(PMAP& players, std::vector<std::vector<char>>& board)
+
+void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravity func for player
 {
-	auto entityMap = players.get();
-	std::map < std::string, PLAYER > npm = {};
+	auto entityMap = players->get(); // old players map
+	std::map < std::string, PLAYER > npm = {}; // new players map
 	for (auto& entityS : entityMap)
 	{
 		PLAYER entity = entityS.second;
-		if (entity.limit(board))
+		if (entity.limit(board)) // if the player is in prohibited territory
 		{
-			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 });
-			board = entity.kill(board);
-			entity.move(entity.getGType());
-			board = entity.spawn(board);
+			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
+			board = entity.kill(board); // kill player
+			entity.move(entity.getGType()); // move player
+			board = entity.spawn(board); // spawn player
 		}
 
-		if (entity.getGravity())
+		if (entity.getGravity()) // if player have gravity
 		{
-			if (!entity.voidUnder(board))
+			if (!entity.voidUnder(board)) // if under player void
 			{
-				if (!entity.ladder(board))
+				if (!entity.ladder(board)) // if player NOT on ladder
 				{
-					if (!entity.collisions(board, entity.getGType()))
+					if (!entity.collisions(board, entity.getGType())) // if player not in the map
 					{
-						board = entity.kill(board);
-						board = board_init();
-						entity.move(entity.getGType());
-						board = entity.spawn(board);
+						board = board_init(); // clear map
+						board = entity.kill(board); // kill player
+						entity.move(entity.getGType()); // move player
+						board = entity.spawn(board); // spawn player
 					}
 				}
 			}
 		}
-		npm.insert(std::make_pair(entityS.first, entity));
+		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}
-	return npm;
+	players->set(npm); // set old players map
 }

@@ -1,10 +1,10 @@
 #include "../include/spawn.h"
 
-void PMAP::add(std::string key, PLAYER player)
+void PMAP::add(std::string key, PLAYER player) // add some element in map
 {
 	list.insert(std::make_pair(key, player));
 }
-void PMAP::rem(std::string key)
+void PMAP::rem(std::string key) // remove some element from map
 {
 	if (list.contains(key))
 	{
@@ -13,7 +13,7 @@ void PMAP::rem(std::string key)
 		list.erase(iter);
 	}
 }
-PLAYER PMAP::find(std::string key)
+PLAYER PMAP::find(std::string key) // find some element of map
 {
 	if (list.contains(key))
 	{
@@ -22,20 +22,20 @@ PLAYER PMAP::find(std::string key)
 		return iter->second;
 	}
 }
-void PMAP::set(std::map <std::string, PLAYER> t_map)
+void PMAP::set(std::map <std::string, PLAYER> t_map) // set map
 {
 	list = t_map;
 }
-std::map<std::string, PLAYER> PMAP::get()
+std::map<std::string, PLAYER> PMAP::get() // get some element from map
 {
 	return list;
 }
 
-void BMAP::add(std::string key, BULLET bullet)
+void BMAP::add(std::string key, BULLET bullet) // add some element in map
 {
 	list.insert(std::make_pair(key, bullet));
 }
-void BMAP::rem(std::string key)
+void BMAP::rem(std::string key) // remove some element from map
 {
 	if (list.contains(key))
 	{
@@ -44,7 +44,7 @@ void BMAP::rem(std::string key)
 		list.erase(iter);
 	}
 }
-BULLET BMAP::find(std::string key)
+BULLET BMAP::find(std::string key) // find some element of map
 {
 	if (list.contains(key))
 	{
@@ -53,11 +53,11 @@ BULLET BMAP::find(std::string key)
 		return iter->second;
 	}
 }
-void BMAP::set(std::map <std::string, BULLET> t_map)
+void BMAP::set(std::map <std::string, BULLET> t_map) // set map
 {
 	list = t_map;
 }
-std::map<std::string, BULLET> BMAP::get()
+std::map<std::string, BULLET> BMAP::get() // get some element from map
 {
 	return list;
 }
