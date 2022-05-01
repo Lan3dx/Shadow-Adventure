@@ -6,7 +6,6 @@ int main()
 	std_config(); // Customizes the console window
 
 	auto board = board_init();  // Define board
-	int cooldown = 0; // {temp} cooldown for player movement
 
 	PMAP players; // players map
 	BMAP bullets; // bullets map
@@ -15,15 +14,11 @@ int main()
 	{
 		if (GetAsyncKeyState((unsigned short)'W')) 
 		{ 
-			control (&players, "player", std::ref(board), 72); 
+			control (&players, "player", std::ref(board), 72);
 		}
 		if (GetAsyncKeyState((unsigned short)'A')) 
 		{ 
-			if (cooldown == 0)
-			{
-				cooldown = 2; 
-				control(&players, "player", std::ref(board), 75);
-			}
+			control(&players, "player", std::ref(board), 75);
 		}
 		if (GetAsyncKeyState((unsigned short)'S')) 
 		{
@@ -31,11 +26,7 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'D'))
 		{
-			if (cooldown == 0)
-			{
-				cooldown = 2; 
-				control(&players, "player", std::ref(board), 77);
-			}
+			control(&players, "player", std::ref(board), 77);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
@@ -85,9 +76,6 @@ int main()
 
 		auto a_playerG = std::thread(gravitationP, &players, std::ref(board)); // player gravity
 		a_playerG.join();
-
-		if (cooldown > 0) // cooldown for player's movement (A), (D)
-			cooldown -= 1;
 
 		clear(); // clear screen
 		entitiesRender(players, bullets, std::ref(board)); // output all entitis
