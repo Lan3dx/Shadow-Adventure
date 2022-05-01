@@ -17,4 +17,4 @@
 #include "../entities/player.h"
 #include "../entities/bullet.h"
 #include "../spawn.h"
-#include "../entities/cooldowns_s.h"
+#include "../entities/sys/cooldowns_s.h"

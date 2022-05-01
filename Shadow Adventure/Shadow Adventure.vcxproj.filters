@@ -24,6 +24,12 @@
     <Filter Include="Header Files\sys">
       <UniqueIdentifier>{23b55911-8a3f-4655-a000-c6d6e529c11d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\entities\sys">
+      <UniqueIdentifier>{d8ed79d2-0a66-4952-8a27-eee1c656a311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\entities\sys">
+      <UniqueIdentifier>{6da30ee2-2ddb-4feb-abae-7f468372545e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\control.h">
@@ -59,8 +65,8 @@
     <ClInclude Include="include\sys\constants.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
-    <ClInclude Include="include\entities\cooldowns_s.h">
-      <Filter>Header Files\entities</Filter>
+    <ClInclude Include="include\entities\sys\cooldowns_s.h">
+      <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -94,8 +100,8 @@
     <ClCompile Include="src\sys\render.cpp">
       <Filter>Source Files\src\sys</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\cooldowns_s.cpp">
-      <Filter>Source Files\src\entities</Filter>
+    <ClCompile Include="src\entities\sys\cooldowns_s.cpp">
+      <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

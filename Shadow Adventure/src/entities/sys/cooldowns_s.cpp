@@ -1,4 +1,4 @@
-#include "../../include/entities/cooldowns_s.h"
+#include "../../../include/entities/sys/cooldowns_s.h"
 
 void cdSet(PMAP* players, BMAP* bullets) // minus cooldown for all entities
 {
