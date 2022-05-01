@@ -16,6 +16,7 @@ private:
 	std::vector<int> y; // pos
 	char character; // symbol for entity
 	cooldowns cooldown; // cooldown for (A), (D), (W), (S), gravity
+	cooldowns std_COOLDOWN;
 
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
@@ -38,9 +39,13 @@ public:
 
 	void move(char); // move entity on map
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
-	void setCAD(int); // set cooldown for (A) (D)
-	void setCWS(int); // set cooldown for (W) (S)
-	void setCG(int); // set cooldown of gravity
+
+	void setCAD(); // set cooldown for (A) (D)
+	void setCWS(); // set cooldown for (W) (S)
+	void setCG(); // set cooldown of gravity
+	void setCAD(int); // set cooldown for (A) (D) !over
+	void setCWS(int); // set cooldown for (W) (S) !over
+	void setCG(int); // set cooldown of gravity !over
 
 	char getGType(); // get gravity type
 };

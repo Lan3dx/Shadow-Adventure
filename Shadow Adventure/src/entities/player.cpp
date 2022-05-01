@@ -8,6 +8,7 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	y = stdY; // pos y
 	character = stdChar; // symbol
 	cooldown = cd;
+	std_COOLDOWN = cd;
 }
 
 std::vector<std::vector<char>> PLAYER::spawn(std::vector<std::vector<char>> board) // place entity on map
@@ -87,17 +88,30 @@ void PLAYER::setPos(std::vector<int> std_x, std::vector<int> std_y) // set playe
 	x = std_x; // set x
 	y = std_y; // set y
 }
-void PLAYER::setCAD(int std_cad) // get cooldown for (A) (D)
+
+void PLAYER::setCAD() // get cooldown for (A) (D)
 {
-	cooldown.AD = std_cad;
+	cooldown.AD = std_COOLDOWN.AD;
 }
-void PLAYER::setCWS(int std_cws) // get cooldown for (W) (S)
+void PLAYER::setCWS() // get cooldown for (W) (S)
 {
-	cooldown.WS = std_cws;
+	cooldown.WS = std_COOLDOWN.WS;
 }
-void PLAYER::setCG(int std_g) // get cooldown of gravity
+void PLAYER::setCG() // get cooldown of gravity
 {
-	cooldown.gravity = std_g;
+	cooldown.gravity = std_COOLDOWN.gravity;
+}
+void PLAYER::setCAD(int lcad) // get cooldown for (A) (D) over
+{
+	cooldown.AD = lcad;
+}
+void PLAYER::setCWS(int lcws) // get cooldown for (W) (S) over
+{
+	cooldown.WS = lcws;
+}
+void PLAYER::setCG(int lcg) // get cooldown of gravity over
+{
+	cooldown.gravity = lcg;
 }
 
 bool PLAYER::voidUnder(std::vector<std::vector<char>> board) // if player hit the floor

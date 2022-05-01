@@ -9,8 +9,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 		std::map < std::string, PLAYER > npm; // new player map
 
 		PLAYER player = players->find(selected); // get selected player from players map
-
-
+		
 		if (!player.collisions(board, key)) // if there are no walls near the player
 		{
 			board = player.kill(board); // kill a character on the map
@@ -22,14 +21,21 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 					board = board_init(); // board clear
 					if (player.ladder(board)) // if the player is on the ladder, then raise him by 1 element
 					{
-						player.move('u');
-						Sleep(60);
+						if (!(player.getCWS() > 4))
+						{
+							player.move('u');
+							player.setCWS();
+						}
 					}
 					else // else by 4 elements
 					{
-						for (int j = 0; j < 4; j++)
+						if (!(player.getCWS() > 0))
 						{
-							player.move('u'); // up player on 4 elements
+							for (int j = 0; j < 4; j++)
+							{
+								player.move('u'); // up player on 4 elements
+							}
+							player.setCWS();
 						}
 					}
 				}
@@ -38,18 +44,36 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{ 
 				if (player.limit(board)) // if the player is in prohibited territory
 				{
-					player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
-					board = player.kill(board); // kill player
-					player.move(player.getGType()); // move player
-					board = player.spawn(board); // spawn player
+						player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
+						board = player.kill(board); // kill player
+						player.move(player.getGType()); // move player
+						board = player.spawn(board); // spawn player
 				}
 				else
 				{
-					player.move('d'); // move player
+					if (!(player.getCWS() > 4))
+					{
+						player.move('d'); // move player
+						player.setCWS();
+					}
 				}
 			}
-			else if (key == 75) { player.move('l'); } // Left
-			else if (key == 77) { player.move('r'); } // Right
+			else if (key == 75) 
+			{ 
+				if (!(player.getCAD() > 0))
+				{
+					player.move('l');
+					player.setCAD();
+				}
+			} // Left
+			else if (key == 77) 
+			{
+				if (!(player.getCAD() > 0))
+				{
+					player.move('r');
+					player.setCAD();
+				}
+			} // Right
 
 			board = player.spawn(board); // spawn a character on the map
 			npm.insert(std::make_pair(selected, player)); // add player to new players map

@@ -31,7 +31,7 @@ int main()
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
 			players.rem("player");
-			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', {2,2,2});
+			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', {2,6,1});
 			players.add("player", player);
 		}
 		if (GetAsyncKeyState((unsigned short)'K')) 
@@ -78,6 +78,7 @@ int main()
 		a_playerG.join();
 
 		clear(); // clear screen
+		cdSet(&players, &bullets); // -1 cooldown for all entities
 		entitiesRender(players, bullets, std::ref(board)); // output all entitis
 		render(board); // screen output
 	}

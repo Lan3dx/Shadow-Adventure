@@ -50,10 +50,14 @@ void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravi
 				{
 					if (!entity.collisions(board, entity.getGType())) // if player not in the map
 					{
-						board = board_init(); // clear map
-						board = entity.kill(board); // kill player
-						entity.move(entity.getGType()); // move player
-						board = entity.spawn(board); // spawn player
+						if (!(entity.getCG() > 0))
+						{
+							board = board_init(); // clear map
+							board = entity.kill(board); // kill player
+							entity.move(entity.getGType()); // move player
+							board = entity.spawn(board); // spawn player
+							entity.setCG();
+						}
 					}
 				}
 			}
