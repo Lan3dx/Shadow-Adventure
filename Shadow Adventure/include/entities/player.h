@@ -1,5 +1,12 @@
 #pragma once
 #include <vector>
+struct cooldowns
+{
+	int AD;
+	int WS;
+	int gravity;
+};
+
 class PLAYER // main entity class
 {
 private:
@@ -8,12 +15,10 @@ private:
 	std::vector<int> x; // pos 
 	std::vector<int> y; // pos
 	char character; // symbol for entity
-
-	int cooldown_AD; // cooldown for (A) (D)
-	int cooldown_WS; // cooldown for (W) (S)
+	cooldowns cooldown; // cooldown for (A), (D), (W), (S), gravity
 
 public:
-	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, int, int); // constructor
+	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
 
 	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>);// place entity on map
 	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>);// delete entity from map
@@ -23,6 +28,7 @@ public:
 
 	int getCAD(); // get cooldown for (A) (D)
 	int getCWS(); // get cooldown for (W) (S)
+	int getCG(); // get cooldown of gravity
 
 	bool voidUnder(std::vector<std::vector<char>>); // if the player hit the floor
 	bool collisions(std::vector<std::vector<char>>, int); // if the player touched a solid block
@@ -34,6 +40,7 @@ public:
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
 	void setCAD(int); // set cooldown for (A) (D)
 	void setCWS(int); // set cooldown for (W) (S)
+	void setCG(int); // set cooldown of gravity
 
 	char getGType(); // get gravity type
 };

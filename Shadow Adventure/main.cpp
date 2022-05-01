@@ -31,7 +31,7 @@ int main()
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
 			players.rem("player");
-			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', 2, 2);
+			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', {2,2,2});
 			players.add("player", player);
 		}
 		if (GetAsyncKeyState((unsigned short)'K')) 

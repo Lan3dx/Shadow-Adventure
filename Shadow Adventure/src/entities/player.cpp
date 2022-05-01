@@ -1,14 +1,13 @@
 #include "../../include/entities/player.h"
 
-PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, int stdAD, int stdWS) // constructor
+PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
 {
 	gravity = stdGravity; // gravity (t) (f) 
 	GType = Gt; // gravity type (u,d,l,r)
 	x = stdX; // pos x
 	y = stdY; // pos y
 	character = stdChar; // symbol
-	cooldown_AD = stdAD; // cooldown for (A) (D)
-	cooldown_WS = stdWS; // cooldown for (W) (S)
+	cooldown = cd;
 }
 
 std::vector<std::vector<char>> PLAYER::spawn(std::vector<std::vector<char>> board) // place entity on map
@@ -39,13 +38,17 @@ std::vector<int> PLAYER::getY() // get y
 	return y;
 }
 
-int PLAYER::getCAD() // set cooldown for (A) (D)
+int PLAYER::getCAD() // get cooldown for (A) (D)
 {
-	return cooldown_AD;
+	return cooldown.AD;
 }
-int PLAYER::getCWS() // set cooldown for (W) (S)
+int PLAYER::getCWS() // get cooldown for (W) (S)
 {
-	return cooldown_WS;
+	return cooldown.WS;
+}
+int PLAYER::getCG() // get cooldown of gravity
+{
+	return cooldown.gravity;
 }
 
 void PLAYER::move(char type) // move entity on map
@@ -86,11 +89,15 @@ void PLAYER::setPos(std::vector<int> std_x, std::vector<int> std_y) // set playe
 }
 void PLAYER::setCAD(int std_cad) // get cooldown for (A) (D)
 {
-	cooldown_AD = std_cad;
+	cooldown.AD = std_cad;
 }
 void PLAYER::setCWS(int std_cws) // get cooldown for (W) (S)
 {
-	cooldown_WS = std_cws;
+	cooldown.WS = std_cws;
+}
+void PLAYER::setCG(int std_g) // get cooldown of gravity
+{
+	cooldown.gravity = std_g;
 }
 
 bool PLAYER::voidUnder(std::vector<std::vector<char>> board) // if player hit the floor
