@@ -31,7 +31,7 @@ int main()
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
 			players.rem("player");
-			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', {2,6,1});
+			PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', {2,7,2});
 			players.add("player", player);
 		}
 		if (GetAsyncKeyState((unsigned short)'K')) 
@@ -48,7 +48,7 @@ int main()
 				{
 					if (!bullets.get().contains("bullet" + std::to_string(b)))
 					{
-						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r');
+						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r', 1);
 						bullets.add("bullet" + std::to_string(b), bullet);
 						break;
 					}
@@ -63,7 +63,7 @@ int main()
 				{
 					if (!bullets.get().contains("bullet" + std::to_string(b)))
 					{
-						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l');
+						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l', 1);
 						bullets.add("bullet" + std::to_string(b), bullet);
 						break;
 					}
@@ -71,11 +71,10 @@ int main()
 			}
 		}
 
-		auto a_bulletG = std::thread(gravitationB, &bullets, std::ref(board)); // bullet gravity
-		a_bulletG.join();
-
 		auto a_playerG = std::thread(gravitationP, &players, std::ref(board)); // player gravity
 		a_playerG.join();
+		auto a_bulletG = std::thread(gravitationB, &bullets, std::ref(board)); // bullet gravity
+		a_bulletG.join();
 
 		clear(); // clear screen
 		cdSet(&players, &bullets); // -1 cooldown for all entities

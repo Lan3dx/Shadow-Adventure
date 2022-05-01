@@ -1,12 +1,14 @@
 #include "../../include/entities/bullet.h"
 
-BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt) // constructor
+BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, int cd) // constructor
 {
 	gravity = stdGravity; // gravity
 	GType = Gt; // ggravity type
 	x = stdX; // pos x
 	y = stdY; // pos y
 	character = stdChar; // symbol
+	cooldown = cd;
+	std_COOLDOWN = cd;
 }
 
 void BULLET::move(char type) // move entity on map
@@ -19,9 +21,21 @@ void BULLET::move(char type) // move entity on map
 
 void BULLET::setX(int stdx) { x = stdx; } // set x
 void BULLET::setY(int stdy) { y = stdy; } // set y
+void BULLET::setC() // set cooldown
+{
+	cooldown = std_COOLDOWN;
+}
+void BULLET::setC(int lc) // set !over
+{
+	cooldown = lc;
+}
 
 int BULLET::getX() { return x; } // get x
 int BULLET::getY() { return y; } // get y
+int BULLET::getC() // get cooldown
+{
+	return cooldown;
+}
 
 bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)
 bool BULLET::touch(std::vector<std::vector<char>> board) // if the bullet hit the wall

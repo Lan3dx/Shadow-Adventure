@@ -12,10 +12,13 @@ void cdSet(PMAP* players, BMAP* bullets) // minus cooldown for all entities
 		npm.insert(std::make_pair(entityS.first, entity)); // add player to new players map
 	}
 	players->set(npm); // set players map
-	/*for (auto& entityS : bullets.get())
+
+	std::map < std::string, BULLET > nbm = {}; // new bullets map
+	for (auto& entityS : bullets->get())
 	{
-		if (entityS.second.getCAD() > 0) { entityS.second.setCAD(entityS.second.getCAD() - 1); }
-		if (entityS.second.getCWS() > 0) {entityS.second.setCWS(entityS.second.getCWS() - 1);}
-		if (entityS.second.getCG() > 0) { entityS.second.setCG(entityS.second.getCG() - 1); }
-	}*/
+		BULLET entity = entityS.second;
+		if (entity.getC() > 0) { entity.setC(entity.getC() - 1); }
+		nbm.insert(std::make_pair(entityS.first, entity)); // add bullet to new bullets map
+	}
+	bullets->set(nbm); // set bullets map
 }
