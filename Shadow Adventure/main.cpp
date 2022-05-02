@@ -1,6 +1,13 @@
 #include "include/sys/includes.h"
 #include "include/sys/constants.h"
 
+/*
+ToDo:
+	1. add other players (bots)
+	2. give to user change selected player
+	3. add face to player
+*/
+
 int main()
 {
 	std_config(); // Customizes the console window

@@ -15,12 +15,9 @@ void PMAP::rem(std::string key) // remove some element from map
 }
 PLAYER PMAP::find(std::string key) // find some element of map
 {
-	if (list.contains(key))
-	{
-		std::map <std::string, PLAYER>::iterator iter;
-		iter = list.find(key);
-		return iter->second;
-	}
+	std::map <std::string, PLAYER>::iterator iter;
+	iter = list.find(key);
+	return iter->second;
 }
 void PMAP::set(std::map <std::string, PLAYER> t_map) // set map
 {
@@ -46,12 +43,9 @@ void BMAP::rem(std::string key) // remove some element from map
 }
 BULLET BMAP::find(std::string key) // find some element of map
 {
-	if (list.contains(key))
-	{
-		std::map <std::string, BULLET>::iterator iter;
-		iter = list.find(key);
-		return iter->second;
-	}
+	std::map <std::string, BULLET>::iterator iter;
+	iter = list.find(key);
+	return iter->second;
 }
 void BMAP::set(std::map <std::string, BULLET> t_map) // set map
 {
