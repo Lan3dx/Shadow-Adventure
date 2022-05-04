@@ -1,6 +1,6 @@
 #include "../../include/entities/bullet.h"
 
-BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, int cd) // constructor
+BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
 {
 	gravity = stdGravity; // gravity
 	GType = Gt; // ggravity type
@@ -21,20 +21,33 @@ void BULLET::move(char type) // move entity on map
 
 void BULLET::setX(int stdx) { x = stdx; } // set x
 void BULLET::setY(int stdy) { y = stdy; } // set y
-void BULLET::setC() // set cooldown
+void BULLET::setCG() // set cooldown for gravity
 {
-	cooldown = std_COOLDOWN;
+	cooldown.CG = std_COOLDOWN.CG;
 }
-void BULLET::setC(int lc) // set !over
+void BULLET::setCG(int lc) // set cooldown for gravity !over
 {
-	cooldown = lc;
+	cooldown.CG = lc;
+}
+void BULLET::setCS() // set cooldown for gravity
+{
+	cooldown.CS = std_COOLDOWN.CS;
+}
+void BULLET::setCS(int lc) // set cooldown for gravity !over
+{
+	cooldown.CS = lc;
 }
 
 int BULLET::getX() { return x; } // get x
 int BULLET::getY() { return y; } // get y
-int BULLET::getC() // get cooldown
+
+int BULLET::getCG() // get cooldown for gravity
 {
-	return cooldown;
+	return cooldown.CG;
+}
+int BULLET::getCS() // get cooldown for gravity
+{
+	return cooldown.CS;
 }
 
 bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)

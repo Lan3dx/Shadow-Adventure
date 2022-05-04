@@ -1,15 +1,15 @@
 #pragma once
 #include <vector>
-struct cooldowns
-{
-	int AD;
-	int WS;
-	int gravity;
-};
 
 class PLAYER // main entity class
 {
 private:
+	struct cooldowns
+	{
+		int AD;
+		int WS;
+		int gravity;
+	};
 	char GType;
 	bool gravity; // gravity
 	std::vector<int> x; // pos 

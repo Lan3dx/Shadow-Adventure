@@ -5,7 +5,6 @@
 ToDo:
 	1. add other players (bots)
 	2. give to user change selected player
-	3. add face to player
 */
 
 int main()
@@ -13,6 +12,7 @@ int main()
 	std_config(); // Customizes the console window
 
 	auto board = board_init();  // Define board
+	auto shot_cd = SHOT_CD;
 
 	PMAP players; // players map
 	BMAP bullets; // bullets map
@@ -51,13 +51,32 @@ int main()
 		{
 			if (players.get().contains("player"))
 			{
-				for (int b = 0; b < MAX_AMMO; b++)
+				if (!bullets.get().empty())
 				{
-					if (!bullets.get().contains("bullet" + std::to_string(b)))
+					if (shot_cd <= 0)
 					{
-						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r', 1);
-						bullets.add("bullet" + std::to_string(b), bullet);
-						break;
+						shot_cd = SHOT_CD;
+						for (int b = 0; b < MAX_AMMO; b++)
+						{
+							if (!bullets.get().contains("bullet" + std::to_string(b)))
+							{
+								BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r', { 1,10 });
+								bullets.add("bullet" + std::to_string(b), bullet);
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					for (int b = 0; b < MAX_AMMO; b++)
+					{
+						if (!bullets.get().contains("bullet" + std::to_string(b)))
+						{
+							BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] + 1, 'B', true, 'r', { 1,10 });
+							bullets.add("bullet" + std::to_string(b), bullet);
+							break;
+						}
 					}
 				}
 			}
@@ -66,13 +85,32 @@ int main()
 		{
 			if (players.get().contains("player"))
 			{
-				for (int b = 0; b < MAX_AMMO; b++)
+				if (!bullets.get().empty())
 				{
-					if (!bullets.get().contains("bullet" + std::to_string(b)))
+					if (shot_cd <= 0)
 					{
-						BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l', 1);
-						bullets.add("bullet" + std::to_string(b), bullet);
-						break;
+						shot_cd = SHOT_CD;
+						for (int b = 0; b < MAX_AMMO; b++)
+						{
+							if (!bullets.get().contains("bullet" + std::to_string(b)))
+							{
+								BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l', { 1,10 });
+								bullets.add("bullet" + std::to_string(b), bullet);
+								break;
+							}
+						}
+					}
+				}		
+				else
+				{
+					for (int b = 0; b < MAX_AMMO; b++)
+					{
+						if (!bullets.get().contains("bullet" + std::to_string(b)))
+						{
+							BULLET bullet(players.find("player").getX()[0], players.find("player").getY()[0] - 1, 'B', true, 'l', { 1,10 });
+							bullets.add("bullet" + std::to_string(b), bullet);
+							break;
+						}
 					}
 				}
 			}
@@ -84,7 +122,7 @@ int main()
 		a_bulletG.join();
 
 		clear(); // clear screen
-		cdSet(&players, &bullets); // -1 cooldown for all entities
+		cdSet(&players, &bullets, &shot_cd); // -1 cooldown for all entities
 		entitiesRender(players, bullets, std::ref(board)); // output all entitis
 		render(board); // screen output
 	}

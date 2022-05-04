@@ -17,12 +17,12 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravi
 		{
 			if (entity.getGravity()) // if bullet have gravity
 			{
-				if (!(entity.getC() > 0))
+				if (!(entity.getCG() > 0))
 				{
 					board = entity.kill(board); // kill bullet
 					entity.move(entity.getGType()); // move bullet
 					board = entity.spawn(board); // spawn bullet
-					entity.setC();
+					entity.setCG();
 				}
 			}
 			nbm.insert(std::make_pair(entityS.first, entity)); // add bullet to new bullets map

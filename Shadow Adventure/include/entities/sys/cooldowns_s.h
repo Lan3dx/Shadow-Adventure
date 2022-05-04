@@ -2,4 +2,4 @@
 #include <vector>
 #include "../../spawn.h"
 
-void cdSet(PMAP* players, BMAP* bullets); // minus cooldown for all entities
+void cdSet(PMAP*, BMAP*, int*); // minus cooldown for all entities
