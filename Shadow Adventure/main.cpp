@@ -1,12 +1,6 @@
 #include "include/sys/includes.h"
 #include "include/sys/constants.h"
 
-/*
-ToDo:
-	1. add other players (bots)
-	2. give to user change selected player
-*/
-
 int main()
 {
 	std_config(); // Customizes the console window
@@ -118,10 +112,8 @@ int main()
 			}
 		}
 
-		auto a_playerG = std::thread(gravitationP, &players, std::ref(board)); // player gravity
-		a_playerG.join();
-		auto a_bulletG = std::thread(gravitationB, &bullets, std::ref(board)); // bullet gravity
-		a_bulletG.join();
+		gravitationP(&players, std::ref(board));
+		gravitationB(&bullets, std::ref(board));
 
 		clear(); // clear screen
 		cdSet(&players, &bullets, &shot_cd); // -1 cooldown for all entities
