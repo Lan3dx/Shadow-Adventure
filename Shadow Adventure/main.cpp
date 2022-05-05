@@ -69,6 +69,7 @@ int main()
 				}
 				else
 				{
+					shot_cd = SHOT_CD;
 					for (int b = 0; b < MAX_AMMO; b++)
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
@@ -103,6 +104,7 @@ int main()
 				}		
 				else
 				{
+					shot_cd = SHOT_CD;
 					for (int b = 0; b < MAX_AMMO; b++)
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
