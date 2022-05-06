@@ -5,6 +5,19 @@
 
 #include "..\include\entities\bullet.h"
 #include "..\include\entities\player.h"
+#include "..\include\entities\mob.h"
+
+class MMAP // mobs map
+{
+private:
+	std::map<std::string, MOB> list; // map
+public:
+	void set(std::map <std::string, MOB>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, MOB); // add some element in map
+	MOB find(std::string); // find some element
+	std::map<std::string, MOB> get(); // get some element in map
+};
 
 class PMAP // players map
 {

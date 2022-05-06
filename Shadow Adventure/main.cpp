@@ -6,10 +6,11 @@ int main()
 	std_config(); // Customizes the console window
 
 	auto board = board_init();  // Define board
-	auto shot_cd = SHOT_CD;
+	auto shot_cd = SHOT_CD; // Cooldown for shot
 
 	PMAP players; // players map
 	BMAP bullets; // bullets map
+	MMAP mobs; // mobs map
 
 	while (true) // Main program loop
 	{
@@ -111,13 +112,23 @@ int main()
 				}
 			}
 		}
+		if (GetAsyncKeyState((unsigned short)'J'))
+		{
+			if (!mobs.get().contains("mob"))
+			{
+				mobs.rem("mob");
+				MOB mob(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'M', true, 'd', { 2,7,2 });
+				mobs.add("player", mob);
+			}
+		}
 
+		gravitationM(&mobs, std::ref(board));
 		gravitationP(&players, std::ref(board));
 		gravitationB(&bullets, std::ref(board));
 
 		clear(); // clear screen
-		cdSet(&players, &bullets, &shot_cd); // -1 cooldown for all entities
-		entitiesRender(players, bullets, std::ref(board)); // output all entitis
+		cdSet(&players, &bullets, &mobs, &shot_cd); // -1 cooldown for all entities
+		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board); // screen output
 	}
 

@@ -1,7 +1,7 @@
 #include "../../../include/entities/sys/cooldowns_s.h"
 #include "../../../include/sys/constants.h"
 
-void cdSet(PMAP* players, BMAP* bullets, int* shot_cd) // minus cooldown for all entities
+void cdSet(PMAP* players, BMAP* bullets, MMAP* mobs, int* shot_cd) // minus cooldown for all entities
 {
 	std::map < std::string, PLAYER > npm = {}; // new player map
 	for (auto& entityS : players->get())
@@ -13,6 +13,17 @@ void cdSet(PMAP* players, BMAP* bullets, int* shot_cd) // minus cooldown for all
 		npm.insert(std::make_pair(entityS.first, entity)); // add player to new players map
 	}
 	players->set(npm); // set players map
+
+	std::map < std::string, MOB > nmm = {}; // new mob map
+	for (auto& entityS : mobs->get())
+	{
+		MOB entity = entityS.second;
+		if (entity.getCAD() > 0) { entity.setCAD(entity.getCAD() - 1); }
+		if (entity.getCWS() > 0) { entity.setCWS(entity.getCWS() - 1); }
+		if (entity.getCG() > 0) { entity.setCG(entity.getCG() - 1); }
+		nmm.insert(std::make_pair(entityS.first, entity)); // add mob to new mobs map
+	}
+	mobs->set(nmm); // set players map
 
 	std::map < std::string, BULLET > nbm = {}; // new bullets map
 	for (auto& entityS : bullets->get())

@@ -16,5 +16,6 @@
 #include "../gravity.h"
 #include "../entities/player.h"
 #include "../entities/bullet.h"
+#include "../entities/mob.h"
 #include "../spawn.h"
 #include "../entities/sys/cooldowns_s.h"

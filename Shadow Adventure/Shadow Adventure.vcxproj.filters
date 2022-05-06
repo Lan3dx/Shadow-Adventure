@@ -68,6 +68,9 @@
     <ClInclude Include="include\entities\sys\cooldowns_s.h">
       <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\entities\mob.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,6 +105,9 @@
     </ClCompile>
     <ClCompile Include="src\entities\sys\cooldowns_s.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\mob.cpp">
+      <Filter>Source Files\src\entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="include\control.h" />
     <ClInclude Include="include\entities\bullet.h" />
+    <ClInclude Include="include\entities\mob.h" />
     <ClInclude Include="include\entities\player.h" />
     <ClInclude Include="include\entities\sys\cooldowns_s.h" />
     <ClInclude Include="include\map.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\control.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />
+    <ClCompile Include="src\entities\mob.cpp" />
     <ClCompile Include="src\entities\player.cpp" />
     <ClCompile Include="src\entities\sys\cooldowns_s.cpp" />
     <ClCompile Include="src\map.cpp" />

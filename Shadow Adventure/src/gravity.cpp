@@ -30,7 +30,45 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravi
 	}
 	bullets->set(nbm); // set old bullets map
 }
+void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board) // gravity func for mob
+{
+	auto entityMap = mobs->get(); // old mob map
+	std::map < std::string, MOB > nmm = {}; // new mob map
+	for (auto& entityS : entityMap)
+	{
+		MOB entity = entityS.second;
+		if (entity.limit(board)) // if the mob is in prohibited territory
+		{
+			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords mob
+			board = entity.kill(board); // kill mob
+			entity.move(entity.getGType()); // move mob
+			board = entity.spawn(board); // spawn mob
+		}
 
+		if (entity.getGravity()) // if mob have gravity
+		{
+			if (!entity.voidUnder(board)) // if under mob void
+			{
+				if (!entity.ladder(board)) // if mob NOT on ladder
+				{
+					if (!entity.collisions(board, entity.getGType())) // if mob not in the map
+					{
+						if (!(entity.getCG() > 0))
+						{
+							board = board_init(); // clear map
+							board = entity.kill(board); // kill mob
+							entity.move(entity.getGType()); // move mob
+							board = entity.spawn(board); // spawn mob
+							entity.setCG();
+						}
+					}
+				}
+			}
+		}
+		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
+	}
+	mobs->set(nmm); // set old mob map
+}
 void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravity func for player
 {
 	auto entityMap = players->get(); // old players map
