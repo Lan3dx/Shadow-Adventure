@@ -3,7 +3,6 @@
 
 void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, int key) // control func for selected player
 {
-	board = board_init(); // board clear
 	if (players->get().contains(selected)) // if players map have selected player
 	{
 		std::map < std::string, PLAYER > npm; // new player map

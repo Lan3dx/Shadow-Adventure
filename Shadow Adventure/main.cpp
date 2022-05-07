@@ -114,17 +114,14 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'J'))
 		{
-			if (!mobs.get().contains("mob"))
-			{
-				mobs.rem("mob");
-				MOB mob(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'M', true, 'd', { 2,7,2 });
-				mobs.add("player", mob);
-			}
+			mobs.rem("mob");
+			MOB mob(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'M', true, 'd', { 2,7,2 });
+			mobs.add("mob", mob);
 		}
 
-		gravitationM(&mobs, std::ref(board));
 		gravitationP(&players, std::ref(board));
 		gravitationB(&bullets, std::ref(board));
+		gravitationM(&mobs, std::ref(board));
 
 		clear(); // clear screen
 		cdSet(&players, &bullets, &mobs, &shot_cd); // -1 cooldown for all entities
