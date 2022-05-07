@@ -1,7 +1,7 @@
 #include "../../../include/entities/sys/cooldowns_s.h"
 #include "../../../include/sys/constants.h"
 
-void cdSet(PMAP* players, BMAP* bullets, MMAP* mobs, int* shot_cd) // minus cooldown for all entities
+void cdSet(PMAP* players, BMAP* bullets, MMAP* mobs, int* shot_cd, int* key_cd) // minus cooldown for all entities
 {
 	std::map < std::string, PLAYER > npm = {}; // new player map
 	for (auto& entityS : players->get())
@@ -39,5 +39,10 @@ void cdSet(PMAP* players, BMAP* bullets, MMAP* mobs, int* shot_cd) // minus cool
 	{
 		if (!(*shot_cd == 0))
 			*shot_cd -= 1;
+	}
+	if (*key_cd > 0)
+	{
+		if (!(*key_cd == 0))
+			*key_cd -= 1;
 	}
 }

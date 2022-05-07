@@ -71,6 +71,9 @@
     <ClInclude Include="include\entities\mob.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
+    <ClInclude Include="include\entities\sys\change.h">
+      <Filter>Header Files\entities\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="src\entities\mob.cpp">
       <Filter>Source Files\src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\sys\change.cpp">
+      <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
