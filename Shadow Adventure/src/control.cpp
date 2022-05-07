@@ -17,7 +17,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{
 				if (player.voidUnder(board)) // if under player void
 				{
-					board = board_init(); // board clear
+					board = board_init();
 					if (player.ladder(board)) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
@@ -43,10 +43,10 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{ 
 				if (player.limit(board)) // if the player is in prohibited territory
 				{
-						player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
-						board = player.kill(board); // kill player
-						player.move(player.getGType()); // move player
-						board = player.spawn(board); // spawn player
+					player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
+					board = player.kill(board); // kill player
+					player.move(player.getGType()); // move player
+					board = player.spawn(board); // spawn player
 				}
 				else
 				{
@@ -74,12 +74,9 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 				}
 			} // Right
 
-			board = player.spawn(board); // spawn a character on the map
+			//board = player.spawn(board); // spawn a character on the map
 			players->rem(selected);
 			players->add(selected, player);
-			//npm.insert(std::make_pair(selected, player)); // add player to new players map
-
-			//players->set(npm); // set players map
 		}
 	}
 }

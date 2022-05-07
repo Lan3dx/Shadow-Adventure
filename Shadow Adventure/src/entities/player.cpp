@@ -129,7 +129,7 @@ bool PLAYER::collisions(std::vector<std::vector<char>> board, int type) // if th
 {
 	if (type == 80) 
 	{
-		if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M') return true;
+		if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'P') return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 	{
