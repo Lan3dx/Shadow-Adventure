@@ -1,7 +1,7 @@
 #include "../../../include/entities/sys/change.h"
 
 void change(PMAP* players, std::string* selected)
-{
+{	
 	if (*selected == "")
 	{
 		*selected = ("player" + std::to_string(0));

@@ -17,12 +17,14 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{
 				if (player.voidUnder(board)) // if under player void
 				{
-					board = board_init();
-					if (player.ladder(board)) // if the player is on the ladder, then raise him by 1 element
+					if (player.ladder(board_init())) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
 						{
-							player.move('u');
+							for (int j = 0; j < 2; j++)
+							{
+								player.move('u');
+							}
 							player.setCWS();
 						}
 					}
@@ -74,7 +76,6 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 				}
 			} // Right
 
-			//board = player.spawn(board); // spawn a character on the map
 			players->rem(selected);
 			players->add(selected, player);
 		}
