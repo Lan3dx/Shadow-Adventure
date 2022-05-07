@@ -114,9 +114,9 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'J'))
 		{
-			mobs.rem("mob");
-			MOB mob(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'M', true, 'd', { 2,7,2 });
-			mobs.add("mob", mob);
+			players.rem("mob");
+			PLAYER mob(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'M', true, 'd', { 2,7,2 });
+			players.add("mob", mob);
 		}
 
 		gravitationP(&players, std::ref(board));

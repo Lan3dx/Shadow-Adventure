@@ -75,9 +75,11 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			} // Right
 
 			board = player.spawn(board); // spawn a character on the map
-			npm.insert(std::make_pair(selected, player)); // add player to new players map
+			players->rem(selected);
+			players->add(selected, player);
+			//npm.insert(std::make_pair(selected, player)); // add player to new players map
 
-			players->set(npm); // set players map
+			//players->set(npm); // set players map
 		}
 	}
 }
