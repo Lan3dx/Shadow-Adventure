@@ -51,7 +51,6 @@ int main()
 		if (GetAsyncKeyState((unsigned short)'K')) 
 		{ 
 			players.rem(selected);
-			std::string selected = " ";
 			bullets.set({}); 
 			board = board_init(); 
 		}
