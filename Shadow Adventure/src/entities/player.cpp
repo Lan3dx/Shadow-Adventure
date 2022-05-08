@@ -151,7 +151,7 @@ bool PLAYER::ladder(std::vector<std::vector<char>> board) // check player on lad
 }
 bool PLAYER::limit(std::vector<std::vector<char>> board) // if the player is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'B') return true;
 	return false;
 }
 
