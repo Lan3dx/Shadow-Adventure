@@ -53,6 +53,7 @@ int main()
 			players.rem(selected);
 			bullets.set({}); 
 			board = board_init(); 
+			selected.clear();
 		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
@@ -140,8 +141,7 @@ int main()
 		clear(); // clear screen
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
-		render(board); // screen output
-		std::cout << "Selected: " << selected << std::endl; // selected player
+		render(board, selected); // screen output
 	}
 
 	return 0;
