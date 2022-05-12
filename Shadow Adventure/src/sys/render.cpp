@@ -31,5 +31,5 @@ void render(std::vector<std::vector<char>> map, std::string selected) // output
 		}
 		std::cout << '\n'; // next column
 	}
-	
+	std::cout << "Selected: " << selected << std::endl; // selected player
 }
