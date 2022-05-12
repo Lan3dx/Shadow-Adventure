@@ -138,8 +138,8 @@ int main()
 		gravitationB(&bullets, std::ref(board));
 		gravitationM(&mobs, std::ref(board));
 
-		clear(); // clear screen
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
+		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board, selected); // screen output
 	}
