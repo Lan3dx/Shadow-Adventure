@@ -4,3 +4,4 @@
 #include "../../spawn.h"
 
 void change(PMAP*, std::string*);
+void change(std::string*);

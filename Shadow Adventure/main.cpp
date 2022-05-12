@@ -53,7 +53,7 @@ int main()
 			players.rem(selected);
 			bullets.set({}); 
 			board = board_init(); 
-			selected.clear();
+			change(&selected);
 		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
@@ -139,6 +139,7 @@ int main()
 		gravitationM(&mobs, std::ref(board));
 
 		clear(); // clear screen
+		std::cout << "Selected: " << selected << std::endl; // selected player
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board, selected); // screen output

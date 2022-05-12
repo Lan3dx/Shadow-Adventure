@@ -1,5 +1,9 @@
 #include "../../../include/entities/sys/change.h"
 
+void change(std::string* selected)
+{
+	*selected = "";
+}
 void change(PMAP* players, std::string* selected)
 {	
 	if (*selected == "")

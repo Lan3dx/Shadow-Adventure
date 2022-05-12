@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <WinUser.h>
 #include <thread>
+#include <string>
 
 // user's libs
 #include "config.h"
