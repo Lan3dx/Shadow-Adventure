@@ -53,7 +53,8 @@ int main()
 			players.rem(selected);
 			bullets.set({}); 
 			board = board_init(); 
-			change(&selected);
+			//change(&selected);
+			selected = "";
 		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{

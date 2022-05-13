@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include <iostream>
 
 #include "..\..\include\sys\config.h"
 
@@ -6,6 +7,7 @@
 void clear()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 }); // clear screen of console
+	std::cout << "                          " << std::endl;
 }
 
 // basic console settings
@@ -17,8 +19,8 @@ void std_config()
 	SetConsoleWindowInfo(activeBuffer, TRUE, &zeroWindow);
 	SetConsoleScreenBufferSize(activeBuffer, zBuffer);
 
-	COORD bufferSize = { 61, 48 };
-	SMALL_RECT windowSize = { 0, 0, 61 - 1, 48 - 1 };
+	COORD bufferSize = { 62, 49 };
+	SMALL_RECT windowSize = { 0, 0, 62 - 1, 49 - 1 };
 	SetConsoleScreenBufferSize(activeBuffer, bufferSize);
 	SetConsoleWindowInfo(activeBuffer, TRUE, &windowSize);
 
