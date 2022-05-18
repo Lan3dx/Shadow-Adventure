@@ -19,8 +19,8 @@ void std_config()
 	SetConsoleWindowInfo(activeBuffer, TRUE, &zeroWindow);
 	SetConsoleScreenBufferSize(activeBuffer, zBuffer);
 
-	COORD bufferSize = { 62, 49 };
-	SMALL_RECT windowSize = { 0, 0, 62 - 1, 49 - 1 };
+	COORD bufferSize = { 63, 50 };
+	SMALL_RECT windowSize = { 0, 0, 63 - 1, 50 - 1 };
 	SetConsoleScreenBufferSize(activeBuffer, bufferSize);
 	SetConsoleWindowInfo(activeBuffer, TRUE, &windowSize);
 
