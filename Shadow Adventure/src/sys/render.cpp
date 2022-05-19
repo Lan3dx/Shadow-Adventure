@@ -20,9 +20,9 @@ void entitiesRender(PMAP players, BMAP bullets, MMAP mobs, std::vector<std::vect
 	}
 }
 
-void render(std::vector<std::vector<char>> map, std::string* selected) // output
+void render(std::vector<std::vector<char>> map, std::string selected) // output
 {
-	std::cout << "Selected: " << selected[0] << std::endl; // selected player
+	std::cout << "Selected: " << selected << std::endl; // selected player
 	for (int y = 6; y < map.size() - 8; y++) // columns
 	{
 		std::cout << ' ';

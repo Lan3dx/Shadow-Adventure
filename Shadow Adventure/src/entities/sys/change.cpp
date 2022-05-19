@@ -2,7 +2,7 @@
 
 void change(std::string* selected)
 {
-	selected = {};
+	*selected = "";
 }
 void change(PMAP* players, std::string* selected)
 {	

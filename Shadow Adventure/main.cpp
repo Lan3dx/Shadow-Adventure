@@ -8,7 +8,7 @@ int main()
 	auto board = board_init();  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
-	std::string selected[1];
+	std::string selected;
 
 	PMAP players; // players map
 	BMAP bullets; // bullets map
@@ -18,19 +18,19 @@ int main()
 	{
 		if (GetAsyncKeyState((unsigned short)'W')) 
 		{ 
-			control (&players, selected[0], std::ref(board), 72);
+			control (&players, selected, std::ref(board), 72);
 		}
 		if (GetAsyncKeyState((unsigned short)'A')) 
 		{ 
-			control(&players, selected[0], std::ref(board), 75);
+			control(&players, selected, std::ref(board), 75);
 		}
 		if (GetAsyncKeyState((unsigned short)'S')) 
 		{
-			control(&players, selected[0], std::ref(board), 80);
+			control(&players, selected, std::ref(board), 80);
 		}
 		if (GetAsyncKeyState((unsigned short)'D'))
 		{
-			control(&players, selected[0], std::ref(board), 77);
+			control(&players, selected, std::ref(board), 77);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
@@ -50,14 +50,14 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'K')) 
 		{ 
-			players.rem(selected[0]);
+			players.rem(selected);
 			bullets.set({}); 
 			board = board_init(); 
-			change(selected);
+			change(&selected);
 		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
-			if (players.get().contains(selected[0]))
+			if (players.get().contains(selected))
 			{
 				if (!bullets.get().empty())
 				{
@@ -68,7 +68,7 @@ int main()
 						{
 							if (!bullets.get().contains("bullet" + std::to_string(b)))
 							{
-								BULLET bullet(players.find(selected[0]).getX()[0], players.find(selected[0]).getY()[0] + 1, 'B', true, 'r', { 1,10 });
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 1,10 });
 								bullets.add("bullet" + std::to_string(b), bullet);
 								break;
 							}
@@ -82,7 +82,7 @@ int main()
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
-							BULLET bullet(players.find(selected[0]).getX()[0], players.find(selected[0]).getY()[0] + 1, 'B', true, 'r', { 1,10 });
+							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 1,10 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
 						}
@@ -92,7 +92,7 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'Q'))
 		{
-			if (players.get().contains(selected[0]))
+			if (players.get().contains(selected))
 			{
 				if (!bullets.get().empty())
 				{
@@ -103,7 +103,7 @@ int main()
 						{
 							if (!bullets.get().contains("bullet" + std::to_string(b)))
 							{
-								BULLET bullet(players.find(selected[0]).getX()[0], players.find(selected[0]).getY()[0] - 1, 'B', true, 'l', { 1,10 });
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 1,10 });
 								bullets.add("bullet" + std::to_string(b), bullet);
 								break;
 							}
@@ -117,7 +117,7 @@ int main()
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
-							BULLET bullet(players.find(selected[0]).getX()[0], players.find(selected[0]).getY()[0] - 1, 'B', true, 'l', { 1,10 });
+							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 1,10 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
 						}
@@ -129,7 +129,7 @@ int main()
 		{
 			if (!(key_cd > 0))
 			{
-				change(&players, selected);
+				change(&players, &selected);
 				key_cd = KEY_CD;
 			}
 		}
