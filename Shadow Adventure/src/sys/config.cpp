@@ -7,7 +7,6 @@
 void clear()
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 }); // clear screen of console
-	std::cout << "                          " << std::endl;
 }
 
 // basic console settings
