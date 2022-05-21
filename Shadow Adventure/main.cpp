@@ -9,7 +9,7 @@ int main()
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	std::string selected;
-
+	 
 	PMAP players; // players map
 	BMAP bullets; // bullets map
 	MMAP mobs; // mobs map
