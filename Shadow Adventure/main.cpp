@@ -11,7 +11,7 @@ int main()
 	std::string selected;
 	 
 	PMAP players; // players map
-	BMAP bullets; // bullets map
+	BMAP bullets; // bullets map 
 	MMAP mobs; // mobs map
 
 	while (true) // Main program loop
