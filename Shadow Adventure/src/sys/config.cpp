@@ -25,6 +25,6 @@ void std_config()
 
 	CONSOLE_CURSOR_INFO structCursorInfo; // Disabling the cursor 
 	GetConsoleCursorInfo(activeBuffer, &structCursorInfo); 
-	structCursorInfo.bVisible = FALSE; 
+	structCursorInfo.bVisible = FALSE;   
 	SetConsoleCursorInfo(activeBuffer, &structCursorInfo); 
 }
