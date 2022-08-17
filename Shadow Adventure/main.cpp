@@ -141,7 +141,7 @@ int main()
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
 		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
-		render(board, selected); // screen output
+		render(board, selected); // screen output 
 		Sleep(10);
 	}
 
