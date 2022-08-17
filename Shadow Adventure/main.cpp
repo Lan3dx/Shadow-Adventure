@@ -142,6 +142,7 @@ int main()
 		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board, selected); // screen output
+		Sleep(10);
 	}
 
 	return 0;

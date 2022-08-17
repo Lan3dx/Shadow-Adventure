@@ -26,10 +26,13 @@ void render(std::vector<std::vector<char>> map, std::string selected) // output
 	for (int y = 6; y < map.size() - 8; y++) // columns
 	{
 		std::cout << ' ';
+		std::string line;
 		for (int x = 1; x < map[y].size() - 1; x++) // lines
 		{
-			std::cout << map[y][x] << ' ';
+			line += map[y][x];
+			line += " ";
 		}
+		std::cout << line;
 		std::cout << '\n'; // next column
 	}
 }
