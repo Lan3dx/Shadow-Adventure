@@ -2,11 +2,12 @@
 
 #include <map>
  
-#include "../include/entities/player.h"
-#include "../include/entities/bullet.h"
-#include "../include/entities/mob.h"
-#include "../include/spawn.h"
-#include "../include/map.h"
+#include "entities/player.h"
+#include "entities/bullet.h"
+#include "entities/mob.h"
+#include "spawn.h"
+#include "sys/musicloader.h"
+#include "map.h"
 
 void gravitationB(BMAP*, std::vector<std::vector<char>>&); // gravity for bullets 
 void gravitationP(PMAP*, std::vector<std::vector<char>>&); // gravity for players

@@ -8,6 +8,7 @@
 #include <WinUser.h>
 #include <thread>
 #include <string>
+#include <mmsystem.h>
 
 // user's libs
 #include "config.h"
@@ -19,5 +20,6 @@
 #include "../entities/bullet.h"
 #include "../entities/mob.h"
 #include "../spawn.h"
+#include "musicloader.h"
 #include "../entities/sys/cooldowns_s.h"
 #include "../entities/sys/change.h"

@@ -46,6 +46,7 @@ public:
 	void setCAD(int); // set cooldown for (A) (D) !over
 	void setCWS(int); // set cooldown for (W) (S) !over
 	void setCG(int); // set cooldown of gravity !over
+	void setCHAR(char); // set character of player
 
 	char getGType(); // get gravity type
 };

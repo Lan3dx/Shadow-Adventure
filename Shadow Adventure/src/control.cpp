@@ -1,5 +1,6 @@
-#include "../include/control.h"
 #include <iostream>
+
+#include "../include/control.h"
 
 void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, int key) // control func for selected player
 {
@@ -25,6 +26,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 							{
 								player.move('u');
 							}
+							PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
 							player.setCWS();
 						}
 					}
@@ -36,6 +38,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 							{
 								player.move('u'); // up player on 4 elements
 							}
+							PlaySound(music::JUMP, NULL, SND_FILENAME | SND_ASYNC);
 							player.setCWS();
 						}
 					}
@@ -55,6 +58,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 					if (!(player.getCWS() > 4))
 					{
 						player.move('d'); // move player
+						PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
 						player.setCWS();
 					}
 				}

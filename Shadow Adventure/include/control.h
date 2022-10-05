@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 
+#include "sys/musicloader.h"
 #include "entities/player.h"
 #include "spawn.h"
 #include "map.h"

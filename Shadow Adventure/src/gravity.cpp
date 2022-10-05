@@ -80,10 +80,10 @@ void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravi
 		{
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
 			board = entity.kill(board); // kill player
+			PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 			entity.move(entity.getGType()); // move player
 			board = entity.spawn(board); // spawn player
 		}
-
 		if (entity.getGravity()) // if player have gravity
 		{
 			if (!entity.voidUnder(board)) // if under player void

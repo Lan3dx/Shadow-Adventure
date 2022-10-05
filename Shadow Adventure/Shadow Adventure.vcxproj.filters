@@ -74,6 +74,9 @@
     <ClInclude Include="include\entities\sys\change.h">
       <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\sys\musicloader.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

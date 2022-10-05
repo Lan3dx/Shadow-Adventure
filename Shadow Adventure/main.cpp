@@ -1,6 +1,8 @@
 #include "include/sys/includes.h"
 #include "include/sys/constants.h"
 
+#pragma comment (lib, "winmm.lib")
+
 int main()
 {
 	std_config(); // Customizes the console window
@@ -9,11 +11,10 @@ int main()
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	std::string selected;
-	 
 	PMAP players; // players map
 	BMAP bullets; // bullets map 
 	MMAP mobs; // mobs map
-
+	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 	while (true) // Main program loop
 	{
 		if (GetAsyncKeyState((unsigned short)'W')) 
@@ -40,7 +41,7 @@ int main()
 				{
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'P', true, 'd', { 2,7,2 });
+						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'p', true, 'd', { 2,7,2 });
 						players.add("player" + std::to_string(b), player);
 						break;
 					}
@@ -50,6 +51,7 @@ int main()
 		}
 		if (GetAsyncKeyState((unsigned short)'K')) 
 		{ 
+			PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 			players.rem(selected);
 			bullets.set({}); 
 			board = board_init(); 
@@ -63,6 +65,7 @@ int main()
 				{
 					if (shot_cd <= 0)
 					{
+						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
 						shot_cd = SHOT_CD;
 						for (int b = 0; b < MAX_AMMO; b++)
 						{
@@ -98,6 +101,7 @@ int main()
 				{
 					if (shot_cd <= 0)
 					{
+						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
 						shot_cd = SHOT_CD;
 						for (int b = 0; b < MAX_AMMO; b++)
 						{
@@ -129,6 +133,7 @@ int main()
 		{
 			if (!(key_cd > 0))
 			{
+				PlaySound(music::CHANGE, NULL, SND_FILENAME | SND_ASYNC);
 				change(&players, &selected);
 				key_cd = KEY_CD;
 			}
