@@ -85,6 +85,7 @@ int main()
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
+							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
 							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 1,10 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
@@ -121,6 +122,7 @@ int main()
 					{
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
+							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
 							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 1,10 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
