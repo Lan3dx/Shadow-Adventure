@@ -35,6 +35,7 @@ void listenerP(PMAP* players, std::vector<std::vector<char>>& board) // listener
 			{
 				entity.move('u');
 			}
+			PlaySound(music::BOOST, NULL, SND_FILENAME | SND_ASYNC);
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}
