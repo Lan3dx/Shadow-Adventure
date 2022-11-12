@@ -9,6 +9,7 @@ namespace music
 	const LPCWSTR JUMP = TEXT("play ../../resources/music/JUMP.wav");
 	const LPCWSTR MAIN = TEXT("play ../../resources/music/MAIN.wav");
 	const LPCWSTR SHOT = TEXT("play ../../resources/music/SHOT.wav");
+	const LPCWSTR BOOST = TEXT("play ../../resources/music/BOOST.wav");
 	const LPCWSTR LADDER = TEXT("play ../../resources/music/LADDER.wav");
 	const LPCWSTR CHANGE = TEXT("play ../../resources/music/CHANGE.wav");
 }

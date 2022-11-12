@@ -16,6 +16,7 @@
 #include "../map.h"
 #include "../control.h"
 #include "../gravity.h"
+#include "../elistener.h"
 #include "../entities/player.h"
 #include "../entities/bullet.h"
 #include "../entities/mob.h"

@@ -123,6 +123,7 @@ bool PLAYER::voidUnder(std::vector<std::vector<char>> board) // if player hit th
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || 
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' || 
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '-' ||  
+		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'S' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'P' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F') return true;
@@ -156,6 +157,11 @@ bool PLAYER::ladder(std::vector<std::vector<char>> board) // check player on lad
 bool PLAYER::limit(std::vector<std::vector<char>> board) // if the player is in prohibited territory
 {
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'B') return true;
+	return false;
+}
+bool PLAYER::onspeedbooster(std::vector<std::vector<char>> board) // if player stay on speed booster element
+{
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'S') return true;
 	return false;
 }
 

@@ -63,22 +63,22 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 					}
 				}
 			}
-			else if (key == 75) 
+			else if (key == 75)  // Left
 			{ 
 				if (!(player.getCAD() > 0))
 				{
 					player.move('l');
 					player.setCAD();
 				}
-			} // Left
-			else if (key == 77) 
+			}
+			else if (key == 77)  // Right
 			{
 				if (!(player.getCAD() > 0))
 				{
 					player.move('r');
 					player.setCAD();
 				}
-			} // Right
+			}
 
 			players->rem(selected);
 			players->add(selected, player);

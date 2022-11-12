@@ -141,6 +141,8 @@ int main()
 			}
 		}
 
+		listenerP(&players, std::ref(board));
+
 		gravitationP(&players, std::ref(board));
 		gravitationB(&bullets, std::ref(board));
 		gravitationM(&mobs, std::ref(board));

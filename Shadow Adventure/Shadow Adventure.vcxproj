@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\control.h" />
+    <ClInclude Include="include\elistener.h" />
     <ClInclude Include="include\entities\bullet.h" />
     <ClInclude Include="include\entities\mob.h" />
     <ClInclude Include="include\entities\player.h" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\control.cpp" />
+    <ClCompile Include="src\elistener.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />
     <ClCompile Include="src\entities\mob.cpp" />
     <ClCompile Include="src\entities\player.cpp" />

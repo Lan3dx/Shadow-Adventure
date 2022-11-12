@@ -77,6 +77,9 @@
     <ClInclude Include="include\sys\musicloader.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\elistener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -117,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="src\entities\sys\change.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\elistener.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

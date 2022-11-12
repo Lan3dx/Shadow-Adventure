@@ -36,6 +36,7 @@ public:
 	bool getGravity(); // get gravity (t) (f)
 	bool ladder(std::vector<std::vector<char>>); // if player on ladder
 	bool limit(std::vector<std::vector<char>>); // if the player is in prohibited territory
+	bool onspeedbooster(std::vector<std::vector<char>>); // if player stay on speed booster element
 
 	void move(char); // move entity on map
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
