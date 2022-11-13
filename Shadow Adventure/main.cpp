@@ -142,11 +142,13 @@ int main()
 		}
 
 		listenerP(&players, std::ref(board));
+		listenerB(&bullets, std::ref(board));
+		listenerM(&mobs, std::ref(board));
 
 		gravitationP(&players, std::ref(board));
 		gravitationB(&bullets, std::ref(board));
 		gravitationM(&mobs, std::ref(board));
-
+		 
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
 		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
