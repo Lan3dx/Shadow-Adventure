@@ -53,9 +53,8 @@ int BULLET::getCS() // get cooldown for gravity
 bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)
 bool BULLET::touch(std::vector<std::vector<char>> board) // if the bullet hit the wall
 {
-	if (board[x][y] != ' ' &&  // bullet touch ' ' or '|' then return false
-		board[x][y] != '|')
-		return false;
+	if (board[x][y] != ' ' &&  // if bullet touch ' ' or '|' then return false
+		board[x][y] != '|') return false;
 	return true;
 }
 

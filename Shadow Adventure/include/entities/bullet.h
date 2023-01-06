@@ -26,9 +26,9 @@ public:
 	void move(char); // change player coord
 
 	void setCG(); // set cooldown for gravity
-	void setCG(int); // set cooldown for gravity !over
+	void setCG(int); // set cooldown for gravity ! overload
 	void setCS(); // set cooldown for shot
-	void setCS(int); // set cooldown for shot !over
+	void setCS(int); // set cooldown for shot ! overload
 
 	int getX(); // get x
 	int getY(); // get y
@@ -41,6 +41,6 @@ public:
 
 	char getGType(); // get gravity type
 
-	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>);// place bullet on map
-	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>);// place bullet on map
+	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>); // place bullet on map
+	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>); // place bullet on map
 };

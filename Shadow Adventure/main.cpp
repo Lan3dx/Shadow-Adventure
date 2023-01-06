@@ -11,7 +11,7 @@ int main()
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
-	float fps = 1; // frame per second
+	auto fps = 1.0f; // frame per second
 	std::string selected;
 	PMAP players; // players map
 	BMAP bullets; // bullets map 
@@ -25,11 +25,10 @@ int main()
 		std::chrono::duration<float> elapsedTime = tp2 - tp1;
 		tp1 = tp2;
 		float fElapsedTime = elapsedTime.count();
-		fps_cd -= 1;
 		if (fps_cd <= 0)
 		{
 			fps = fElapsedTime;
-			fps_cd = 40;
+			fps_cd = FPS_CD;
 		}
 
 		if (GetAsyncKeyState((unsigned short)'W')) 
@@ -56,7 +55,7 @@ int main()
 				{
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'p', true, 'd', { 2,7,2 });
+						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'p', true, 'd', { 14,14,14 });
 						players.add("player" + std::to_string(b), player);
 						break;
 					}
@@ -86,7 +85,7 @@ int main()
 						{
 							if (!bullets.get().contains("bullet" + std::to_string(b)))
 							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 1,10 });
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
 								bullets.add("bullet" + std::to_string(b), bullet);
 								break;
 							}
@@ -101,7 +100,7 @@ int main()
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
 							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 1,10 });
+							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
 						}
@@ -123,7 +122,7 @@ int main()
 						{
 							if (!bullets.get().contains("bullet" + std::to_string(b)))
 							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 1,10 });
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
 								bullets.add("bullet" + std::to_string(b), bullet);
 								break;
 							}
@@ -138,7 +137,7 @@ int main()
 						if (!bullets.get().contains("bullet" + std::to_string(b)))
 						{
 							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 1,10 });
+							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
 							bullets.add("bullet" + std::to_string(b), bullet);
 							break;
 						}
@@ -164,11 +163,10 @@ int main()
 		gravitationB(&bullets, std::ref(board));
 		gravitationM(&mobs, std::ref(board));
 		 
-		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
+		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
 		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board, selected, fps); // screen output 
-		Sleep(19);
 	}
 
 	return 0;
