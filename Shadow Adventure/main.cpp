@@ -10,13 +10,28 @@ int main()
 	auto board = board_init();  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
+	auto fps_cd = FPS_CD;
+	float fps = 1; // frame per second
 	std::string selected;
 	PMAP players; // players map
 	BMAP bullets; // bullets map 
 	MMAP mobs; // mobs map
+	auto tp1 = std::chrono::system_clock::now(); // get now time
+	auto tp2 = std::chrono::system_clock::now();
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 	while (true) // Main program loop
 	{
+		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS
+		std::chrono::duration<float> elapsedTime = tp2 - tp1;
+		tp1 = tp2;
+		float fElapsedTime = elapsedTime.count();
+		fps_cd -= 1;
+		if (fps_cd <= 0)
+		{
+			fps = fElapsedTime;
+			fps_cd = 40;
+		}
+
 		if (GetAsyncKeyState((unsigned short)'W')) 
 		{ 
 			control (&players, selected, std::ref(board), 72);
@@ -152,8 +167,8 @@ int main()
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd); // -1 cooldown for all entities
 		clear(); // clear screen
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
-		render(board, selected); // screen output 
-		Sleep(20);
+		render(board, selected, fps); // screen output 
+		Sleep(19);
 	}
 
 	return 0;
