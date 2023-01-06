@@ -16,7 +16,7 @@ private:
 	std::vector<int> y; // pos
 	char character; // symbol for entity
 	cooldowns cooldown; // cooldown for (A), (D), (W), (S), gravity
-	cooldowns std_COOLDOWN;
+	cooldowns std_COOLDOWN; 
 
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
@@ -36,7 +36,8 @@ public:
 	bool getGravity(); // get gravity (t) (f)
 	bool ladder(std::vector<std::vector<char>>); // if player on ladder
 	bool limit(std::vector<std::vector<char>>); // if the player is in prohibited territory
-	bool onspeedbooster(std::vector<std::vector<char>>); // if player stay on speed booster element
+	bool onspeedbooster(std::vector<std::vector<char>>); // if player on speed booster element
+	bool onstairs(std::vector<std::vector<char>>, int); // if player on stairs
 
 	void move(char); // move entity on map
 	void setPos(std::vector<int>, std::vector<int>); // set player pos

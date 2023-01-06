@@ -67,16 +67,34 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{ 
 				if (!(player.getCAD() > 0))
 				{
-					player.move('l');
-					player.setCAD();
+					if (player.onstairs(board, 75))
+					{
+						player.move('u');
+						player.move('l');
+						player.setCAD();
+					}
+					else
+					{
+						player.move('l');
+						player.setCAD();
+					}
 				}
 			}
 			else if (key == 77)  // Right
 			{
 				if (!(player.getCAD() > 0))
 				{
-					player.move('r');
-					player.setCAD();
+					if (player.onstairs(board, 77))
+					{
+						player.move('u');
+						player.move('r');
+						player.setCAD();
+					}
+					else
+					{
+						player.move('r');
+						player.setCAD();
+					}
 				}
 			}
 

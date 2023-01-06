@@ -124,6 +124,7 @@ bool PLAYER::voidUnder(std::vector<std::vector<char>> board) // if player hit th
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' || 
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '-' ||  
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'S' ||
+		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '+' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'P' ||
 		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F') return true;
@@ -134,12 +135,28 @@ bool PLAYER::collisions(std::vector<std::vector<char>> board, int type) // if th
 {
 	if (type == 80) 
 	{
-		if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'P') return true;
+		if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || 
+			board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F' || 
+			board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'M' || 
+			board[x[x.size() - 1] + 1][y[y.size() - 1]] == '+' ||
+			board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'S' ||
+			board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'P') return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 	{
-		if (type == 77) if (board[x[dot]][y[dot] + 1] == 'M' || board[x[dot]][y[dot] + 1] == '#' || board[x[dot]][y[dot] + 1] == 'D' || board[x[dot]][y[dot] + 1] == 'F' || board[x[dot]][y[dot] + 1] == 'P' || y[0] == board[0].size() - 2) return true;
-		if (type == 75) if (board[x[dot]][y[dot] - 1] == 'M' || board[x[dot]][y[dot] - 1] == '#' || board[x[dot]][y[dot] - 1] == 'D' || board[x[dot]][y[dot] - 1] == 'F' || board[x[dot]][y[dot] - 1] == 'P' || y[0] == 1) return true;
+		if (type == 77) if (board[x[dot]][y[dot] + 1] == 'M' || 
+							board[x[dot]][y[dot] + 1] == '#' || 
+							board[x[dot]][y[dot] + 1] == 'D' || 
+							board[x[dot]][y[dot] + 1] == 'F' || 
+							board[x[dot]][y[dot] + 1] == 'S' ||
+							board[x[dot]][y[dot] + 1] == 'P' || y[0] == board[0].size() - 2) return true;
+
+		if (type == 75) if (board[x[dot]][y[dot] - 1] == 'M' || 
+							board[x[dot]][y[dot] - 1] == '#' || 
+							board[x[dot]][y[dot] - 1] == 'D' || 
+							board[x[dot]][y[dot] - 1] == 'F' || 
+							board[x[dot]][y[dot] - 1] == 'S' ||
+							board[x[dot]][y[dot] - 1] == 'P' || y[0] == 1) return true;
 	}
 	return false;
 }
@@ -164,7 +181,24 @@ bool PLAYER::onspeedbooster(std::vector<std::vector<char>> board) // if player s
 	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'S') return true;
 	return false;
 }
-
+bool PLAYER::onstairs(std::vector<std::vector<char>> board, int type) // if player stay on stairs
+{
+	if (type == 77)
+	{
+		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
+		{
+			if (board[x[dot]][y[dot] + 1] == '+') return true;
+		}
+	}
+	if (type == 75)
+	{
+		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
+		{
+			if (board[x[dot]][y[dot] - 1] == '+') return true;
+		}
+	}
+	return false;
+}
 char PLAYER::getGType() // get gravity type
 {
 	return GType;
