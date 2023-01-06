@@ -58,7 +58,6 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 					if (!(player.getCWS() > 4))
 					{
 						player.move('d'); // move player
-						PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
 						player.setCWS();
 					}
 				}
