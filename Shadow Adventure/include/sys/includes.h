@@ -13,6 +13,8 @@
 // user's libs
 #include "config.h"
 #include "render.h"
+#include "logger.h"
+#include "musicloader.h"
 #include "../map.h"
 #include "../control.h"
 #include "../gravity.h"
@@ -21,6 +23,5 @@
 #include "../entities/bullet.h"
 #include "../entities/mob.h"
 #include "../spawn.h"
-#include "musicloader.h"
 #include "../entities/sys/cooldowns_s.h"
 #include "../entities/sys/change.h"

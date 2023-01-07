@@ -17,6 +17,8 @@ int game() // game
 	auto tp2 = std::chrono::system_clock::now();
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
+	clog("INFO", "Game started");
+
 	while (true) // Main program loop
 	{
 		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS
@@ -30,6 +32,7 @@ int game() // game
 		}
 		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
 		{
+			clog("INFO", "Game stopped");
 			return 0;
 		}
 		if (GetAsyncKeyState((unsigned short)'W'))
@@ -56,6 +59,7 @@ int game() // game
 				{
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
+						clog("INFO", "Spawn entity: player" + std::to_string(b));
 						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'p', true, 'd', { 14,28,14 });
 						players.add("player" + std::to_string(b), player);
 						break;
@@ -66,11 +70,16 @@ int game() // game
 		}
 		if (GetAsyncKeyState((unsigned short)'K'))
 		{
-			PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
-			players.rem(selected);
-			bullets.set({});
-			board = board_init();
-			change(&selected);
+			if (!(key_cd > 0))
+			{
+				clog("INFO", "Kill entity: " + selected);
+				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
+				players.rem(selected);
+				bullets.set({});
+				board = board_init();
+				change(&selected);
+				key_cd = KEY_CD;
+			}
 		}
 		if (GetAsyncKeyState((unsigned short)'E'))
 		{
