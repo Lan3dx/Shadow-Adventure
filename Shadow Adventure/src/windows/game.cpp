@@ -19,7 +19,7 @@ int game() // Game
 
 	clog("INFO", "Game started");
 
-	while (true) // Main program loop
+	while (true) // main program loop
 	{
 		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS
 		std::chrono::duration<float> elapsedTime = tp2 - tp1;
@@ -174,7 +174,9 @@ int game() // Game
 		gravitationM(&mobs, std::ref(board));
 
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
+
 		clear(); // clear screen
+
 		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
 		render(board, selected, fps); // screen output 
 	}
