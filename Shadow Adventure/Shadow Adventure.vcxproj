@@ -163,6 +163,7 @@
     <ClInclude Include="include\sys\logger.h" />
     <ClInclude Include="include\sys\musicloader.h" />
     <ClInclude Include="include\sys\render.h" />
+    <ClInclude Include="include\windows\game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="src\sys\config.cpp" />
     <ClCompile Include="src\sys\logger.cpp" />
     <ClCompile Include="src\sys\render.cpp" />
+    <ClCompile Include="src\windows\game.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -30,6 +30,12 @@
     <Filter Include="Source Files\src\entities\sys">
       <UniqueIdentifier>{6da30ee2-2ddb-4feb-abae-7f468372545e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\src\windows">
+      <UniqueIdentifier>{f533f6b8-1428-4044-9abe-0afff31d9c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{a852b55c-aeea-47ac-8dc7-553e0f54a3da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\control.h">
@@ -80,6 +86,9 @@
     <ClInclude Include="include\elistener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\windows\game.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="src\elistener.cpp">
       <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\game.cpp">
+      <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
