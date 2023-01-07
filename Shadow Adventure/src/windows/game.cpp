@@ -2,19 +2,19 @@
 #include "../../include/sys/includes.h"
 #include "../../include/sys/constants.h"
 
-int game() // game
+int game() // Game
 {
+	auto tp1 = std::chrono::system_clock::now(); // Get now time
+	auto tp2 = std::chrono::system_clock::now();
 	auto board = board_init();  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
 	auto fps = 1.0f; // frame per second
-	std::string selected;
 	PMAP players; // players map
 	BMAP bullets; // bullets map 
 	MMAP mobs; // mobs map
-	auto tp1 = std::chrono::system_clock::now(); // get now time
-	auto tp2 = std::chrono::system_clock::now();
+	std::string selected; // active player
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
 	clog("INFO", "Game started");
@@ -55,7 +55,7 @@ int game() // game
 		{
 			if (!(key_cd > 0))
 			{
-				for (int b = 0; b < 5; b++)
+				for (int b = 0; b < MAX_PLAYERS; b++)
 				{
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
