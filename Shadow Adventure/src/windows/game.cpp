@@ -2,7 +2,7 @@
 #include "../../include/sys/includes.h"
 #include "../../include/sys/constants.h"
 
-int start()
+int game() // game
 {
 	auto board = board_init();  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
@@ -28,7 +28,10 @@ int start()
 			fps = fElapsedTime;
 			fps_cd = FPS_CD;
 		}
-
+		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
+		{
+			return 0;
+		}
 		if (GetAsyncKeyState((unsigned short)'W'))
 		{
 			control(&players, selected, std::ref(board), 72);

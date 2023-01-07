@@ -12,4 +12,5 @@ namespace music
 	const LPCWSTR BOOST = TEXT("play ../../resources/music/BOOST.wav");
 	const LPCWSTR LADDER = TEXT("play ../../resources/music/LADDER.wav");
 	const LPCWSTR CHANGE = TEXT("play ../../resources/music/CHANGE.wav");
+	const LPCWSTR MENU = TEXT("play ../../resources/music/MENU.wav");
 }
