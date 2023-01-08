@@ -1,6 +1,7 @@
 #include "../../include/windows/game.h"
 #include "../../include/sys/includes.h"
 #include "../../include/sys/constants.h"
+#include "../../include/windows/transition.h"
 
 int game() // Game
 {

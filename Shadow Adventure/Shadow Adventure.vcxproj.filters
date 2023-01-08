@@ -92,6 +92,9 @@
     <ClInclude Include="include\windows\menu.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="include\windows\transition.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +143,9 @@
       <Filter>Source Files\src\windows</Filter>
     </ClCompile>
     <ClCompile Include="src\windows\menu.cpp">
+      <Filter>Source Files\src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\transition.cpp">
       <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>
