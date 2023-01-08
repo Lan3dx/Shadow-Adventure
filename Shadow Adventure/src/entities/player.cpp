@@ -72,7 +72,7 @@ void PLAYER::move(char type) // move entity on map
 	{
 		for (int dot = 0; dot < x.size(); dot++)
 		{
-			x[dot] -= 1;
+			x.at(dot) -= 1;
 		}
 	}
 	if (type == 'd') // down

@@ -23,11 +23,11 @@ void entitiesRender(PMAP players, BMAP bullets, MMAP mobs, std::vector<std::vect
 void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
-	for (int y = 6; y < map.size() - 8; y++) // columns
+	for (int y = 0; y < map.size(); y++) // columns
 	{
 		std::cout << ' ';
 		std::string line;
-		for (int x = 1; x < map[y].size() - 1; x++) // lines
+		for (int x = 0; x < map[y].size(); x++) // lines
 		{
 			line += map[y][x];
 			line += " ";

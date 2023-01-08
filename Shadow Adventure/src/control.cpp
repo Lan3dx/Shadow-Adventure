@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "../include/control.h"
+#include "../include/sys/constants.h"
 
 void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, int key) // control func for selected player
 {
@@ -30,13 +31,13 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 							player.setCWS();
 						}
 					}
-					else // else by 4 elements
+					else
 					{
 						if (!(player.getCWS() > 0))
 						{
-							for (int j = 0; j < 4; j++)
+							for (int j = 0; j < JUMP_HEIGHT; j++)
 							{
-								player.move('u'); // up player on 4 elements
+								player.move('u');
 							}
 							PlaySound(music::JUMP, NULL, SND_FILENAME | SND_ASYNC);
 							player.setCWS();

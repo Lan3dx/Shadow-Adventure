@@ -39,8 +39,8 @@ public:
 	bool onspeedbooster(std::vector<std::vector<char>>); // if player on speed booster element
 	bool onstairs(std::vector<std::vector<char>>, int); // if player on stairs
 
-	void move(char); // move entity on map
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
+	void move(char); // move entity on map
 
 	void setCAD(); // set cooldown for (A) (D)
 	void setCWS(); // set cooldown for (W) (S)
