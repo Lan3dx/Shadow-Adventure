@@ -6,14 +6,23 @@
 void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
-	for (int y = 0; y < map.size(); y++) // columns
+	for (int y = 1; y < map.size()-1; y++) // columns
 	{
 		std::cout << ' ';
 		std::string line;
-		for (int x = 0; x < map[y].size(); x++) // lines
+		for (int x = 1; x < map[y].size()-1; x++) // lines
 		{
 			line += map[y][x];
 			line += " ";
+			if (y == 5 && x == map[y].size()-2) line += "W - jump";
+			if (y == 6 && x == map[y].size() - 2) line += "S - down";
+			if (y == 7 && x == map[y].size() - 2) line += "A - left";
+			if (y == 8 && x == map[y].size() - 2) line += "D - right";
+			if (y == 10 && x == map[y].size() - 2) line += "R - spawn";
+			if (y == 11 && x == map[y].size() - 2) line += "K - kill";
+			if (y == 12 && x == map[y].size() - 2) line += "C - change";
+			if (y == 13 && x == map[y].size() - 2) line += "Q/E - shoot";
+			if (y == 15 && x == map[y].size() - 2) line += "ESC - exit";
 		}
 		std::cout << line;
 		std::cout << '\n'; // next column

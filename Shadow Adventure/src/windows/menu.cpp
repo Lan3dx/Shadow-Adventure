@@ -1,10 +1,10 @@
-#include "../../include/windows/menu.h"
+﻿#include "../../include/windows/menu.h"
 #include "../../include/sys/includes.h"
 
 void render(std::vector<int> selected) // menu rendering
 {
 	std::string wall = "";
-	for (int i = 0; i < 63; i++)
+	for (int i = 0; i < 105; i++)
 	{
 		wall += ".";
 	}
@@ -14,72 +14,117 @@ void render(std::vector<int> selected) // menu rendering
 	{
 		if (j == 2)
 		{
-			std::cout << ".               S H A D O W    A D V E N T U R E              ." << std::endl;
+			std::cout << ".			 	 ||||  ||  ||  ||||  |||||   ||||  ||   ||                              ." << std::endl;
+			continue;
+		}
+		if (j == 3)
+		{
+			std::cout << ".			        ||     ||  || ||  || ||  || ||  || ||   ||                              ." << std::endl;
+			continue;
+		}
+		if (j == 4)
+		{
+			std::cout << ".				 ||||  |||||| |||||| ||  || ||  || || | ||                              ." << std::endl;
+			continue;
+		}
+		if (j == 5)
+		{
+			std::cout << ".		                    || ||  || ||  || ||  || ||  || |||||||                              ." << std::endl;
+			continue;
+		}
+		if (j == 6)
+		{
+			std::cout << ".	                         ||||  ||  || ||  || |||||   ||||   || ||                               ." << std::endl;
+			continue;
+		}
+		if (j == 9)
+		{
+			std::cout << ".		        ||||  |||||  ||  || ||||| ||  || |||||| ||  || |||||  ||||                      ." << std::endl;
+			continue;
+		}
+		if (j == 10)
+		{
+			std::cout << ".		       ||  || ||  || ||  || ||    ||| ||   ||   ||  || ||  || ||                        ." << std::endl;
+			continue;
+		}
+		if (j == 11)
+		{
+			std::cout << ".		       |||||| ||  || ||  || ||||  || |||   ||   ||  || |||||  ||||                      ." << std::endl;
+			continue;
+		}
+		if (j == 12)
+		{
+			std::cout << ".		       ||  || ||  ||  ||||  ||    ||  ||   ||   ||  || ||  || ||                        ." << std::endl;
+			continue;
+		}
+		if (j == 13)
+		{
+			std::cout << ".		       ||  || |||||    ||   ||||| ||  ||   ||    ||||  ||  || ||||                      ." << std::endl;
 			continue;
 		}
 		if (j == 44)
 		{
-			std::cout << ".                          L A N 3                            ." << std::endl;
+			std::cout << ".                                                L A N 3                                                ." << std::endl;
 			continue;
 		}
 		if (j == 45)
 		{
-			std::cout << ".                     2 0 2 2 - 2 0 2 3                       ." << std::endl;
+			std::cout << ".                                           2 0 2 2 - 2 0 2 3                                           ." << std::endl;
 			continue;
 		}
 
-		if (j == 20)
+		if (j == 24)
 		{
 			if (selected[0] == 1)
 			{
-				std::cout << ".                    -  G A M E                               ." << std::endl;
+				std::cout << ".                - - >  G A M E                                                                         ." << std::endl;
 			}
 			else
 			{
-				std::cout << ".                       G A M E                               ." << std::endl;
-			}
-			continue;
-		}
-		if (j == 22)
-		{
-			if (selected[1] == 1)
-			{
-				std::cout << ".                    -  S E T T I N G S                       ." << std::endl;
-			}
-			else
-			{
-				std::cout << ".                       S E T T I N G S                       ." << std::endl;
-			}
-			continue;
-		}
-		if (j == 24)
-		{
-			if (selected[2] == 1)
-			{
-				std::cout << ".                    -  A U T H O R                           ." << std::endl;
-			}
-			else
-			{
-				std::cout << ".                       A U T H O R                           ." << std::endl;
+				std::cout << ".                       G A M E                                                                         ." << std::endl;
 			}
 			continue;
 		}
 		if (j == 26)
 		{
-			if (selected[3] == 1)
+			if (selected[1] == 1)
 			{
-				std::cout << ".                    -  E X I T                               ." << std::endl;
+				std::cout << ".                - - >  M A P   C H A N G E R                                                           ." << std::endl;
 			}
 			else
 			{
-				std::cout << ".                       E X I T                               ." << std::endl;
+				std::cout << ".                       M A P   C H A N G E R                                                           ." << std::endl;
+			}
+			continue;
+		}
+		if (j == 28)
+		{
+			if (selected[2] == 1)
+			{
+				std::cout << ".                - - >  A U T H O R                                                                     ." << std::endl;
+			}
+			else
+			{
+				std::cout << ".                       A U T H O R                                                                     ." << std::endl;
+			}
+			continue;
+		}
+		if (j == 30)
+		{
+			if (selected[3] == 1)
+			{
+				std::cout << ".                - - >  E X I T                                                                         ." << std::endl;
+			}
+			else
+			{
+				std::cout << ".                       E X I T                                                                         ." << std::endl;
 			}
 			continue;
 		}
 
-		for (int i = 0; i < 63; i++)
+		for (int i = 0; i < 105; i++)
 		{
-			if (i == 0 || i == 62)
+			if (i == 0 || i == 104)
 			{
 				wall += ".";
 			}
@@ -92,7 +137,7 @@ void render(std::vector<int> selected) // menu rendering
 		wall = "";
 	}
 	wall = "";
-	for (int i = 0; i < 63; i++)
+	for (int i = 0; i < 105; i++)
 	{
 		wall += ".";
 	}
