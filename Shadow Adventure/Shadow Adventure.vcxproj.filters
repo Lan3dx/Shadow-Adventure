@@ -95,6 +95,9 @@
     <ClInclude Include="include\entities\sys\render.h">
       <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\windows\mapchanger.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -147,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="src\entities\sys\render.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\mapchanger.cpp">
+      <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -162,8 +162,7 @@ bool PLAYER::collisions(std::vector<std::vector<char>> board, int type) // if th
 }
 bool PLAYER::getGravity() // get player gravity (t) (f)
 {
-	if (gravity) return true;
-	else return false;
+	return gravity;
 }
 bool PLAYER::ladder(std::vector<std::vector<char>> board) // check player on ladder
 {

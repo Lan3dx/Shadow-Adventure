@@ -1,6 +1,6 @@
 #include "../include/gravity.h"
 
-void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravity func for bullets
+void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board) // gravity func for bullets
 {
 	auto entityMap = bullets->get(); // old bullet map
 	std::map < std::string, BULLET > nbm = {}; // new bullet map
@@ -8,7 +8,7 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravi
 	{
 		BULLET entity = entityS.second;
 
-		board = board_init(); // clear map
+		board = g_board; // clear map
 		if (!entity.touch(board)) // if the bullet hit the wall
 		{
 			bullets->rem(entityS.first); // remove entities from the map
@@ -30,7 +30,7 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board) // gravi
 	}
 	bullets->set(nbm); // set old bullets map
 }
-void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board) // gravity func for mob
+void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board) // gravity func for mob
 {
 	auto entityMap = mobs->get(); // old mob map
 	std::map < std::string, MOB > nmm = {}; // new mob map
@@ -55,7 +55,7 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board) // gravity 
 					{
 						if (!(entity.getCG() > 0))
 						{
-							board = board_init(); // clear map
+							board = g_board; // clear map
 							board = entity.kill(board); // kill mob
 							entity.move(entity.getGType()); // move mob
 							board = entity.spawn(board); // spawn mob
@@ -69,7 +69,7 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board) // gravity 
 	}
 	mobs->set(nmm); // set old mob map
 }
-void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravity func for player
+void gravitationP(PMAP* players, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board) // gravity func for player
 {
 	auto entityMap = players->get(); // old players map
 	std::map < std::string, PLAYER > npm = {}; // new players map
@@ -94,7 +94,7 @@ void gravitationP(PMAP* players, std::vector<std::vector<char>>& board) // gravi
 					{
 						if (!(entity.getCG() > 0))
 						{
-							board = board_init(); // clear map
+							board = g_board; // clear map
 							board = entity.kill(board); // kill player
 							entity.move(entity.getGType()); // move player
 							board = entity.spawn(board); // spawn player

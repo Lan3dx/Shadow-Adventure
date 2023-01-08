@@ -164,6 +164,7 @@
     <ClInclude Include="include\sys\logger.h" />
     <ClInclude Include="include\sys\musicloader.h" />
     <ClInclude Include="include\windows\game.h" />
+    <ClInclude Include="include\windows\mapchanger.h" />
     <ClInclude Include="include\windows\menu.h" />
     <ClInclude Include="include\windows\transition.h" />
   </ItemGroup>
@@ -183,6 +184,7 @@
     <ClCompile Include="src\sys\config.cpp" />
     <ClCompile Include="src\sys\logger.cpp" />
     <ClCompile Include="src\windows\game.cpp" />
+    <ClCompile Include="src\windows\mapchanger.cpp" />
     <ClCompile Include="src\windows\menu.cpp" />
     <ClCompile Include="src\windows\transition.cpp" />
   </ItemGroup>

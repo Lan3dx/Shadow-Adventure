@@ -16,7 +16,7 @@ private:
 	std::vector<int> y; // pos
 	char character; // symbol for entity
 	cooldowns cooldown; // cooldown for (A), (D), (W), (S), gravity
-	cooldowns std_COOLDOWN; 
+	cooldowns std_COOLDOWN;
 
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor

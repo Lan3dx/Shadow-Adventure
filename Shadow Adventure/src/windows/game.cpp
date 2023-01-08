@@ -3,6 +3,8 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
+const auto g_board = board_init();
+
 void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
@@ -33,7 +35,7 @@ int game() // Game
 {
 	auto tp1 = std::chrono::system_clock::now(); // Get now time
 	auto tp2 = std::chrono::system_clock::now();
-	auto board = board_init();  // Define board
+	auto board = g_board;  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
@@ -105,7 +107,7 @@ int game() // Game
 				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 				players.rem(selected);
 				bullets.set({});
-				board = board_init();
+				board = g_board;
 				change(&selected);
 				key_cd = KEY_CD;
 			}
@@ -198,9 +200,9 @@ int game() // Game
 		listenerB(&bullets, std::ref(board));
 		listenerM(&mobs, std::ref(board));
 
-		gravitationP(&players, std::ref(board));
-		gravitationB(&bullets, std::ref(board));
-		gravitationM(&mobs, std::ref(board));
+		gravitationP(&players, std::ref(board), g_board);
+		gravitationB(&bullets, std::ref(board), g_board);
+		gravitationM(&mobs, std::ref(board), g_board);
 
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
 

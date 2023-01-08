@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 #include <WinUser.h>
 #include <thread>
