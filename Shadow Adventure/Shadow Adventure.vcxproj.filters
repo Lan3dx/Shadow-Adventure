@@ -65,9 +65,6 @@
     <ClInclude Include="include\entities\bullet.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
-    <ClInclude Include="include\sys\render.h">
-      <Filter>Header Files\sys</Filter>
-    </ClInclude>
     <ClInclude Include="include\sys\constants.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
@@ -94,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="include\windows\transition.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="include\entities\sys\render.h">
+      <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +124,6 @@
     <ClCompile Include="src\entities\bullet.cpp">
       <Filter>Source Files\src\entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\sys\render.cpp">
-      <Filter>Source Files\src\sys</Filter>
-    </ClCompile>
     <ClCompile Include="src\entities\sys\cooldowns_s.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
@@ -147,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="src\windows\transition.cpp">
       <Filter>Source Files\src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\sys\render.cpp">
+      <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

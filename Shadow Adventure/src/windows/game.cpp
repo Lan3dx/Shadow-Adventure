@@ -3,6 +3,23 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
+void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
+{
+	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
+	for (int y = 0; y < map.size(); y++) // columns
+	{
+		std::cout << ' ';
+		std::string line;
+		for (int x = 0; x < map[y].size(); x++) // lines
+		{
+			line += map[y][x];
+			line += " ";
+		}
+		std::cout << line;
+		std::cout << '\n'; // next column
+	}
+}
+
 int game() // Game
 {
 	auto tp1 = std::chrono::system_clock::now(); // Get now time

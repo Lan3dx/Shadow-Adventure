@@ -154,6 +154,7 @@
     <ClInclude Include="include\entities\player.h" />
     <ClInclude Include="include\entities\sys\change.h" />
     <ClInclude Include="include\entities\sys\cooldowns_s.h" />
+    <ClInclude Include="include\entities\sys\render.h" />
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\gravity.h" />
     <ClInclude Include="include\spawn.h" />
@@ -162,7 +163,6 @@
     <ClInclude Include="include\sys\includes.h" />
     <ClInclude Include="include\sys\logger.h" />
     <ClInclude Include="include\sys\musicloader.h" />
-    <ClInclude Include="include\sys\render.h" />
     <ClInclude Include="include\windows\game.h" />
     <ClInclude Include="include\windows\menu.h" />
     <ClInclude Include="include\windows\transition.h" />
@@ -176,12 +176,12 @@
     <ClCompile Include="src\entities\player.cpp" />
     <ClCompile Include="src\entities\sys\change.cpp" />
     <ClCompile Include="src\entities\sys\cooldowns_s.cpp" />
+    <ClCompile Include="src\entities\sys\render.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\gravity.cpp" />
     <ClCompile Include="src\spawn.cpp" />
     <ClCompile Include="src\sys\config.cpp" />
     <ClCompile Include="src\sys\logger.cpp" />
-    <ClCompile Include="src\sys\render.cpp" />
     <ClCompile Include="src\windows\game.cpp" />
     <ClCompile Include="src\windows\menu.cpp" />
     <ClCompile Include="src\windows\transition.cpp" />

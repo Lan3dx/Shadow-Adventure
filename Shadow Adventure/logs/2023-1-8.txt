@@ -52,3 +52,5 @@
 [20:3:18] [INFO]: Spawn entity: player0
 [20:3:42] [INFO]: Game started
 [20:3:45] [INFO]: Spawn entity: player0
+[20:38:54] [INFO]: Game started
+[20:38:58] [INFO]: Spawn entity: player0
