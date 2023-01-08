@@ -32,7 +32,7 @@ int line_transition(std::vector<std::vector<char>> map)
 
 int spiral_transition(std::vector<std::vector<char>> board)
 {
-    size_t top = 6, bottom = board.size() - 8;
+    size_t top = 6, bottom = board.size() - 2;
     size_t left = 1, right = board[0].size() - 1;
 
     int index = 0;

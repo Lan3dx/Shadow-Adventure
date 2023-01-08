@@ -31,8 +31,10 @@ int game() // Game
 			fps = fElapsedTime;
 			fps_cd = FPS_CD;
 		}
+
 		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
 		{
+			//spiral_transition(board);
 			clog("INFO", "Game stopped");
 			return 0;
 		}
