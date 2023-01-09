@@ -62,12 +62,12 @@ void render(std::vector<int> selected) // menu rendering
 			std::cout << ".		       ||  || |||||    ||   ||||| ||  ||   ||    ||||  ||  || ||||                      ." << std::endl;
 			continue;
 		}
-		if (j == 44)
+		if (j == 49)
 		{
 			std::cout << ".                                                L A N 3                                                ." << std::endl;
 			continue;
 		}
-		if (j == 45)
+		if (j == 50)
 		{
 			std::cout << ".                                           2 0 2 2 - 2 0 2 3                                           ." << std::endl;
 			continue;
