@@ -98,6 +98,9 @@
     <ClInclude Include="include\windows\mapchanger.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="include\windows\author.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -152,6 +155,9 @@
       <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
     <ClCompile Include="src\windows\mapchanger.cpp">
+      <Filter>Source Files\src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\author.cpp">
       <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,0 +1,10 @@
+[15:16:53] [INFO]: Game started
+[15:16:54] [INFO]: Spawn entity: player0
+[15:17:16] [INFO]: Game stopped
+[15:17:47] [INFO]: Game started
+[15:17:47] [INFO]: Spawn entity: player0
+[15:18:18] [INFO]: Spawn entity: player1
+[15:18:22] [INFO]: Game stopped
+[15:18:52] [INFO]: Game started
+[15:18:52] [INFO]: Spawn entity: player0
+[15:19:42] [INFO]: Game stopped

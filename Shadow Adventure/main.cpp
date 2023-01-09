@@ -1,7 +1,9 @@
 #include "include/sys/includes.h"
 #include "include/sys/constants.h"
+
 #include "include/windows/game.h"
 #include "include/windows/menu.h"
+#include "include/windows/author.h"
 #include "include/windows/mapchanger.h"
 #include "include/windows/transition.h"
 
@@ -18,6 +20,7 @@ int main()
 		int status = menu(); // launch menu form
 		if (status == 0) game(); // if menu form return 0 then start game
 		else if (status == 1) mapchanger(); // if menu form return 1 then start mapchanger
+		else if (status == 2) author();  // if menu form return 2 then open author window
 	}
 
 	return 0;
