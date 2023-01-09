@@ -3,8 +3,6 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-const auto g_board = board_init();
-
 void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
@@ -33,6 +31,7 @@ void render(std::vector<std::vector<char>> map, std::string selected, float fps)
 
 int game() // Game
 {
+	const auto g_board = map_init();
 	auto tp1 = std::chrono::system_clock::now(); // Get now time
 	auto tp2 = std::chrono::system_clock::now();
 	auto board = g_board;  // Define board
@@ -68,19 +67,19 @@ int game() // Game
 		}
 		if (GetAsyncKeyState((unsigned short)'W'))
 		{
-			control(&players, selected, std::ref(board), 72);
+			control(&players, selected, std::ref(board), g_board, 72);
 		}
 		if (GetAsyncKeyState((unsigned short)'A'))
 		{
-			control(&players, selected, std::ref(board), 75);
+			control(&players, selected, std::ref(board), g_board, 75);
 		}
 		if (GetAsyncKeyState((unsigned short)'S'))
 		{
-			control(&players, selected, std::ref(board), 80);
+			control(&players, selected, std::ref(board), g_board, 80);
 		}
 		if (GetAsyncKeyState((unsigned short)'D'))
 		{
-			control(&players, selected, std::ref(board), 77);
+			control(&players, selected, std::ref(board), g_board, 77);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
@@ -208,7 +207,7 @@ int game() // Game
 
 		clear(); // clear screen
 
-		entitiesRender(players, bullets, mobs, std::ref(board)); // output all entitis
+		entitiesRender(players, bullets, mobs, std::ref(board),g_board ); // output all entitis
 		render(board, selected, fps); // screen output 
 	}
 

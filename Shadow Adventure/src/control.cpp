@@ -3,7 +3,7 @@
 #include "../include/control.h"
 #include "../include/sys/constants.h"
 
-void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, int key) // control func for selected player
+void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board, int key) // control func for selected player
 {
 	if (players->get().contains(selected)) // if players map have selected player
 	{
@@ -19,7 +19,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{
 				if (player.voidUnder(board)) // if under player void
 				{
-					if (player.ladder(board_init())) // if the player is on the ladder, then raise him by 1 element
+					if (player.ladder(g_board)) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
 						{

@@ -10,7 +10,7 @@ void render(std::vector<int> selected) // menu rendering
 	}
 	std::cout << wall << std::endl;
 	wall = "";
-	for (int j = 0; j < 47; j++)
+	for (int j = 0; j < 51; j++)
 	{
 		if (j == 2)
 		{
@@ -147,6 +147,16 @@ void render(std::vector<int> selected) // menu rendering
 
 int menu() // open menu window
 {
+	clear();
+	for (int i = 0; i < 60; i++) // clear screen
+	{
+		std::string line;
+		for (int j = 0; j < 60; j++)
+		{
+			line += "  ";
+		}
+		std::cout << line << '\n';
+	}
 	std::vector<int> selected = { 1,0,0,0 };
 	int key_cd = 40;
 	PlaySound(music::MENU, NULL, SND_FILENAME | SND_ASYNC);

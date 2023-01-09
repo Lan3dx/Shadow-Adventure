@@ -3,7 +3,7 @@
 
 #include "../include/map.h"
 
-std::vector<std::vector<char>> board_init() // return clear map
+std::vector<std::vector<char>> map_init() // return clear map
 {
 	// Create a map
 	std::ifstream fin("resources/maps/active.txt");

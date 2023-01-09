@@ -1,8 +1,8 @@
 #include "..\..\..\include\entities\sys\render.h"
 
-void entitiesRender(PMAP players, BMAP bullets, MMAP mobs, std::vector<std::vector<char>>& board) // render all entities
+void entitiesRender(PMAP players, BMAP bullets, MMAP mobs, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board) // render all entities
 {
-	board = board_init(); // board clear
+	board = g_board; // board clear
 	for (auto& entityS : players.get())
 	{
 		board = entityS.second.kill(board);

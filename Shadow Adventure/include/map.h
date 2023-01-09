@@ -1,3 +1,3 @@
 #pragma once
 
-std::vector<std::vector<char>> board_init(); // return clear map
+std::vector<std::vector<char>> map_init(); // return clear map
