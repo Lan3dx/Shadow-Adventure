@@ -56,3 +56,21 @@
 [19:50:48] [INFO]: Spawn entity: player0
 [19:50:53] [INFO]: Spawn entity: player1
 [19:50:59] [INFO]: Game stopped
+[21:33:32] [INFO]: Game started
+[21:34:12] [INFO]: Spawn entity: player0
+[21:35:3] [INFO]: Spawn entity: player1
+[21:35:3] [INFO]: Spawn entity: player2
+[21:35:10] [INFO]: Kill entity: player1
+[21:35:10] [INFO]: Kill entity: 
+[21:35:10] [INFO]: Kill entity: 
+[21:35:11] [INFO]: Kill entity: 
+[21:35:11] [INFO]: Kill entity: 
+[21:35:11] [INFO]: Kill entity: 
+[21:35:11] [INFO]: Kill entity: 
+[21:35:12] [INFO]: Kill entity: player0
+[21:35:13] [INFO]: Kill entity: player0
+[21:35:15] [INFO]: Spawn entity: player0
+[21:35:16] [INFO]: Spawn entity: player1
+[21:35:18] [INFO]: Kill entity: player2
+[21:35:20] [INFO]: Kill entity: player1
+[21:36:15] [INFO]: Game stopped
