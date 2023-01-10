@@ -38,6 +38,8 @@ int game() // Game
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
+	auto avgfps = 0;
+	auto avgfpscount = 0;
 	auto fps = 1.0f; // frame per second
 	PMAP players; // players map
 	BMAP bullets; // bullets map 
@@ -55,6 +57,8 @@ int game() // Game
 		float fElapsedTime = elapsedTime.count();
 		if (fps_cd <= 0)
 		{
+			avgfps += round(int(1.0f / fps));
+			avgfpscount += 1;
 			fps = fElapsedTime;
 			fps_cd = FPS_CD;
 		}
@@ -63,6 +67,7 @@ int game() // Game
 		{
 			//spiral_transition(board);
 			clog("INFO", "Game stopped");
+			clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount)));
 			return 0;
 		}
 		if (GetAsyncKeyState((unsigned short)'W'))

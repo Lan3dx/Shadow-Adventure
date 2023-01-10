@@ -13,6 +13,7 @@ bool game_status = true; // is started game or not
 
 int main()
 {
+	//std::ios::sync_with_stdio(false);
 	std_config(); // Customizes the console window
 
 	while (game_status) // program loop
