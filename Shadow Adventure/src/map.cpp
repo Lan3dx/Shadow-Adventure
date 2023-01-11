@@ -24,24 +24,5 @@ std::vector<std::vector<char>> map_init() // return clear map
 			}
 		}
 	}
-
-	/*for (int y = 0; y < 48; y++)
-	{
-		for (int x = 0; x < 48; x++)
-		{
-			map[y][x] = ' ';
-		}
-	}
-	for (int x = 0; x < 48; x++)
-	{
-		map[0][x] = 'D';
-		map[47][x] = 'D';
-	}
-	for (int y = 0; y < 48; y++)
-	{
-		map[y][0] = '#';
-		map[y][47] = '#';
-	}*/
-
 	return map;
 }

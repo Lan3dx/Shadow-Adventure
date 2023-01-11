@@ -9,6 +9,7 @@
 #include <WinUser.h>
 #include <thread>
 #include <string>
+#include <filesystem>
 #include <mmsystem.h>
 
 // user's libs

@@ -57,7 +57,7 @@ int game() // Game
 		float fElapsedTime = elapsedTime.count();
 		if (fps_cd <= 0)
 		{
-			avgfps += round(int(1.0f / fps));
+			avgfps += int(round(int(1.0f / fps)));
 			avgfpscount += 1;
 			fps = fElapsedTime;
 			fps_cd = FPS_CD;

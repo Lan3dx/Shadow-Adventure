@@ -95,10 +95,13 @@
     <ClInclude Include="include\entities\sys\render.h">
       <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
-    <ClInclude Include="include\windows\mapchanger.h">
+    <ClInclude Include="include\windows\mapdrawer.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="include\windows\author.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="include\windows\mapchanger.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
   </ItemGroup>
@@ -154,10 +157,13 @@
     <ClCompile Include="src\entities\sys\render.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
-    <ClCompile Include="src\windows\mapchanger.cpp">
+    <ClCompile Include="src\windows\mapdrawer.cpp">
       <Filter>Source Files\src\windows</Filter>
     </ClCompile>
     <ClCompile Include="src\windows\author.cpp">
+      <Filter>Source Files\src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\mapchanger.cpp">
       <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>

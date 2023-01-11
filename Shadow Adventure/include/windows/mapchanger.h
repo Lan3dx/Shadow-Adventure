@@ -1,3 +1,4 @@
 #pragma once
+#include <vector>
 
-int mapchanger();
+std::vector<std::vector<char>> mapchanger();
