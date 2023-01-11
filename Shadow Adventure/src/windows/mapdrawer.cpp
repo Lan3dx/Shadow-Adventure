@@ -162,7 +162,7 @@ int mapdrawer()
 			}
 		}
 	}
-
+	fin.close();
 	auto tp1 = std::chrono::system_clock::now();
 	auto tp2 = std::chrono::system_clock::now();
 

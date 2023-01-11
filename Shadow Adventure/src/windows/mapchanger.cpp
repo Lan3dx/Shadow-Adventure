@@ -13,7 +13,7 @@ std::string ws2s(const std::wstring& s)
 
 std::string random_txt(int a, int b)
 {
-    srand(time(NULL));
+    srand(time((NULL)));
     std::string res = "resources/maps/";
     if (a > 0) res += std::to_string(a + rand() % (b - a));
     else res += std::to_string(a + rand() % (abs(a) + b));
@@ -21,11 +21,11 @@ std::string random_txt(int a, int b)
     return res;
 }
 
-void map_render(std::vector<std::vector<char> > map)
+void map_render(std::vector<std::vector<char>> map)
 {
     clear();
     std::cout << '\n'; // next column
-    std::cout << '\n'; // next column
+    std::cout << '\n';
     for (int y = 1; y < 47; y++) // columns
     {
         std::string line;
@@ -175,8 +175,11 @@ std::vector<std::vector<char>> mapchanger()
         {
             if (key_cd == 0)
             {
+                fin.close();
                 key_cd = 50;
-                auto status0 = std::rename("resources/maps/active.txt", random_txt(1000,10000).c_str());
+                std::string active = "resources/maps/active.txt";
+                auto status0 = std::rename(active.c_str(), random_txt(1000,10000).c_str());
+                if (status0 != 0) exit(0);
                 auto status1 = std::rename(maps[selected].c_str(), "resources/maps/active.txt");
                 return map;
             }
