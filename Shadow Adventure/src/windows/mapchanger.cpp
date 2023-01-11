@@ -72,15 +72,12 @@ std::vector<std::vector<char>> mapchanger()
     }
     std::vector<std::string> maps;
     int key_cd = 50;
-    std::string path = "resources\\maps";
+    std::string path = "resources/maps";
     for (const auto& entry : std::filesystem::directory_iterator(path))
     {
         std::wstring map = entry.path().native();
         std::string ecranum = R"(\)";
-        if (ws2s(map) != path + ecranum + "active.txt")
-        {
-            maps.push_back(ws2s(map));
-        }
+        maps.push_back(ws2s(map));
     }
 
     size_t selected = 0;

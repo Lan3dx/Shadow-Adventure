@@ -7,6 +7,7 @@
 #include <fstream>
 #include <windows.h>
 #include <WinUser.h>
+#include <stdlib.h>
 #include <thread>
 #include <string>
 #include <filesystem>
