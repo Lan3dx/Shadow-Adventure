@@ -70,19 +70,19 @@ int game() // Game
 			clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount)));
 			return 0;
 		}
-		if (GetAsyncKeyState((unsigned short)'W'))
+		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
 			control(&players, selected, std::ref(board), g_board, 72);
 		}
-		if (GetAsyncKeyState((unsigned short)'A'))
+		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
 		{
 			control(&players, selected, std::ref(board), g_board, 75);
 		}
-		if (GetAsyncKeyState((unsigned short)'S'))
+		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
 			control(&players, selected, std::ref(board), g_board, 80);
 		}
-		if (GetAsyncKeyState((unsigned short)'D'))
+		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
 		{
 			control(&players, selected, std::ref(board), g_board, 77);
 		}
