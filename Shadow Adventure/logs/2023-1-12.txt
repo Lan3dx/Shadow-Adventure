@@ -32,3 +32,17 @@
 [22:36:16] [INFO]: Kill entity: player0
 [22:36:24] [INFO]: Game stopped
 [22:36:24] [DEBUG]: Avg FPS: 164
+[22:52:36] [INFO]: Game started
+[22:52:37] [INFO]: Spawn entity: player0
+[22:53:21] [INFO]: Game stopped
+[22:53:21] [DEBUG]: Avg FPS: 160
+[22:53:53] [INFO]: Game started
+[22:53:54] [INFO]: Spawn entity: player0
+[22:55:51] [INFO]: Kill entity: player0
+[22:55:51] [INFO]: Kill entity: 
+[22:56:1] [INFO]: Game stopped
+[22:56:1] [DEBUG]: Avg FPS: 165
+[22:57:29] [INFO]: Game started
+[22:57:31] [INFO]: Spawn entity: player0
+[22:57:33] [INFO]: Game stopped
+[22:57:33] [DEBUG]: Avg FPS: 166
