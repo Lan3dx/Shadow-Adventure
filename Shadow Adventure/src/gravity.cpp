@@ -19,9 +19,9 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<char>>& board, std::vec
 			{
 				if (!(entity.getCG() > 0))
 				{
-					board = entity.kill(board); // kill bullet
+					entity.kill(std::ref(board)); // kill bullet
 					entity.move(entity.getGType()); // move bullet
-					board = entity.spawn(board); // spawn bullet
+					entity.spawn(std::ref(board)); // spawn bullet
 					entity.setCG();
 				}
 			}
@@ -40,9 +40,9 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board, std::vector
 		if (entity.limit(board)) // if the mob is in prohibited territory
 		{
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords mob
-			board = entity.kill(board); // kill mob
+			entity.kill(std::ref(board)); // kill mob
 			entity.move(entity.getGType()); // move mob
-			board = entity.spawn(board); // spawn mob
+			entity.spawn(std::ref(board)); // spawn mob
 		}
 
 		if (entity.getGravity()) // if mob have gravity
@@ -56,9 +56,9 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<char>>& board, std::vector
 						if (!(entity.getCG() > 0))
 						{
 							board = g_board; // clear map
-							board = entity.kill(board); // kill mob
+							entity.kill(std::ref(board)); // kill mob
 							entity.move(entity.getGType()); // move mob
-							board = entity.spawn(board); // spawn mob
+							entity.spawn(std::ref(board)); // spawn mob
 							entity.setCG();
 						}
 					}
@@ -79,10 +79,10 @@ void gravitationP(PMAP* players, std::vector<std::vector<char>>& board, std::vec
 		if (entity.limit(board)) // if the player is in prohibited territory
 		{
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
-			board = entity.kill(board); // kill player
+			entity.kill(std::ref(board)); // kill player
 			PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 			entity.move(entity.getGType()); // move player
-			board = entity.spawn(board); // spawn player
+			entity.spawn(std::ref(board)); // spawn player
 		}
 		if (entity.getGravity()) // if player have gravity
 		{
@@ -95,9 +95,9 @@ void gravitationP(PMAP* players, std::vector<std::vector<char>>& board, std::vec
 						if (!(entity.getCG() > 0))
 						{
 							board = g_board; // clear map
-							board = entity.kill(board); // kill player
+							entity.kill(std::ref(board)); // kill player
 							entity.move(entity.getGType()); // move player
-							board = entity.spawn(board); // spawn player
+							entity.spawn(std::ref(board)); // spawn player
 							entity.setCG();
 						}
 					}

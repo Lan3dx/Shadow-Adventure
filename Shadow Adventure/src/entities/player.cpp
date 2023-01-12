@@ -11,23 +11,19 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	std_COOLDOWN = cd;
 }
 
-std::vector<std::vector<char>> PLAYER::spawn(std::vector<std::vector<char>> board) // place entity on map
+void PLAYER::spawn(std::vector<std::vector<char>> &board) // place entity on map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
 		board[x[dot]][y[dot]] = character;
 	}
-
-	return board;
 }
-std::vector<std::vector<char>> PLAYER::kill(std::vector<std::vector<char>> board) // delete entity from map
+void PLAYER::kill(std::vector<std::vector<char>> &board) // delete entity from map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
 		board[x[dot]][y[dot]] = ' ';
 	}
-
-	return board;
 }
 
 std::vector<int> PLAYER::getX() // get x

@@ -13,7 +13,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 		
 		if (!player.collisions(board, key)) // if there are no walls near the player
 		{
-			board = player.kill(board); // kill a character on the map
+			player.kill(std::ref(board)); // kill a character on the map
 
 			if (key == 72) // up (jump)
 			{
@@ -50,9 +50,9 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 				if (player.limit(board)) // if the player is in prohibited territory
 				{
 					player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
-					board = player.kill(board); // kill player
+					player.kill(std::ref(board)); // kill player
 					player.move(player.getGType()); // move player
-					board = player.spawn(board); // spawn player
+					player.spawn(std::ref(board)); // spawn player
 				}
 				else
 				{

@@ -212,7 +212,7 @@ int game() // Game
 
 		clear(); // clear screen
 
-		entitiesRender(players, bullets, mobs, std::ref(board),g_board ); // output all entitis
+		entitiesRender(players, bullets, mobs, std::ref(board), g_board ); // output all entitis
 		render(board, selected, fps); // screen output 
 	}
 

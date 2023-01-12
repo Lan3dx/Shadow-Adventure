@@ -60,5 +60,5 @@ bool BULLET::touch(std::vector<std::vector<char>> board) // if the bullet hit th
 
 char BULLET::getGType() { return GType; } // get gravity type
 
-std::vector<std::vector<char>> BULLET::spawn(std::vector<std::vector<char>> board) { board[x][y] = character; return board; } // spawn bullet
-std::vector<std::vector<char>> BULLET::kill(std::vector<std::vector<char>> board) { board[x][y] = ' '; return board; } // kill bullet
+void BULLET::spawn(std::vector<std::vector<char>> &board) { board[x][y] = character; } // spawn bullet
+void BULLET::kill(std::vector<std::vector<char>> &board) { board[x][y] = ' '; } // kill bullet

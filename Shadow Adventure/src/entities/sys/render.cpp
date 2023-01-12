@@ -5,17 +5,17 @@ void entitiesRender(PMAP players, BMAP bullets, MMAP mobs, std::vector<std::vect
 	board = g_board; // board clear
 	for (auto& entityS : players.get())
 	{
-		board = entityS.second.kill(board);
-		board = entityS.second.spawn(board);
+		entityS.second.kill(std::ref(board));
+		entityS.second.spawn(std::ref(board));
 	}
 	for (auto& entityS : bullets.get())
 	{
-		board = entityS.second.kill(board);
-		board = entityS.second.spawn(board);
+		entityS.second.kill(std::ref(board));
+		entityS.second.spawn(std::ref(board));
 	}
 	for (auto& entityS : mobs.get())
 	{
-		board = entityS.second.kill(board);
-		board = entityS.second.spawn(board);
+		entityS.second.kill(std::ref(board));
+		entityS.second.spawn(std::ref(board));
 	}
 }

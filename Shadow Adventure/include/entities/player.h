@@ -21,8 +21,8 @@ private:
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
 
-	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>);// place entity on map
-	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>);// delete entity from map
+	void spawn(std::vector<std::vector<char>>&);// place entity on map
+	void kill(std::vector<std::vector<char>>&);// delete entity from map
 
 	std::vector<int> getX(); // get x
 	std::vector<int> getY(); // get y

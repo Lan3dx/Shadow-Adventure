@@ -41,6 +41,6 @@ public:
 
 	char getGType(); // get gravity type
 
-	std::vector<std::vector<char>> kill(std::vector<std::vector<char>>); // place bullet on map
-	std::vector<std::vector<char>> spawn(std::vector<std::vector<char>>); // place bullet on map
+	void kill(std::vector<std::vector<char>>&); // place bullet on map
+	void spawn(std::vector<std::vector<char>>&); // place bullet on map
 };
