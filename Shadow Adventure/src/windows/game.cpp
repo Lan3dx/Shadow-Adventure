@@ -65,7 +65,6 @@ int game() // Game
 
 		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
 		{
-			//spiral_transition(board);
 			clog("INFO", "Game stopped");
 			clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount))); 
 			return 0;

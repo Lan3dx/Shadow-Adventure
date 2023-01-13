@@ -1,7 +1,7 @@
 #include "../../include/windows/mapchanger.h"
 #include "../../include/sys/includes.h"
 
-std::string ws2s(const std::wstring& s)
+std::string ws2s(const std::wstring& s) // transfer from wstring to string
 {
     int len;
     int slength = (int)s.length() + 1;
@@ -11,7 +11,7 @@ std::string ws2s(const std::wstring& s)
     return r;
 }
 
-std::string random_txt(int a, int b)
+std::string random_txt(int a, int b) // creating a string with a random value
 {
     srand(time((NULL)));
     std::string res = "resources/maps/";
@@ -21,7 +21,7 @@ std::string random_txt(int a, int b)
     return res;
 }
 
-void map_render(std::vector<std::vector<char>> map)
+void map_render(std::vector<std::vector<char>> map) // render
 {
     clear();
     std::cout << '\n'; // next column
@@ -50,7 +50,7 @@ void map_render(std::vector<std::vector<char>> map)
     std::cout << "         [ENTER] - change map           [A] - left           [D] - right           [ESC] - exit " << '\n';
 }
 
-std::vector<std::vector<char>> mapchanger()
+std::vector<std::vector<char>> mapchanger() // main func
 {
     clear();
     for (int i = 0; i < 60; i++) // clear screen
@@ -73,7 +73,7 @@ std::vector<std::vector<char>> mapchanger()
     std::vector<std::string> maps;
     int key_cd = 50;
     std::string path = "resources/maps";
-    for (const auto& entry : std::filesystem::directory_iterator(path))
+    for (const auto& entry : std::filesystem::directory_iterator(path)) //
     {
         std::wstring map = entry.path().native();
         std::string ecranum = R"(\)";

@@ -158,7 +158,7 @@ int author() // open author window
 		}
 		std::cout << line << '\n';
 	}
-	int key_cd = 40;
+	int key_cd = 40; // key cooldown variable
 
 	while (true)
 	{
@@ -167,7 +167,7 @@ int author() // open author window
 		{
 			key_cd -= 1;
 		}
-		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
+		if (GetAsyncKeyState((unsigned short)VK_ESCAPE)) // exit button
 		{
 			if (key_cd <= 0)
 			{

@@ -4,16 +4,16 @@
 
 namespace constants
 {
-	const int size_X = 51;
+	const int size_X = 51; // array size
 	const int size_Y = 48;
 
-	const int xlim = 38;
+	const int xlim = 38; // array smoothing variables relative to screen coordinates
 	const int ylim = 23;
 }
 
 std::vector<std::vector<char>> g_board(constants::size_Y, std::vector<char>(constants::size_X));
 
-void render(std::vector<std::vector<char>> board, int x, int y, char tool, float fps)
+void render(std::vector<std::vector<char>> board, int x, int y, char tool, float fps) // render
 {
 	std::string str = "";
 	for (int x = 0; x < constants::size_X+1; x++)
@@ -91,7 +91,7 @@ void render(std::vector<std::vector<char>> board, int x, int y, char tool, float
 	std::cout << "  [ENTER] - save map     [TAB] - change active map     [ESC] - exit" << '\n';
 }
 
-void toolchanger(POINT pos, char *tool)
+void toolchanger(POINT pos, char *tool) // change the active character to draw
 {
 	if (pos.y / constants::ylim >= 0 && pos.y / constants::ylim <= 4)
 	{
