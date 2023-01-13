@@ -178,7 +178,7 @@ std::vector<std::vector<char>> mapchanger()
                 fin.close();
                 key_cd = 50;
                 std::string active = "resources/maps/active.txt";
-                auto status0 = std::rename(active.c_str(), random_txt(1000,10000).c_str());
+                auto status0 = std::rename(active.c_str(), random_txt(1000,100000).c_str());
                 if (status0 != 0) exit(0);
                 auto status1 = std::rename(maps[selected].c_str(), "resources/maps/active.txt");
                 return map;
