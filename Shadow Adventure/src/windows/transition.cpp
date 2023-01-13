@@ -16,16 +16,26 @@ void render(std::vector<std::vector<char>> map)
     }
 }
 
-int line_transition(std::vector<std::vector<char>> map)
+int line_transition()
 {
-    for (int y = 6; y < map.size() - 8; y++) // columns
+    for (int y = 6; y < 54; y++) // columns
     {
-        for (int x = 1; x < map[y].size() - 1; x++) // lines
+        std::string line;
+        for (int x = 1; x < 52; x++) // lines
         {
-            map[y][x] = ' ';
+            line += "* ";
         }
-        render(map);
-        Sleep(10);
+        std::cout << line << '\n';
+        Sleep(5);
+    }
+    for (int y = 6; y < 60; y++) // columns
+    {
+        std::string line;
+        for (int x = 1; x < 30; x++) // lines
+        {
+            line += "  ";
+        }
+        std::cout << line << '\n';
     }
     return 0;
 }
