@@ -20,7 +20,7 @@ int main()
 
 	while (game_status) // program loop
 	{
-		int status = menu(); // launch menu form=
+		int status = menu(); // launch menu form
 		if (status == 0) game(); // if menu form return 0 then start game
 		else if (status == 1) mapdrawer(); // if menu form return 1 then start mapchanger
 		else if (status == 2) author();  // if menu form return 2 then open author window
