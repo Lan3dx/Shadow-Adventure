@@ -1,0 +1,4 @@
+[18:33:31] [INFO]: Game started
+[18:33:32] [INFO]: Spawn entity: player0
+[18:33:50] [INFO]: Game stopped
+[18:33:50] [DEBUG]: Avg FPS: 167

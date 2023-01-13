@@ -178,7 +178,7 @@ int menu() // open menu window
 				else if (selected[3] == 1) { exit(0); }
 			}
 		}
-		if (GetAsyncKeyState((unsigned short)'W'))
+		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
 			if (key_cd <= 0)
 			{
@@ -189,7 +189,7 @@ int menu() // open menu window
 				if (selected[3] == 1) { selected[3] = 0; selected[2] = 1; continue; }
 			}
 		}
-		if (GetAsyncKeyState((unsigned short)'S'))
+		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
 			if (key_cd <= 0)
 			{

@@ -50,3 +50,5 @@
 [23:5:9] [INFO]: Spawn entity: player0
 [23:5:16] [INFO]: Game stopped
 [23:5:16] [DEBUG]: Avg FPS: 154
+[23:12:17] [INFO]: Game started
+[23:12:50] [INFO]: Game started
