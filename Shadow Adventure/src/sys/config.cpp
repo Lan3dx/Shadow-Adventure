@@ -13,14 +13,14 @@ void clear()
 // basic console settings
 void std_config()
 {
-	void* activeBuffer = GetStdHandle(STD_OUTPUT_HANDLE); 
+	void* activeBuffer = GetStdHandle(STD_OUTPUT_HANDLE);  // get active buffer
 	SMALL_RECT zeroWindow = { 0, 0, 0, 0 }; 
 	COORD zBuffer = { 1, 1 }; 
 	SetConsoleWindowInfo(activeBuffer, TRUE, &zeroWindow); 
 	SetConsoleScreenBufferSize(activeBuffer, zBuffer); 
 
-	COORD bufferSize = { 105, 54 }; 
-	SMALL_RECT windowSize = { 0, 0, 105 - 1, 54 - 1 }; 
+	COORD bufferSize = { 105, 54 }; // set buffer size
+	SMALL_RECT windowSize = { 0, 0, 105 - 1, 54 - 1 };  // set window size
 	SetConsoleScreenBufferSize(activeBuffer, bufferSize); 
 	SetConsoleWindowInfo(activeBuffer, TRUE, &windowSize); 
 
