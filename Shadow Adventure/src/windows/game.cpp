@@ -3,7 +3,7 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>> map, std::string selected, float fps) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
 	for (int y = 1; y < map.size()-1; y++) // columns
@@ -203,16 +203,16 @@ int game() // Game
 		listenerB(&bullets, std::ref(board));
 		listenerM(&mobs, std::ref(board));
 
-		gravitationP(&players, std::ref(board), g_board);
-		gravitationB(&bullets, std::ref(board), g_board);
-		gravitationM(&mobs, std::ref(board), g_board);
+		gravitationP(&players, std::ref(board), std::ref(g_board));
+		gravitationB(&bullets, std::ref(board), std::ref(g_board));
+		gravitationM(&mobs, std::ref(board), std::ref(g_board));
 
 		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
 
 		clear(); // clear screen
 
-		entitiesRender(players, bullets, mobs, std::ref(board), g_board ); // output all entitis
-		render(board, selected, fps); // screen output 
+		entitiesRender(players, bullets, mobs, std::ref(board), std::ref(g_board)); // output all entitis
+		render(std::ref(board), selected, fps); // screen output 
 	}
 
 	return 0;
