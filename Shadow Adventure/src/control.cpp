@@ -16,6 +16,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 
 			if (key == 72) // up (jump)
 			{
+				player.setCHAR('^');
 				if (player.voidUnder(std::ref(board))) // if under player void
 				{
 					if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
@@ -66,6 +67,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 			{ 
 				if (!(player.getCAD() > 0))
 				{
+					player.setCHAR('<');
 					if (player.onstairs(std::ref(board), 75))
 					{
 						player.move('u');
@@ -83,6 +85,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 			{
 				if (!(player.getCAD() > 0))
 				{
+					player.setCHAR('>');
 					if (player.onstairs(std::ref(board), 77))
 					{
 						player.move('u');

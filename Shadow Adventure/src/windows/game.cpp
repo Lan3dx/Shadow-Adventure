@@ -94,7 +94,7 @@ int game() // Game
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
 						clog("INFO", "Spawn entity: player" + std::to_string(b));
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, 'p', true, 'd', { 14,28,14 });
+						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 14,28,14 });
 						players.add("player" + std::to_string(b), player);
 						break;
 					}
