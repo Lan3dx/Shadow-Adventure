@@ -138,15 +138,18 @@ int game() // Game
 				}
 				else
 				{
-					shot_cd = SHOT_CD;
-					for (int b = 0; b < MAX_AMMO; b++)
+					if (shot_cd <= 0)
 					{
-						if (!bullets.get().contains("bullet" + std::to_string(b)))
+						shot_cd = SHOT_CD;
+						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+						for (int b = 0; b < MAX_AMMO; b++)
 						{
-							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
-							bullets.add("bullet" + std::to_string(b), bullet);
-							break;
+							if (!bullets.get().contains("bullet" + std::to_string(b)))
+							{
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
+								bullets.add("bullet" + std::to_string(b), bullet);
+								break;
+							}
 						}
 					}
 				}
@@ -175,15 +178,18 @@ int game() // Game
 				}
 				else
 				{
-					shot_cd = SHOT_CD;
-					for (int b = 0; b < MAX_AMMO; b++)
+					if (shot_cd <= 0)
 					{
-						if (!bullets.get().contains("bullet" + std::to_string(b)))
+						shot_cd = SHOT_CD;
+						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+						for (int b = 0; b < MAX_AMMO; b++)
 						{
-							PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-							BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
-							bullets.add("bullet" + std::to_string(b), bullet);
-							break;
+							if (!bullets.get().contains("bullet" + std::to_string(b)))
+							{
+								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
+								bullets.add("bullet" + std::to_string(b), bullet);
+								break;
+							}
 						}
 					}
 				}
