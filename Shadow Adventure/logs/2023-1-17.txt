@@ -14,3 +14,36 @@
 [17:4:32] [INFO]: Spawn entity: player0
 [17:4:46] [INFO]: Game stopped
 [17:4:46] [DEBUG]: Avg FPS: 180
+[17:20:41] [INFO]: Game started
+[17:21:6] [INFO]: Spawn entity: player0
+[17:22:6] [INFO]: Game stopped
+[17:22:6] [DEBUG]: Avg FPS: 182
+[17:22:11] [INFO]: Game started
+[17:22:13] [INFO]: Kill entity: 
+[17:22:18] [INFO]: Spawn entity: player0
+[17:22:18] [INFO]: Spawn entity: player1
+[17:22:24] [INFO]: Spawn entity: player2
+[17:22:24] [INFO]: Kill entity: player1
+[17:22:25] [INFO]: Kill entity: 
+[17:22:35] [INFO]: Kill entity: 
+[17:22:35] [INFO]: Kill entity: 
+[17:22:37] [INFO]: Spawn entity: player1
+[17:25:0] [INFO]: Game started
+[17:25:3] [INFO]: Spawn entity: player0
+[17:25:8] [INFO]: Game stopped
+[17:25:8] [DEBUG]: Avg FPS: 177
+[17:25:27] [INFO]: Game started
+[17:25:28] [INFO]: Spawn entity: player0
+[17:25:42] [INFO]: Game started
+[17:25:42] [INFO]: Spawn entity: player0
+[17:26:1] [INFO]: Game started
+[17:26:2] [INFO]: Spawn entity: player0
+[17:26:30] [INFO]: Game started
+[17:26:37] [INFO]: Spawn entity: player0
+[19:5:34] [INFO]: Game started
+[19:5:37] [INFO]: Spawn entity: player0
+[19:6:23] [INFO]: Game started
+[19:6:23] [INFO]: Game stopped
+[19:6:23] [DEBUG]: Avg FPS: 1
+[19:6:24] [INFO]: Game started
+[19:6:24] [INFO]: Spawn entity: player0
