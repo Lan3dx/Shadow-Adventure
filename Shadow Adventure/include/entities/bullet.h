@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "../sys/constants.h"
 
 class BULLET
 {
@@ -37,10 +38,10 @@ public:
 	int getCS(); // get cooldown for shot
 
 	bool getGravity(); // get gravity (t) (f)
-	bool touch(std::vector<std::vector<char>>); // if the bullet hit the wall
+	bool touch(std::vector<std::vector<block>>&); // if the bullet hit the wall
 
 	char getGType(); // get gravity type
 
-	void kill(std::vector<std::vector<char>>&); // place bullet on map
-	void spawn(std::vector<std::vector<char>>&); // place bullet on map
+	void kill(std::vector<std::vector<block>>&); // place bullet on map
+	void spawn(std::vector<std::vector<block>>&); // place bullet on map
 };

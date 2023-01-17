@@ -51,14 +51,14 @@ int BULLET::getCS() // get cooldown for gravity
 }
 
 bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)
-bool BULLET::touch(std::vector<std::vector<char>> board) // if the bullet hit the wall
+bool BULLET::touch(std::vector<std::vector<block>>& board) // if the bullet hit the wall
 {
-	if (board[x][y] != ' ' &&  // if bullet touch ' ' or '|' then return false
-		board[x][y] != '|') return false;
+	if (board[x][y].character != ' ' &&  // if bullet touch ' ' or '|' then return false
+		board[x][y].character != '|') return false;
 	return true;
 }
 
 char BULLET::getGType() { return GType; } // get gravity type
 
-void BULLET::spawn(std::vector<std::vector<char>> &board) { board[x][y] = character; } // spawn bullet
-void BULLET::kill(std::vector<std::vector<char>> &board) { board[x][y] = ' '; } // kill bullet
+void BULLET::spawn(std::vector<std::vector<block>> &board) { board[x][y].character = character; } // spawn bullet
+void BULLET::kill(std::vector<std::vector<block>> &board) { board[x][y].character = ' '; } // kill bullet

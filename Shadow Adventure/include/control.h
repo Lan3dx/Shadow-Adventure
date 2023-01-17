@@ -6,8 +6,9 @@
 #include <string>
 
 #include "sys/musicloader.h"
+#include "sys/constants.h"
 #include "entities/player.h"
 #include "spawn.h"
 #include "map.h"
 
-void control(PMAP*, std::string, std::vector<std::vector<char>>&, std::vector<std::vector<char>>, int); // selected player control func
+void control(PMAP*, std::string, std::vector<std::vector<block>>&, std::vector<std::vector<block>>&, int); // selected player control func

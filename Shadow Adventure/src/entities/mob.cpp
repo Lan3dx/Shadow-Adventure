@@ -11,23 +11,19 @@ MOB::MOB(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGra
 	std_COOLDOWN = cd;
 }
 
-std::vector<std::vector<char>> MOB::spawn(std::vector<std::vector<char>> board) // place entity on map
+void MOB::spawn(std::vector<std::vector<block>>& board) // place entity on map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
-		board[x[dot]][y[dot]] = character;
+		board[x[dot]][y[dot]].character = character;
 	}
-
-	return board;
 }
-std::vector<std::vector<char>> MOB::kill(std::vector<std::vector<char>> board) // delete entity from map
+void MOB::kill(std::vector<std::vector<block>>& board) // delete entity from map
 {
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++)
 	{
-		board[x[dot]][y[dot]] = ' ';
+		board[x[dot]][y[dot]].character = ' ';
 	}
-
-	return board;
 }
 
 std::vector<int> MOB::getX() // get x
@@ -114,25 +110,25 @@ void MOB::setCG(int lcg) // get cooldown of gravity over
 	cooldown.gravity = lcg;
 }
 
-bool MOB::voidUnder(std::vector<std::vector<char>> board) // if player hit the floor
+bool MOB::voidUnder(std::vector<std::vector<block>>& board) // if player hit the floor
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '|' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]] == '-' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' ||
+		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '|' ||
+		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '-' ||
+		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F') return true;
 
 	return false;
 }
-bool MOB::collisions(std::vector<std::vector<char>> board, int type) // if the player touched a solid block
+bool MOB::collisions(std::vector<std::vector<block>>& board, int type) // if the player touched a solid block
 {
 	if (type == 80)
 	{
-		if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'F') return true;
+		if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' || board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F') return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 	{
-		if (type == 77) if (board[x[dot]][y[dot] + 1] == '#' || board[x[dot]][y[dot] + 1] == 'D' || board[x[dot]][y[dot] + 1] == 'F' || y[0] == board[0].size() - 2) return true;
-		if (type == 75) if (board[x[dot]][y[dot] - 1] == '#' || board[x[dot]][y[dot] - 1] == 'D' || board[x[dot]][y[dot] - 1] == 'F' || y[0] == 1) return true;
+		if (type == 77) if (board[x[dot]][y[dot] + 1].character == '#' || board[x[dot]][y[dot] + 1].character == 'D' || board[x[dot]][y[dot] + 1].character == 'F' || y[0] == board[0].size() - 2) return true;
+		if (type == 75) if (board[x[dot]][y[dot] - 1].character == '#' || board[x[dot]][y[dot] - 1].character == 'D' || board[x[dot]][y[dot] - 1].character == 'F' || y[0] == 1) return true;
 	}
 
 	return false;
@@ -142,15 +138,15 @@ bool MOB::getGravity() // get player gravity (t) (f)
 	if (gravity) return true;
 	else return false;
 }
-bool MOB::ladder(std::vector<std::vector<char>> board) // check player on ladder
+bool MOB::ladder(std::vector<std::vector<block>>& board) // check player on ladder
 {
-	if (board[x[x.size() - 1]][y[y.size() - 1]] == '|') // if player on ladder then return true
+	if (board[x[x.size() - 1]][y[y.size() - 1]].character == '|') // if player on ladder then return true
 		return true;
 	return false;
 }
-bool MOB::limit(std::vector<std::vector<char>> board) // if the player is in prohibited territory
+bool MOB::limit(std::vector<std::vector<block>>& board) // if the player is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]] == 'D') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
 

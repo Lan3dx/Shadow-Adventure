@@ -2,5 +2,6 @@
 #include <vector>
 #include <iostream>
 #include "..\..\spawn.h"
+#include "..\..\sys\constants.h"
 
-void entitiesRender(PMAP, BMAP, MMAP, std::vector<std::vector<char>>&, std::vector<std::vector<char>>); // render players
+void entitiesRender(PMAP, BMAP, MMAP, std::vector<std::vector<block>>&, std::vector<std::vector<block>>); // render players

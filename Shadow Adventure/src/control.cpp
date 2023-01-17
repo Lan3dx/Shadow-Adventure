@@ -1,9 +1,8 @@
 #include <iostream>
 
 #include "../include/control.h"
-#include "../include/sys/constants.h"
 
-void control(PMAP* players, std::string selected, std::vector<std::vector<char>>& board, std::vector<std::vector<char>> g_board, int key) // control func for selected player
+void control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key) // control func for selected player
 {
 	if (players->get().contains(selected)) // if players map have selected player
 	{
@@ -17,9 +16,9 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 
 			if (key == 72) // up (jump)
 			{
-				if (player.voidUnder(board)) // if under player void
+				if (player.voidUnder(std::ref(board))) // if under player void
 				{
-					if (player.ladder(g_board)) // if the player is on the ladder, then raise him by 1 element
+					if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
 						{
@@ -47,7 +46,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			}
 			else if (key == 80) // down
 			{ 
-				if (player.limit(board)) // if the player is in prohibited territory
+				if (player.limit(std::ref(board))) // if the player is in prohibited territory
 				{
 					player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
 					player.kill(std::ref(board)); // kill player
@@ -67,7 +66,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{ 
 				if (!(player.getCAD() > 0))
 				{
-					if (player.onstairs(board, 75))
+					if (player.onstairs(std::ref(board), 75))
 					{
 						player.move('u');
 						player.move('l');
@@ -84,7 +83,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<char>>
 			{
 				if (!(player.getCAD() > 0))
 				{
-					if (player.onstairs(board, 77))
+					if (player.onstairs(std::ref(board), 77))
 					{
 						player.move('u');
 						player.move('r');

@@ -1,6 +1,6 @@
 #include "../include/elistener.h"
 
-void listenerB(BMAP* bullets, std::vector<std::vector<char>>& board) // listener func for bullets
+void listenerB(BMAP* bullets, std::vector<std::vector<block>>& board) // listener func for bullets
 {
 	auto entityMap = bullets->get(); // old bullet map
 	std::map < std::string, BULLET > nbm = {}; // new bullet map
@@ -11,7 +11,7 @@ void listenerB(BMAP* bullets, std::vector<std::vector<char>>& board) // listener
 	}
 	bullets->set(nbm); // set old bullets map
 }
-void listenerM(MMAP* mobs, std::vector<std::vector<char>>& board) // listener func for mob
+void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener func for mob
 {
 	auto entityMap = mobs->get(); // old mob map
 	std::map < std::string, MOB > nmm = {}; // new mob map
@@ -22,7 +22,7 @@ void listenerM(MMAP* mobs, std::vector<std::vector<char>>& board) // listener fu
 	}
 	mobs->set(nmm); // set old mob map
 }
-void listenerP(PMAP* players, std::vector<std::vector<char>>& board) // listener func for player
+void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listener func for player
 {
 	auto entityMap = players->get(); // old players map
 	std::map < std::string, PLAYER > npm = {}; // new players map

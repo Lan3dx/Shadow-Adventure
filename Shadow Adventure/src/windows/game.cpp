@@ -3,7 +3,7 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<char>> map, std::string selected, float fps) // output
+void render(std::vector<std::vector<block>> map, std::string selected, float fps) // output
 {
 	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
 	for (int y = 1; y < map.size()-1; y++) // columns
@@ -12,7 +12,7 @@ void render(std::vector<std::vector<char>> map, std::string selected, float fps)
 		std::string line;
 		for (int x = 1; x < map[y].size()-1; x++) // lines
 		{
-			line += map[y][x];
+			line += map[y][x].character;
 			line += " ";
 			if (y == 5 && x == map[y].size()-2) line += "W - jump";
 			if (y == 6 && x == map[y].size() - 2) line += "S - down";
@@ -31,7 +31,7 @@ void render(std::vector<std::vector<char>> map, std::string selected, float fps)
 
 int game() // Game
 {
-	const auto g_board = map_init();
+	auto g_board = map_init();
 	auto tp1 = std::chrono::system_clock::now(); // Get now time
 	auto tp2 = std::chrono::system_clock::now();
 	auto board = g_board;  // Define board
@@ -71,19 +71,19 @@ int game() // Game
 		}
 		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
-			control(&players, selected, std::ref(board), g_board, 72);
+			control(&players, selected, std::ref(board), std::ref(g_board), 72);
 		}
 		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
 		{
-			control(&players, selected, std::ref(board), g_board, 75);
+			control(&players, selected, std::ref(board), std::ref(g_board), 75);
 		}
 		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
-			control(&players, selected, std::ref(board), g_board, 80);
+			control(&players, selected, std::ref(board), std::ref(g_board), 80);
 		}
 		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
 		{
-			control(&players, selected, std::ref(board), g_board, 77);
+			control(&players, selected, std::ref(board), std::ref(g_board), 77);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{

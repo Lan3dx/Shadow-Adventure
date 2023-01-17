@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "../sys/constants.h"
 
 class PLAYER // main entity class
 {
@@ -21,8 +22,8 @@ private:
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
 
-	void spawn(std::vector<std::vector<char>>&);// place entity on map
-	void kill(std::vector<std::vector<char>>&);// delete entity from map
+	void spawn(std::vector<std::vector<block>>&);// place entity on map
+	void kill(std::vector<std::vector<block>>&);// delete entity from map
 
 	std::vector<int> getX(); // get x
 	std::vector<int> getY(); // get y
@@ -31,13 +32,13 @@ public:
 	int getCWS(); // get cooldown for (W) (S)
 	int getCG(); // get cooldown of gravity
 
-	bool voidUnder(std::vector<std::vector<char>>); // if the player hit the floor
-	bool collisions(std::vector<std::vector<char>>, int); // if the player touched a solid block
+	bool voidUnder(std::vector<std::vector<block>>&); // if the player hit the floor
+	bool collisions(std::vector<std::vector<block>>&, int); // if the player touched a solid block
 	bool getGravity(); // get gravity (t) (f)
-	bool ladder(std::vector<std::vector<char>>); // if player on ladder
-	bool limit(std::vector<std::vector<char>>); // if the player is in prohibited territory
-	bool onspeedbooster(std::vector<std::vector<char>>); // if player on speed booster element
-	bool onstairs(std::vector<std::vector<char>>, int); // if player on stairs
+	bool ladder(std::vector<std::vector<block>>&); // if player on ladder
+	bool limit(std::vector<std::vector<block>>&); // if the player is in prohibited territory
+	bool onspeedbooster(std::vector<std::vector<block>>&); // if player on speed booster element
+	bool onstairs(std::vector<std::vector<block>>&, int); // if player on stairs
 
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
 	void move(char); // move entity on map
