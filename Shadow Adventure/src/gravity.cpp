@@ -9,8 +9,20 @@ void gravitationB(BMAP* bullets, std::vector<std::vector<block>>& board, std::ve
 		BULLET entity = entityS.second;
 
 		board = g_board; // clear map
-		if (!entity.touch(board)) // if the bullet hit the wall
+		if (!entity.touch(g_board)) // if the bullet hit the wall
 		{
+			if(g_board[entity.getX()][entity.getY()].durability == 0)
+			{ 
+				g_board[entity.getX()][entity.getY()].character = ' ';
+			}
+			else
+			{
+				g_board[entity.getX()][entity.getY()].durability -= 1;
+				if (g_board[entity.getX()][entity.getY()].durability == 0)
+				{
+					g_board[entity.getX()][entity.getY()].character = ' ';
+				}
+			}
 			bullets->rem(entityS.first); // remove entities from the map
 		}
 		else

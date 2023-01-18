@@ -25,7 +25,14 @@ std::vector<std::vector<block>> map_init() // return clear map
 				map[y][x].character = sym;
 				map[y][x].color = 10;
 			}
-			map[y][x].durability = 2;
+			if (x == 0 || x == 47) // walls have durability is -1, player can't destroy them
+			{
+				map[y][x].durability = -1;
+			}
+			else
+			{
+				map[y][x].durability = 2;
+			}
 		}
 	}
 	return map;
