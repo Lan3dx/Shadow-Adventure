@@ -51,10 +51,8 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vecto
 		MOB entity = entityS.second;
 		if (entity.limit(board)) // if the mob is in prohibited territory
 		{
-			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords mob
 			entity.kill(std::ref(board)); // kill mob
-			entity.move(entity.getGType()); // move mob
-			entity.spawn(std::ref(board)); // spawn mob
+			continue;
 		}
 
 		if (entity.getGravity()) // if mob have gravity
@@ -65,7 +63,7 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vecto
 				{
 					if (!entity.collisions(board, entity.getGType())) // if mob not in the map
 					{
-						if (!(entity.getCG() > 0))
+						if (!(entity.getCG() > 0)) // CG - gravity cooldown
 						{
 							board = g_board; // clear map
 							entity.kill(std::ref(board)); // kill mob

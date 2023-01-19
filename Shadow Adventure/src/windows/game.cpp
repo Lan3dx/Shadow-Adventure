@@ -47,6 +47,9 @@ int game() // Game
 	std::string selected; // active player
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
+	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,false, 'd', { 14,28,14 });
+	mobs.add("mob1", mob1);
+
 	clog("INFO", "Game started");
 
 	while (true) // main program loop

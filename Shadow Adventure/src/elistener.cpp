@@ -18,6 +18,26 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 	for (auto& entityS : entityMap)
 	{
 		MOB entity = entityS.second;
+		for (int dot = 0; dot < entity.getY().size(); dot++)
+		{
+			if (board[entity.getX()[dot]-1][entity.getY()[dot]].character == '>')
+			{
+				entity.move('r');
+				break;
+			}
+			if (board[entity.getX()[dot]-1][entity.getY()[dot]].character == '<')
+			{
+				entity.move('l');
+				break;
+			}
+		}
+		if (entity.onspeedbooster(board))
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				entity.move('u');
+			}
+		}
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
 	}
 	mobs->set(nmm); // set old mob map
