@@ -134,26 +134,21 @@ bool MOB::collisions(std::vector<std::vector<block>>& board, int type) // if the
 	{
 		if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' ||
 			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'M' ||
 			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '+' ||
 			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S' ||
 			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == character) return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every MOB's element
 	{
-		if (type == 77) if (board[x[dot]][y[dot] + 1].character == 'M' ||
-			board[x[dot]][y[dot] + 1].character == '#' ||
+		if (type == 77) if (board[x[dot]][y[dot] + 1].character == '#' ||
 			board[x[dot]][y[dot] + 1].character == 'D' ||
 			board[x[dot]][y[dot] + 1].character == 'F' ||
-			board[x[dot]][y[dot] + 1].character == 'S' ||
-			board[x[dot]][y[dot] + 1].character == character || y[0] == board[0].size() - 2) return true;
+			board[x[dot]][y[dot] + 1].character == 'S' || y[0] == board[0].size() - 2) return true;
 
-		if (type == 75) if (board[x[dot]][y[dot] - 1].character == 'M' ||
-			board[x[dot]][y[dot] - 1].character == '#' ||
+		if (type == 75) if (board[x[dot]][y[dot] - 1].character == '#' ||
 			board[x[dot]][y[dot] - 1].character == 'D' ||
 			board[x[dot]][y[dot] - 1].character == 'F' ||
-			board[x[dot]][y[dot] - 1].character == 'S' ||
-			board[x[dot]][y[dot] - 1].character == character || y[0] == 1) return true;
+			board[x[dot]][y[dot] - 1].character == 'S' || y[0] == 1) return true;
 	}
 	return false;
 }

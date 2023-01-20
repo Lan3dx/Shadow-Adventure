@@ -22,12 +22,26 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 		{
 			if (board[entity.getX()[dot]-1][entity.getY()[dot]].character == '>')
 			{
-				entity.move('r');
+				if (!entity.collisions(board, 77)) // if there are no walls near the mob
+				{
+					if (entity.onstairs(std::ref(board), 77))
+					{
+						entity.move('u');
+					}
+					entity.move('r');
+				}
 				break;
 			}
 			if (board[entity.getX()[dot]-1][entity.getY()[dot]].character == '<')
 			{
-				entity.move('l');
+				if (!entity.collisions(board, 75)) // if there are no walls near the mob
+				{
+					if (entity.onstairs(std::ref(board), 75))
+					{
+						entity.move('u');
+					}
+					entity.move('l');
+				}
 				break;
 			}
 		}
