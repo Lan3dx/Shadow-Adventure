@@ -164,7 +164,7 @@ bool MOB::ladder(std::vector<std::vector<block>>& board) // check MOB on ladder
 }
 bool MOB::limit(std::vector<std::vector<block>>& board) // if the MOB is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D' || board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'B') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
 bool MOB::onspeedbooster(std::vector<std::vector<block>>& board) // if MOB stay on speed booster element

@@ -165,7 +165,7 @@ bool PLAYER::ladder(std::vector<std::vector<block>>& board) // check player on l
 }
 bool PLAYER::limit(std::vector<std::vector<block>>& board) // if the player is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D' || board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'B') return true;
+	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
 bool PLAYER::onspeedbooster(std::vector<std::vector<block>>& board) // if player stay on speed booster element
