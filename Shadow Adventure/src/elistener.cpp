@@ -20,7 +20,7 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 		MOB entity = entityS.second;
 		for (int dot = 0; dot < entity.getY().size(); dot++)
 		{
-			if (board[entity.getX()[dot]-2][entity.getY()[dot]].character == '>')
+			if (board[entity.getX()[dot]- (uint64_t)2][entity.getY()[dot]].character == '>')
 			{
 				if (!entity.collisions(board, 77)) // if there are no walls near the mob
 				{
@@ -32,7 +32,7 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 				}
 				break;
 			}
-			if (board[entity.getX()[dot]-2][entity.getY()[dot]].character == '<')
+			if (board[entity.getX()[dot]- (uint64_t)2][entity.getY()[dot]].character == '<')
 			{
 				if (!entity.collisions(board, 75)) // if there are no walls near the mob
 				{

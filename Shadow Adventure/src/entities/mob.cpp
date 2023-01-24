@@ -117,14 +117,14 @@ void MOB::setCHAR(char ch) // set character of MOB
 
 bool MOB::voidUnder(std::vector<std::vector<block>>& board) // if MOB hit the floor
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '|' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '-' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '+' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'M' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == character ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '|' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '-' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'M' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == character ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'F') return true;
 
 	return false;
 }
@@ -132,23 +132,23 @@ bool MOB::collisions(std::vector<std::vector<block>>& board, int type) // if the
 {
 	if (type == 80)
 	{
-		if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '+' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == character) return true;
+		if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'F' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == character) return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every MOB's element
 	{
-		if (type == 77) if (board[x[dot]][y[dot] + 1].character == '#' ||
-			board[x[dot]][y[dot] + 1].character == 'D' ||
-			board[x[dot]][y[dot] + 1].character == 'F' ||
-			board[x[dot]][y[dot] + 1].character == 'S' || y[0] == board[0].size() - 2) return true;
+		if (type == 77) if (board[x[dot]][y[dot] + (uint64_t)1].character == '#' ||
+			board[x[dot]][y[dot] + (uint64_t)1].character == 'D' ||
+			board[x[dot]][y[dot] + (uint64_t)1].character == 'F' ||
+			board[x[dot]][y[dot] + (uint64_t)1].character == 'S' || y[0] == board[0].size() - 2) return true;
 
-		if (type == 75) if (board[x[dot]][y[dot] - 1].character == '#' ||
-			board[x[dot]][y[dot] - 1].character == 'D' ||
-			board[x[dot]][y[dot] - 1].character == 'F' ||
-			board[x[dot]][y[dot] - 1].character == 'S' || y[0] == 1) return true;
+		if (type == 75) if (board[x[dot]][y[dot] - (uint64_t)1].character == '#' ||
+			board[x[dot]][y[dot] - (uint64_t)1].character == 'D' ||
+			board[x[dot]][y[dot] - (uint64_t)1].character == 'F' ||
+			board[x[dot]][y[dot] - (uint64_t)1].character == 'S' || y[0] == 1) return true;
 	}
 	return false;
 }
@@ -164,12 +164,12 @@ bool MOB::ladder(std::vector<std::vector<block>>& board) // check MOB on ladder
 }
 bool MOB::limit(std::vector<std::vector<block>>& board) // if the MOB is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
 bool MOB::onspeedbooster(std::vector<std::vector<block>>& board) // if MOB stay on speed booster element
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S') return true;
 	return false;
 }
 bool MOB::onstairs(std::vector<std::vector<block>>& board, int type) // if MOB stay on stairs
@@ -178,14 +178,14 @@ bool MOB::onstairs(std::vector<std::vector<block>>& board, int type) // if MOB s
 	{
 		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every MOB's element
 		{
-			if (board[x[dot]][y[dot] + 1].character == '+') return true;
+			if (board[x[dot]][y[dot] + (uint64_t)1].character == '+') return true;
 		}
 	}
 	if (type == 75)
 	{
 		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every MOB's element
 		{
-			if (board[x[dot]][y[dot] - 1].character == '+') return true;
+			if (board[x[dot]][y[dot] - (uint64_t)1].character == '+') return true;
 		}
 	}
 	return false;
