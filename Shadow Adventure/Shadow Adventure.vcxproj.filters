@@ -47,9 +47,6 @@
     <ClInclude Include="include\gravity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\spawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\entities\player.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
@@ -116,9 +113,6 @@
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="src\control.cpp">
-      <Filter>Source Files\src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\spawn.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="src\entities\player.cpp">
