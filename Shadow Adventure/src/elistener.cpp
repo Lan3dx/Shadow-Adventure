@@ -18,31 +18,34 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 	for (auto& entityS : entityMap)
 	{
 		MOB entity = entityS.second;
-		for (int dot = 0; dot < entity.getY().size(); dot++)
+		if (entity.getMobile())
 		{
-			if (board[entity.getX()[dot]- (uint64_t)2][entity.getY()[dot]].character == '>')
+			for (int dot = 0; dot < entity.getY().size(); dot++)
 			{
-				if (!entity.collisions(board, 77)) // if there are no walls near the mob
+				if (board[entity.getX()[dot] - (uint64_t)2][entity.getY()[dot]].character == '>')
 				{
-					if (entity.onstairs(std::ref(board), 77))
+					if (!entity.collisions(board, 77)) // if there are no walls near the mob
 					{
-						entity.move('u');
+						if (entity.onstairs(std::ref(board), 77))
+						{
+							entity.move('u');
+						}
+						entity.move('r');
 					}
-					entity.move('r');
+					break;
 				}
-				break;
-			}
-			if (board[entity.getX()[dot]- (uint64_t)2][entity.getY()[dot]].character == '<')
-			{
-				if (!entity.collisions(board, 75)) // if there are no walls near the mob
+				if (board[entity.getX()[dot] - (uint64_t)2][entity.getY()[dot]].character == '<')
 				{
-					if (entity.onstairs(std::ref(board), 75))
+					if (!entity.collisions(board, 75)) // if there are no walls near the mob
 					{
-						entity.move('u');
+						if (entity.onstairs(std::ref(board), 75))
+						{
+							entity.move('u');
+						}
+						entity.move('l');
 					}
-					entity.move('l');
+					break;
 				}
-				break;
 			}
 		}
 		if (entity.onspeedbooster(board))
