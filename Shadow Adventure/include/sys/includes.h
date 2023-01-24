@@ -24,7 +24,6 @@
 #include "../entities/player.h"
 #include "../entities/bullet.h"
 #include "../entities/mob.h"
-#include "../spawn.h"
 #include "../entities/sys/render.h"
 #include "../entities/sys/cooldowns_s.h"
 #include "../entities/sys/change.h"

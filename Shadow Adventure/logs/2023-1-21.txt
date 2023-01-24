@@ -39,3 +39,70 @@
 [18:41:26] [INFO]: Spawn entity: player0
 [18:42:17] [INFO]: Game stopped
 [18:42:17] [DEBUG]: Avg FPS: 175
+[21:27:34] [INFO]: Game started
+[21:27:35] [INFO]: Spawn entity: player0
+[21:29:28] [INFO]: Game stopped
+[21:29:28] [DEBUG]: Avg FPS: 164
+[21:29:35] [INFO]: Game started
+[21:29:35] [INFO]: Spawn entity: player0
+[21:29:42] [INFO]: Game stopped
+[21:29:42] [DEBUG]: Avg FPS: 163
+[21:32:17] [INFO]: Game started
+[21:32:17] [INFO]: Spawn entity: player0
+[21:42:39] [INFO]: Game started
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Kill entity: 
+[21:42:41] [INFO]: Spawn entity: player0
+[21:42:42] [INFO]: Spawn entity: player1
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:42] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:43] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:44] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:45] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:46] [INFO]: Kill entity: 
+[21:42:47] [INFO]: Spawn entity: player2
+[21:42:47] [INFO]: Kill entity: 
+[21:42:49] [INFO]: Kill entity: 
+[21:42:49] [INFO]: Kill entity: player0
+[21:42:56] [INFO]: Kill entity: player2
+[21:43:1] [INFO]: Kill entity: player1
+[21:43:2] [INFO]: Spawn entity: player0
+[21:43:4] [INFO]: Game stopped
+[21:43:4] [DEBUG]: Avg FPS: 159
+[21:43:6] [INFO]: Game started

@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <string>
+#include <map>
 #include "../sys/constants.h"
 
 class PLAYER // main entity class
@@ -52,4 +54,16 @@ public:
 	void setCHAR(char); // set character of player
 
 	char getGType(); // get gravity type
+};
+
+class PMAP // players map
+{
+private:
+	std::map<std::string, PLAYER> list; // map
+public:
+	void set(std::map <std::string, PLAYER>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, PLAYER); // add some element in map
+	PLAYER find(std::string); // find some element
+	std::map<std::string, PLAYER> get(); // get some element in map
 };

@@ -199,3 +199,31 @@ char MOB::getGType() // get gravity type
 {
 	return GType;
 }
+
+void MMAP::add(std::string key, MOB mob) // add some element in map
+{
+	list.insert(std::make_pair(key, mob));
+}
+void MMAP::rem(std::string key) // remove some element from map
+{
+	if (list.contains(key))
+	{
+		std::map <std::string, MOB>::iterator iter;
+		iter = list.find(key);
+		list.erase(iter);
+	}
+}
+MOB MMAP::find(std::string key) // find some element of map
+{
+	std::map <std::string, MOB>::iterator iter;
+	iter = list.find(key);
+	return iter->second;
+}
+void MMAP::set(std::map <std::string, MOB> t_map) // set map
+{
+	list = t_map;
+}
+std::map<std::string, MOB> MMAP::get() // get some element from map
+{
+	return list;
+}

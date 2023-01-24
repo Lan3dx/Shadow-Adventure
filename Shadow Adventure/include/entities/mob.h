@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <string>
+#include <map>
 #include "../sys/constants.h"
 
 class MOB // main entity class
@@ -54,4 +56,16 @@ public:
 	void setCHAR(char); // set character of mob
 
 	char getGType(); // get gravity type
+};
+
+class MMAP // mobs map
+{
+private:
+	std::map<std::string, MOB> list; // map
+public:
+	void set(std::map <std::string, MOB>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, MOB); // add some element in map
+	MOB find(std::string); // find some element
+	std::map<std::string, MOB> get(); // get some element in map
 };

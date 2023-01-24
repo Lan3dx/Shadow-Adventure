@@ -62,3 +62,31 @@ char BULLET::getGType() { return GType; } // get gravity type
 
 void BULLET::spawn(std::vector<std::vector<block>> &board) { board[x][y].character = character; } // spawn bullet
 void BULLET::kill(std::vector<std::vector<block>> &board) { board[x][y].character = ' '; } // kill bullet
+
+void BMAP::add(std::string key, BULLET bullet) // add some element in map
+{
+	list.insert(std::make_pair(key, bullet));
+}
+void BMAP::rem(std::string key) // remove some element from map
+{
+	if (list.contains(key))
+	{
+		std::map <std::string, BULLET>::iterator iter;
+		iter = list.find(key);
+		list.erase(iter);
+	}
+}
+BULLET BMAP::find(std::string key) // find some element of map
+{
+	std::map <std::string, BULLET>::iterator iter;
+	iter = list.find(key);
+	return iter->second;
+}
+void BMAP::set(std::map <std::string, BULLET> t_map) // set map
+{
+	list = t_map;
+}
+std::map<std::string, BULLET> BMAP::get() // get some element from map
+{
+	return list;
+}

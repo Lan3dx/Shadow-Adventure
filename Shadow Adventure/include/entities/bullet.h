@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <string>
+#include <map>
 #include "../sys/constants.h"
 
 class BULLET
@@ -44,4 +46,16 @@ public:
 
 	void kill(std::vector<std::vector<block>>&); // place bullet on map
 	void spawn(std::vector<std::vector<block>>&); // place bullet on map
+};
+
+class BMAP // bullets map
+{
+private:
+	std::map<std::string, BULLET> list; // map
+public:
+	void set(std::map <std::string, BULLET>); // set map
+	void rem(std::string); // remove some element of map
+	void add(std::string, BULLET); // add some element in map
+	BULLET find(std::string); // find some element
+	std::map<std::string, BULLET> get(); // get some element in map
 };
