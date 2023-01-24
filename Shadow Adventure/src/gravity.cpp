@@ -1,47 +1,60 @@
 #include "../include/gravity.h"
 
-void gravitationB(BMAP* bullets, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
+void gravitationB(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
 {
-	auto entityMap = bullets->get(); // old bullet map
-	std::map < std::string, BULLET > nbm = {}; // new bullet map
-	for (auto& entityS : entityMap)
-	{
-		BULLET entity = entityS.second;
+	auto playerMap = players->get(); // old player map
+	std::map < std::string, PLAYER > npm = {}; // new player map
 
-		board = g_board; // clear map
-		if (!entity.touch(g_board)) // if the bullet hit the wall
+	for (auto& entityP : playerMap)
+	{
+		PLAYER player = entityP.second;
+
+		auto bulletMap = player.getBullets().get(); // old bullet map
+		std::map < std::string, BULLET > nbm = {}; // new bullet map
+
+		for(auto& entityB : bulletMap)
 		{
-			if(g_board[entity.getX()][entity.getY()].durability == 0)
-			{ 
-				g_board[entity.getX()][entity.getY()].character = ' ';
+			BULLET bullet = entityB.second;
+
+			board = g_board;
+
+			if (!bullet.touch(g_board)) // if the bullet hit the wall
+			{
+				if (g_board[bullet.getX()][bullet.getY()].durability == 0)
+				{
+					g_board[bullet.getX()][bullet.getY()].character = ' ';
+				}
+				else
+				{
+					g_board[bullet.getX()][bullet.getY()].durability -= 1;
+					if (g_board[bullet.getX()][bullet.getY()].durability == 0)
+					{
+						g_board[bullet.getX()][bullet.getY()].character = ' ';
+					}
+				}
+				player.getBullets().rem(entityB.first);
 			}
 			else
 			{
-				g_board[entity.getX()][entity.getY()].durability -= 1;
-				if (g_board[entity.getX()][entity.getY()].durability == 0)
+				if (bullet.getGravity()) // if bullet have gravity
 				{
-					g_board[entity.getX()][entity.getY()].character = ' ';
+					if (!(bullet.getCG() > 0))
+					{
+						bullet.kill(std::ref(board)); // kill bullet
+						bullet.move(bullet.getGType()); // move bullet
+						bullet.spawn(std::ref(board)); // spawn bullet
+						bullet.setCG();
+					}
 				}
+				nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
 			}
-			bullets->rem(entityS.first); // remove entities from the map
 		}
-		else
-		{
-			if (entity.getGravity()) // if bullet have gravity
-			{
-				if (!(entity.getCG() > 0))
-				{
-					entity.kill(std::ref(board)); // kill bullet
-					entity.move(entity.getGType()); // move bullet
-					entity.spawn(std::ref(board)); // spawn bullet
-					entity.setCG();
-				}
-			}
-			nbm.insert(std::make_pair(entityS.first, entity)); // add bullet to new bullets map
-		}
+		player.getBullets().set(nbm);
+		npm.insert(std::make_pair(entityP.first, player));
 	}
-	bullets->set(nbm); // set old bullets map
+	players->set(npm);
 }
+
 void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for mob
 {
 	auto entityMap = mobs->get(); // old mob map

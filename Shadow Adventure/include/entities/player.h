@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "../sys/constants.h"
+#include "bullet.h"
 
 class PLAYER // main entity class
 {
@@ -20,6 +21,7 @@ private:
 	char character; // symbol for entity
 	cooldowns cooldown; // cooldown for (A), (D), (W), (S), gravity
 	cooldowns std_COOLDOWN;
+	BMAP bullets;
 
 public:
 	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
@@ -44,6 +46,7 @@ public:
 
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
 	void move(char); // move entity on map
+	void shoot(char); // player shoot
 
 	void setCAD(); // set cooldown for (A) (D)
 	void setCWS(); // set cooldown for (W) (S)
@@ -54,6 +57,8 @@ public:
 	void setCHAR(char); // set character of player
 
 	char getGType(); // get gravity type
+
+	BMAP getBullets(); // get bullets map
 };
 
 class PMAP // players map

@@ -1,4 +1,5 @@
 #include "../../include/entities/player.h"
+#include "../../include/sys/musicloader.h"
 
 PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
 {
@@ -9,6 +10,7 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	character = stdChar; // symbol
 	cooldown = cd;
 	std_COOLDOWN = cd;
+	bullets.set({});
 }
 
 void PLAYER::spawn(std::vector<std::vector<block>> &board) // place entity on map
@@ -83,6 +85,35 @@ void PLAYER::setPos(std::vector<int> std_x, std::vector<int> std_y) // set playe
 {
 	x = std_x; // set x
 	y = std_y; // set y
+}
+void PLAYER::shoot(char type)
+{
+	if (type == 'r')
+	{
+		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
+	else if (type == 'l')
+	{
+		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
 }
 
 void PLAYER::setCAD() // set cooldown for (A) (D)
@@ -194,6 +225,11 @@ bool PLAYER::onstairs(std::vector<std::vector<block>>& board, int type) // if pl
 char PLAYER::getGType() // get gravity type
 {
 	return GType;
+}
+
+BMAP PLAYER::getBullets() // get bullets map
+{
+	return bullets;
 }
 
 void PMAP::add(std::string key, PLAYER player) // add some element in map

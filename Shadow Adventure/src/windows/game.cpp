@@ -42,7 +42,6 @@ int game() // Game
 	auto avgfpscount = 0;
 	auto fps = 1.0f; // frame per second
 	PMAP players; // players map
-	BMAP bullets; // bullets map 
 	MMAP mobs; // mobs map
 	std::string selected; // active player
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
@@ -112,7 +111,6 @@ int game() // Game
 				clog("INFO", "Kill entity: " + selected);
 				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 				players.rem(selected);
-				bullets.set({});
 				board = g_board;
 				change(&selected);
 				key_cd = KEY_CD;
@@ -122,39 +120,13 @@ int game() // Game
 		{
 			if (players.get().contains(selected))
 			{
-				if (!bullets.get().empty())
+				if (shot_cd <= 0)
 				{
-					if (shot_cd <= 0)
-					{
-						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-						shot_cd = SHOT_CD;
-						for (int b = 0; b < MAX_AMMO; b++)
-						{
-							if (!bullets.get().contains("bullet" + std::to_string(b)))
-							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
-								bullets.add("bullet" + std::to_string(b), bullet);
-								break;
-							}
-						}
-					}
-				}
-				else
-				{
-					if (shot_cd <= 0)
-					{
-						shot_cd = SHOT_CD;
-						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-						for (int b = 0; b < MAX_AMMO; b++)
-						{
-							if (!bullets.get().contains("bullet" + std::to_string(b)))
-							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] + 1, 'B', true, 'r', { 4,2 });
-								bullets.add("bullet" + std::to_string(b), bullet);
-								break;
-							}
-						}
-					}
+					PLAYER pl = players.find(selected);
+					pl.shoot('r');
+					players.rem(selected);
+					players.add(selected, pl);
+					shot_cd = SHOT_CD;
 				}
 			}
 		}
@@ -162,39 +134,13 @@ int game() // Game
 		{
 			if (players.get().contains(selected))
 			{
-				if (!bullets.get().empty())
+				if (shot_cd <= 0)
 				{
-					if (shot_cd <= 0)
-					{
-						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-						shot_cd = SHOT_CD;
-						for (int b = 0; b < MAX_AMMO; b++)
-						{
-							if (!bullets.get().contains("bullet" + std::to_string(b)))
-							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
-								bullets.add("bullet" + std::to_string(b), bullet);
-								break;
-							}
-						}
-					}
-				}
-				else
-				{
-					if (shot_cd <= 0)
-					{
-						shot_cd = SHOT_CD;
-						PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
-						for (int b = 0; b < MAX_AMMO; b++)
-						{
-							if (!bullets.get().contains("bullet" + std::to_string(b)))
-							{
-								BULLET bullet(players.find(selected).getX()[0], players.find(selected).getY()[0] - 1, 'B', true, 'l', { 4,2 });
-								bullets.add("bullet" + std::to_string(b), bullet);
-								break;
-							}
-						}
-					}
+					PLAYER pl = players.find(selected);
+					pl.shoot('l');
+					players.rem(selected);
+					players.add(selected, pl);
+					shot_cd = SHOT_CD;
 				}
 			}
 		}
@@ -209,18 +155,17 @@ int game() // Game
 		}
 
 		listenerP(&players, std::ref(board));
-		listenerB(&bullets, std::ref(board));
 		listenerM(&mobs, std::ref(board));
 
 		gravitationP(&players, std::ref(board), std::ref(g_board));
-		gravitationB(&bullets, std::ref(board), std::ref(g_board));
+		gravitationB(&players, std::ref(board), std::ref(g_board));
 		gravitationM(&mobs, std::ref(board), std::ref(g_board));
 
-		cdSet(&players, &bullets, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
+		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
 
 		clear(); // clear screen
 
-		entitiesRender(players, bullets, mobs, std::ref(board), std::ref(g_board)); // output all entitis
+		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
 		render(std::ref(board), selected, fps); // screen output 
 	}
 
