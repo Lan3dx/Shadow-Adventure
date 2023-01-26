@@ -50,7 +50,7 @@ int game() // Game
 	mobs.add("mob1", mob1);
 
 	clog("INFO", "Game started");
-
+	std::string cdm;
 	while (true) // main program loop
 	{
 		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS

@@ -59,6 +59,7 @@ public:
 	char getGType(); // get gravity type
 
 	BMAP getBullets(); // get bullets map
+	void setBullets(std::map<std::string, BULLET>);
 };
 
 class PMAP // players map

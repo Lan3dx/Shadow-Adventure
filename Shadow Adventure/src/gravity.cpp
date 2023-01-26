@@ -15,7 +15,7 @@ void gravitationB(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 		for(auto& entityB : bulletMap)
 		{
 			BULLET bullet = entityB.second;
-
+			bullet.kill(std::ref(board));
 			board = g_board;
 
 			if (!bullet.touch(g_board)) // if the bullet hit the wall
@@ -49,7 +49,7 @@ void gravitationB(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 				nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
 			}
 		}
-		player.getBullets().set(nbm);
+		player.setBullets(nbm);
 		npm.insert(std::make_pair(entityP.first, player));
 	}
 	players->set(npm);

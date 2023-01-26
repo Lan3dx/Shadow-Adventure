@@ -1,31 +1,27 @@
 #include "../../../include/entities/sys/cooldowns_s.h"
+#include "../../../include/sys/logger.h"
 #include "../../../include/sys/constants.h"
+#include <string>
 
 void cdSet(PMAP* players, MMAP* mobs, int* shot_cd, int* key_cd, int* fps_cd) // minus cooldown for all entities
 {
-	auto playerMap = players->get(); // old player map
 	std::map < std::string, PLAYER > npm = {}; // new player map
-
-	for (auto& entityP : playerMap)
+	for (auto& entityP : players->get())
 	{
 		PLAYER player = entityP.second;
-
-		auto bulletMap = player.getBullets().get(); // old bullet map
 		std::map < std::string, BULLET > nbm = {}; // new bullet map
-
-		for (auto& entityB : bulletMap)
+		for (auto& entityB : player.getBullets().get())
 		{
 			BULLET bullet = entityB.second;
 			if (bullet.getCG() > 0) { bullet.setCG(bullet.getCG() - 1); }
 			if (bullet.getCS() > 0) { bullet.setCS(bullet.getCS() - 1); }
 			nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
 		}
-		player.getBullets().set(nbm);
+		player.setBullets(nbm);
 
 		if (player.getCAD() > 0) { player.setCAD(player.getCAD() - 1); }
 		if (player.getCWS() > 0) { player.setCWS(player.getCWS() - 1); }
 		if (player.getCG() > 0) { player.setCG(player.getCG() - 1); }
-
 		npm.insert(std::make_pair(entityP.first, player)); // add player to new player map
 	}
 	players->set(npm); // set player map

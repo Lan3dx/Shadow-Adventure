@@ -231,6 +231,10 @@ BMAP PLAYER::getBullets() // get bullets map
 {
 	return bullets;
 }
+void PLAYER::setBullets(std::map<std::string, BULLET> tbmap)
+{
+	bullets.set(tbmap);
+}
 
 void PMAP::add(std::string key, PLAYER player) // add some element in map
 {
