@@ -1,4 +1,5 @@
 #include "../../include/entities/player.h"
+#include "../../include/sys/musicloader.h"
 
 PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
 {
@@ -9,6 +10,7 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	character = stdChar; // symbol
 	cooldown = cd;
 	std_COOLDOWN = cd;
+	bullets.set({});
 }
 
 void PLAYER::spawn(std::vector<std::vector<block>> &board) // place entity on map
@@ -84,6 +86,35 @@ void PLAYER::setPos(std::vector<int> std_x, std::vector<int> std_y) // set playe
 	x = std_x; // set x
 	y = std_y; // set y
 }
+void PLAYER::shoot(char type)
+{
+	if (type == 'r')
+	{
+		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
+	else if (type == 'l')
+	{
+		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
+}
 
 void PLAYER::setCAD() // set cooldown for (A) (D)
 {
@@ -116,14 +147,14 @@ void PLAYER::setCHAR(char ch) // set character of player
 
 bool PLAYER::voidUnder(std::vector<std::vector<block>>& board) // if player hit the floor
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' || 
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '|' || 
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '-' ||  
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '+' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'M' ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == character ||
-		board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '|' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '-' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'M' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == character ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'F') return true;
 
 	return false;
 }
@@ -131,25 +162,25 @@ bool PLAYER::collisions(std::vector<std::vector<block>>& board, int type) // if 
 {
 	if (type == 80) 
 	{
-		if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '#' || 
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'F' || 
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == '+' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S' ||
-			board[x[x.size() - 1] + 1][y[y.size() - 1]].character == character) return true;
+		if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'F' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
+			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == character) return true;
 	}
 	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 	{
-		if (type == 77) if (board[x[dot]][y[dot] + 1].character == '#' || 
-							board[x[dot]][y[dot] + 1].character == 'D' || 
-							board[x[dot]][y[dot] + 1].character == 'F' || 
-							board[x[dot]][y[dot] + 1].character == 'S' ||
-							board[x[dot]][y[dot] + 1].character == character || y[0] == board[0].size() - 2) return true;
+		if (type == 77) if (board[x[dot]][y[dot] + (uint64_t)1].character == '#' ||
+							board[x[dot]][y[dot] + (uint64_t)1].character == 'D' ||
+							board[x[dot]][y[dot] + (uint64_t)1].character == 'F' ||
+							board[x[dot]][y[dot] + (uint64_t)1].character == 'S' ||
+							board[x[dot]][y[dot] + (uint64_t)1].character == character || y[0] == board[0].size() - 2) return true;
 
-		if (type == 75) if (board[x[dot]][y[dot] - 1].character == '#' || 
-							board[x[dot]][y[dot] - 1].character == 'D' || 
-							board[x[dot]][y[dot] - 1].character == 'F' || 
-							board[x[dot]][y[dot] - 1].character == 'S' ||
-							board[x[dot]][y[dot] - 1].character == character || y[0] == 1) return true;
+		if (type == 75) if (board[x[dot]][y[dot] - (uint64_t)1].character == '#' ||
+							board[x[dot]][y[dot] - (uint64_t)1].character == 'D' ||
+							board[x[dot]][y[dot] - (uint64_t)1].character == 'F' ||
+							board[x[dot]][y[dot] - (uint64_t)1].character == 'S' ||
+							board[x[dot]][y[dot] - (uint64_t)1].character == character || y[0] == 1) return true;
 	}
 	return false;
 }
@@ -165,12 +196,12 @@ bool PLAYER::ladder(std::vector<std::vector<block>>& board) // check player on l
 }
 bool PLAYER::limit(std::vector<std::vector<block>>& board) // if the player is in prohibited territory
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'D') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
 bool PLAYER::onspeedbooster(std::vector<std::vector<block>>& board) // if player stay on speed booster element
 {
-	if (board[x[x.size() - 1] + 1][y[y.size() - 1]].character == 'S') return true;
+	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S') return true;
 	return false;
 }
 bool PLAYER::onstairs(std::vector<std::vector<block>>& board, int type) // if player stay on stairs
@@ -179,14 +210,14 @@ bool PLAYER::onstairs(std::vector<std::vector<block>>& board, int type) // if pl
 	{
 		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 		{
-			if (board[x[dot]][y[dot] + 1].character == '+') return true;
+			if (board[x[dot]][y[dot] + (uint64_t)1].character == '+') return true;
 		}
 	}
 	if (type == 75)
 	{
 		for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
 		{
-			if (board[x[dot]][y[dot] - 1].character == '+') return true;
+			if (board[x[dot]][y[dot] - (uint64_t)1].character == '+') return true;
 		}
 	}
 	return false;
@@ -194,6 +225,15 @@ bool PLAYER::onstairs(std::vector<std::vector<block>>& board, int type) // if pl
 char PLAYER::getGType() // get gravity type
 {
 	return GType;
+}
+
+BMAP PLAYER::getBullets() // get bullets map
+{
+	return bullets;
+}
+void PLAYER::setBullets(std::map<std::string, BULLET> tbmap)
+{
+	bullets.set(tbmap);
 }
 
 void PMAP::add(std::string key, PLAYER player) // add some element in map

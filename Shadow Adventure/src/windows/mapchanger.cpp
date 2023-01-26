@@ -13,7 +13,7 @@ std::string ws2s(const std::wstring& s) // transfer from wstring to string
 
 std::string random_txt(int a, int b) // creating a string with a random value
 {
-    srand(time((NULL)));
+    srand((unsigned int)time(NULL));
     std::string res = "resources/maps/";
     if (a > 0) res += std::to_string(a + rand() % (b - a));
     else res += std::to_string(a + rand() % (abs(a) + b));

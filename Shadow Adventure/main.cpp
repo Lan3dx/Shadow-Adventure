@@ -14,7 +14,7 @@ bool game_status = true; // is started game or not
 
 int main()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	std::ios::sync_with_stdio(false);
 	std_config(); // Customizes the console window
 
