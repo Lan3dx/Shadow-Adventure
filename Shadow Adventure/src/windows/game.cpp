@@ -34,7 +34,6 @@ int game() // Game
 	auto g_board = map_init();
 	auto tp1 = std::chrono::system_clock::now(); // Get now time
 	auto tp2 = std::chrono::system_clock::now();
-	auto board = g_board;  // Define board
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
@@ -44,13 +43,13 @@ int game() // Game
 	PMAP players; // players map
 	MMAP mobs; // mobs map
 	std::string selected; // active player
+	std::vector<std::vector<block>> board = g_board;  // Define board
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
-	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,false, 'd', { 14,28,14 });
+	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 14,28,14 });
 	mobs.add("mob1", mob1);
 
 	clog("INFO", "Game started");
-	std::string cdm;
 	while (true) // main program loop
 	{
 		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS
