@@ -11,7 +11,7 @@ void listenerB(BMAP* bullets, std::vector<std::vector<block>>& board) // listene
 	}
 	bullets->set(nbm); // set old bullets map
 }
-void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener func for mob
+void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* mob_shot_cd) // listener func for mob
 {
 	auto entityMap = mobs->get(); // old mob map
 	std::map < std::string, MOB > nmm = {}; // new mob map
@@ -55,6 +55,12 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board) // listener f
 				entity.move('u');
 			}
 		}
+		if (!(*mob_shot_cd > 0) && entityS.first == "gun")
+		{
+			entity.shoot('l');
+			*mob_shot_cd = 120;
+		}
+
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
 	}
 	mobs->set(nmm); // set old mob map

@@ -15,6 +15,11 @@ void entitiesRender(PMAP players, MMAP mobs, std::vector<std::vector<block>>& bo
 	}
 	for (auto& entityM : mobs.get())
 	{
+		for (auto& entityB : entityM.second.getBullets().get())
+		{
+			entityB.second.kill(std::ref(board));
+			entityB.second.spawn(std::ref(board));
+		}
 		entityM.second.kill(std::ref(board));
 		entityM.second.spawn(std::ref(board));
 	}

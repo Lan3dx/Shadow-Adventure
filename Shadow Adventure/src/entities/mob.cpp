@@ -26,6 +26,33 @@ void MOB::kill(std::vector<std::vector<block>>& board) // delete entity from map
 		board[x[dot]][y[dot]].character = ' ';
 	}
 }
+void MOB::shoot(char type)
+{
+	if (type == 'r')
+	{
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
+	else if (type == 'l')
+	{
+		for (int b = 0; b < MAX_AMMO; b++)
+		{
+			if (!bullets.get().contains("bullet" + std::to_string(b)))
+			{
+				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 4,2 });
+				bullets.add("bullet" + std::to_string(b), bullet);
+				break;
+			}
+		}
+	}
+}
 
 std::vector<int> MOB::getX() // get x
 {
@@ -198,6 +225,15 @@ bool MOB::getMobile()
 char MOB::getGType() // get gravity type
 {
 	return GType;
+}
+
+BMAP MOB::getBullets() // get bullets map
+{
+	return bullets;
+}
+void MOB::setBullets(std::map<std::string, BULLET> tbmap)
+{
+	bullets.set(tbmap);
 }
 
 void MMAP::add(std::string key, MOB mob) // add some element in map

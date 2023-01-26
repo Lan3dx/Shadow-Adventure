@@ -37,6 +37,7 @@ int game() // Game
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
+	auto mob_shot_cd = 120;
 	auto avgfps = 0;
 	auto avgfpscount = 0;
 	auto fps = 1.0f; // frame per second
@@ -47,7 +48,9 @@ int game() // Game
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
 	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 14,28,14 });
-	mobs.add("mob1", mob1);
+	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', false, false, 'd', { 14,28,14 });
+	mobs.add("rock", mob1);
+	mobs.add("gun", mob2);
 
 	clog("INFO", "Game started");
 	while (true) // main program loop
@@ -154,13 +157,13 @@ int game() // Game
 		}
 
 		listenerP(&players, std::ref(board));
-		listenerM(&mobs, std::ref(board));
+		listenerM(&mobs, std::ref(board), &mob_shot_cd);
 
 		gravitationP(&players, std::ref(board), std::ref(g_board));
-		gravitationB(&players, std::ref(board), std::ref(g_board));
+		gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
 		gravitationM(&mobs, std::ref(board), std::ref(g_board));
 
-		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd); // -1 cooldown for all entities
+		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd, &mob_shot_cd); // -1 cooldown for all entities
 
 		clear(); // clear screen
 

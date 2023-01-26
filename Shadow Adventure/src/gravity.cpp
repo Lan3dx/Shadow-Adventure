@@ -1,6 +1,6 @@
 #include "../include/gravity.h"
 
-void gravitationB(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
+void gravitationB(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
 {
 	auto playerMap = players->get(); // old player map
 	std::map < std::string, PLAYER > npm = {}; // new player map
@@ -53,6 +53,58 @@ void gravitationB(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 		npm.insert(std::make_pair(entityP.first, player));
 	}
 	players->set(npm);
+
+	auto mobMap = mobs->get(); // old mob map
+	std::map < std::string, MOB > nmm = {}; // new mob map
+
+	for (auto& entityM : mobMap)
+	{
+		MOB mob = entityM.second;
+
+		auto bulletMap = mob.getBullets().get(); // old bullet map
+		std::map < std::string, BULLET > nbm = {}; // new bullet map
+
+		for (auto& entityB : bulletMap)
+		{
+			BULLET bullet = entityB.second;
+			bullet.kill(std::ref(board));
+			board = g_board;
+
+			if (!bullet.touch(g_board)) // if the bullet hit the wall
+			{
+				if (g_board[bullet.getX()][bullet.getY()].durability == 0)
+				{
+					g_board[bullet.getX()][bullet.getY()].character = ' ';
+				}
+				else
+				{
+					g_board[bullet.getX()][bullet.getY()].durability -= 1;
+					if (g_board[bullet.getX()][bullet.getY()].durability == 0)
+					{
+						g_board[bullet.getX()][bullet.getY()].character = ' ';
+					}
+				}
+				mob.getBullets().rem(entityB.first);
+			}
+			else
+			{
+				if (bullet.getGravity()) // if bullet have gravity
+				{
+					if (!(bullet.getCG() > 0))
+					{
+						bullet.kill(std::ref(board)); // kill bullet
+						bullet.move(bullet.getGType()); // move bullet
+						bullet.spawn(std::ref(board)); // spawn bullet
+						bullet.setCG();
+					}
+				}
+				nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
+			}
+		}
+		mob.setBullets(nbm);
+		nmm.insert(std::make_pair(entityM.first, mob));
+	}
+	mobs->set(nmm);
 }
 
 void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for mob

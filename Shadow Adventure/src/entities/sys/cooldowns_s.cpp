@@ -3,7 +3,7 @@
 #include "../../../include/sys/constants.h"
 #include <string>
 
-void cdSet(PMAP* players, MMAP* mobs, int* shot_cd, int* key_cd, int* fps_cd) // minus cooldown for all entities
+void cdSet(PMAP* players, MMAP* mobs, int* shot_cd, int* key_cd, int* fps_cd, int* mob_shot_cd) // minus cooldown for all entities
 {
 	std::map < std::string, PLAYER > npm = {}; // new player map
 	for (auto& entityP : players->get())
@@ -27,13 +27,23 @@ void cdSet(PMAP* players, MMAP* mobs, int* shot_cd, int* key_cd, int* fps_cd) //
 	players->set(npm); // set player map
 
 	std::map < std::string, MOB > nmm = {}; // new mob map
-	for (auto& entityS : mobs->get())
+	for (auto& entityM : mobs->get())
 	{
-		MOB entity = entityS.second;
-		if (entity.getCAD() > 0) { entity.setCAD(entity.getCAD() - 1); }
-		if (entity.getCWS() > 0) { entity.setCWS(entity.getCWS() - 1); }
-		if (entity.getCG() > 0) { entity.setCG(entity.getCG() - 1); }
-		nmm.insert(std::make_pair(entityS.first, entity)); // add mob to new mobs map
+		MOB mob = entityM.second;
+		std::map < std::string, BULLET > nbm = {}; // new bullet map
+		for (auto& entityB : mob.getBullets().get())
+		{
+			BULLET bullet = entityB.second;
+			if (bullet.getCG() > 0) { bullet.setCG(bullet.getCG() - 1); }
+			if (bullet.getCS() > 0) { bullet.setCS(bullet.getCS() - 1); }
+			nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
+		}
+		mob.setBullets(nbm);
+
+		if (mob.getCAD() > 0) { mob.setCAD(mob.getCAD() - 1); }
+		if (mob.getCWS() > 0) { mob.setCWS(mob.getCWS() - 1); }
+		if (mob.getCG() > 0) { mob.setCG(mob.getCG() - 1); }
+		nmm.insert(std::make_pair(entityM.first, mob)); // add player to new player map
 	}
 	mobs->set(nmm); // set mobs map
 
@@ -51,5 +61,10 @@ void cdSet(PMAP* players, MMAP* mobs, int* shot_cd, int* key_cd, int* fps_cd) //
 	{
 		if (!(*fps_cd == 0))
 			*fps_cd -= 1;
+	}
+	if (*mob_shot_cd > 0)
+	{
+		if (!(*mob_shot_cd == 0))
+			*mob_shot_cd -= 1;
 	}
 }
