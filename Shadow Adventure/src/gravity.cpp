@@ -72,18 +72,6 @@ void gravitationB(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& bo
 
 			if (!bullet.touch(g_board)) // if the bullet hit the wall
 			{
-				if (g_board[bullet.getX()][bullet.getY()].durability == 0)
-				{
-					g_board[bullet.getX()][bullet.getY()].character = ' ';
-				}
-				else
-				{
-					g_board[bullet.getX()][bullet.getY()].durability -= 1;
-					if (g_board[bullet.getX()][bullet.getY()].durability == 0)
-					{
-						g_board[bullet.getX()][bullet.getY()].character = ' ';
-					}
-				}
 				mob.getBullets().rem(entityB.first);
 			}
 			else
