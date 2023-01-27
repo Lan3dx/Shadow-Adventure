@@ -80,6 +80,16 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 			}
 			PlaySound(music::BOOST, NULL, SND_FILENAME | SND_ASYNC);
 		}
+		for (int dot = 0; dot < entity.getX().size() || dot < entity.getY().size(); dot++) // check every player's element
+		{
+			if (board[entity.getX()[dot]][entity.getY()[dot]].character == 'B')
+			{
+				entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
+				entity.kill(std::ref(board)); // kill player
+				entity.move(entity.getGType()); // move player
+				entity.spawn(std::ref(board)); // spawn player
+			}
+		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}
 	players->set(npm); // set old players map
