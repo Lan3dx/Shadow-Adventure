@@ -47,8 +47,19 @@ int game() // Game
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
+	// MOB args
+	//	1 arg - X cords
+	//	2 arg - Y cords
+	//	3 arg - mob's symbol
+	//	4 arg - gravity (t/f)
+	//	5 arg - mobile (t/f)
+	//	6 arg - gravity type (up(u)/down(d)/left(l)/right(r))
+	//	7 arg - cooldowns (AD keys cd, WS keys cd, gravity cd)
+	//
+	//	Have fun ;D
+
 	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 14,28,14 });
-	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', false, false, 'd', { 14,28,14 });
+	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 14,28,14 });
 	mobs.add("rock", mob1);
 	mobs.add("gun", mob2);
 
