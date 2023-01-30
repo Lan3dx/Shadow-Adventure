@@ -95,7 +95,7 @@ void PLAYER::shoot(char type)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))
 			{
-				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 4,2 });
+				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 1,0 });
 				bullets.add("bullet" + std::to_string(b), bullet);
 				break;
 			}
@@ -108,7 +108,7 @@ void PLAYER::shoot(char type)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))
 			{
-				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 4,2 });
+				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 1,0 });
 				bullets.add("bullet" + std::to_string(b), bullet);
 				break;
 			}

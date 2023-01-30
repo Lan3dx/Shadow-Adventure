@@ -58,7 +58,7 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* mob_shot
 		if (!(*mob_shot_cd > 0) && entityS.first == "gun")
 		{
 			entity.shoot('l');
-			*mob_shot_cd = 120;
+			*mob_shot_cd = 90;
 		}
 
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map

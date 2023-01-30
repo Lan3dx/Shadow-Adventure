@@ -5,7 +5,7 @@
 
 void render(std::vector<std::vector<block>>& map, std::string selected, float fps) // output
 {
-	std::cout << "    FPS: " << round(int(1.0f / fps)) << " | SELECTED: " << selected << "                       " << std::endl; // selected player
+	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << "                       " << std::endl; // selected player
 	for (int y = 1; y < map.size()-1; y++) // columns
 	{
 		std::cout << ' ';
@@ -32,12 +32,12 @@ void render(std::vector<std::vector<block>>& map, std::string selected, float fp
 int game() // Game
 {
 	auto g_board = map_init();
-	auto tp1 = std::chrono::system_clock::now(); // Get now time
-	auto tp2 = std::chrono::system_clock::now();
+	std::chrono::system_clock::time_point a = std::chrono::system_clock::now();
+	std::chrono::system_clock::time_point b = std::chrono::system_clock::now();
 	auto shot_cd = SHOT_CD; // Cooldown for shot
 	auto key_cd = KEY_CD;
 	auto fps_cd = FPS_CD;
-	auto mob_shot_cd = 120;
+	auto mob_shot_cd = 90;
 	auto avgfps = 0;
 	auto avgfpscount = 0;
 	auto fps = 1.0f; // frame per second
@@ -58,23 +58,32 @@ int game() // Game
 	//
 	//	Have fun ;D
 
-	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 14,28,14 });
-	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 14,28,14 });
+	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 5,10,5 });
+	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 5,10,5 });
 	mobs.add("rock", mob1);
 	mobs.add("gun", mob2);
 
 	clog("INFO", "Game started");
 	while (true) // main program loop
 	{
-		tp2 = std::chrono::system_clock::now(); // get elapsed time for FPS
-		std::chrono::duration<float> elapsedTime = tp2 - tp1;
-		tp1 = tp2;
-		float fElapsedTime = elapsedTime.count();
+		a = std::chrono::system_clock::now();
+		std::chrono::duration<double> work_time = a - b;
+
+		if (work_time.count() < 5)
+		{
+			std::chrono::duration<double, std::milli> delta_ms(5 - work_time.count());
+			auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
+			std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
+		}
+
+		b = std::chrono::system_clock::now();
+		std::chrono::duration<double> sleep_time = b - a;
+
 		if (fps_cd <= 0)
 		{
 			avgfps += int(round(int(1.0f / fps)));
 			avgfpscount += 1;
-			fps = fElapsedTime;
+			fps = (work_time + sleep_time).count();
 			fps_cd = FPS_CD;
 		}
 
@@ -109,7 +118,7 @@ int game() // Game
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
 						clog("INFO", "Spawn entity: player" + std::to_string(b));
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 14,28,14 });
+						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 });
 						players.add("player" + std::to_string(b), player);
 						break;
 					}

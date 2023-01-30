@@ -1,0 +1,66 @@
+[14:42:4] [INFO]: Game started
+[14:42:11] [INFO]: Spawn entity: player0
+[14:43:20] [INFO]: Game started
+[14:44:22] [INFO]: Game started
+[14:44:44] [INFO]: Game started
+[14:45:5] [INFO]: Game started
+[14:45:8] [INFO]: Spawn entity: player0
+[14:45:34] [INFO]: Game started
+[14:45:48] [INFO]: Game started
+[14:47:18] [INFO]: Game started
+[14:47:31] [INFO]: Game started
+[14:47:45] [INFO]: Game started
+[14:47:45] [INFO]: Spawn entity: player0
+[14:48:40] [INFO]: Game stopped
+[14:52:22] [INFO]: Game started
+[14:55:32] [INFO]: Game started
+[14:55:34] [INFO]: Spawn entity: player0
+[14:55:50] [INFO]: Game started
+[14:55:51] [INFO]: Spawn entity: player0
+[14:56:6] [INFO]: Game stopped
+[14:56:51] [INFO]: Game started
+[14:56:51] [INFO]: Spawn entity: player0
+[14:57:23] [INFO]: Game stopped
+[14:58:32] [INFO]: Game started
+[14:58:33] [INFO]: Spawn entity: player0
+[14:58:38] [INFO]: Game stopped
+[14:58:57] [INFO]: Game started
+[14:58:57] [INFO]: Spawn entity: player0
+[14:59:17] [INFO]: Game started
+[14:59:17] [INFO]: Spawn entity: player0
+[15:0:6] [INFO]: Game started
+[15:0:6] [INFO]: Spawn entity: player0
+[15:0:30] [INFO]: Game started
+[15:0:46] [INFO]: Game started
+[15:0:48] [INFO]: Spawn entity: player0
+[15:1:46] [INFO]: Game started
+[15:1:48] [INFO]: Spawn entity: player0
+[15:2:17] [INFO]: Game started
+[15:2:18] [INFO]: Spawn entity: player0
+[15:3:41] [INFO]: Game started
+[15:3:41] [INFO]: Spawn entity: player0
+[15:3:54] [INFO]: Game started
+[15:3:55] [INFO]: Spawn entity: player0
+[15:4:32] [INFO]: Game started
+[15:4:33] [INFO]: Spawn entity: player0
+[15:4:45] [INFO]: Game started
+[15:4:46] [INFO]: Spawn entity: player0
+[15:5:0] [INFO]: Game started
+[15:5:1] [INFO]: Spawn entity: player0
+[15:5:23] [INFO]: Game started
+[15:5:23] [INFO]: Spawn entity: player0
+[15:5:25] [INFO]: Spawn entity: player1
+[15:6:7] [INFO]: Game started
+[15:6:9] [INFO]: Spawn entity: player0
+[15:7:59] [INFO]: Game started
+[15:7:59] [INFO]: Spawn entity: player0
+[15:8:17] [INFO]: Game started
+[15:8:20] [INFO]: Spawn entity: player0
+[15:9:32] [INFO]: Game started
+[15:9:32] [INFO]: Spawn entity: player0
+[15:9:52] [INFO]: Game stopped
+[15:9:52] [DEBUG]: Avg FPS: 62
+[15:13:9] [INFO]: Game started
+[15:13:10] [INFO]: Spawn entity: player0
+[15:13:19] [INFO]: Game stopped
+[15:13:19] [DEBUG]: Avg FPS: 60
