@@ -88,68 +88,67 @@ void render(std::vector<std::vector<char>> board, int x, int y, char tool, float
 	std::cout << str << '\n';
 	std::cout << "        X: " << x << " | Y: " << y << " | tool: " << tool << " | FPS: " << round(int(1.0f / fps)) << " | Use your mouse - middle mouse button           " << '\n';
 	std::cout << "  [#] - wall   [|] - ladder   [-] - scaffold   [+] - stairs   [S] -  booster   [F] - wall   [D] - death" << '\n';
-	std::cout << "  [ENTER] - save map     [TAB] - change active map     [ESC] - exit" << '\n';
+	std::cout << "  [ENTER] - save map   [TAB] - change active map   [ESC] - exit  [<-] [->] - move camera" << '\n';
 }
 
-void toolchanger(POINT pos, char *tool) // change the active character to draw
+char toolchanger(char ctool, char type) // change the active character to draw
 {
-	if (pos.y / constants::ylim >= 0 && pos.y / constants::ylim <= 4)
+	std::vector<char> tools = { '#','|','-','+','S','F','D',' ' };
+	char tool = ctool;
+	for (size_t i = 0; i < tools.size(); i++)
 	{
-		*tool = '#';
+		if (ctool == tools[i])
+		{
+			if (type == 'u')
+			{
+				if (i == 0)
+				{
+					tool = tools[tools.size() - 1];
+				}
+				else
+				{
+					tool = tools[i - 1];
+				}
+			}
+			if (type == 'd')
+			{
+				if (i == tools.size() - 1)
+				{
+					tool = tools[0];
+				}
+				else
+				{
+					tool = tools[i + 1];
+				}
+			}
+		}
 	}
-	if (pos.y / constants::ylim >= 6 && pos.y / constants::ylim <= 10)
-	{
-		*tool = '|';
-	}
-	if (pos.y / constants::ylim >= 12 && pos.y / constants::ylim <= 16)
-	{
-		*tool = '-';
-	}
-	if (pos.y / constants::ylim >= 18 && pos.y / constants::ylim <= 22)
-	{
-		*tool = '+';
-	}
-	if (pos.y / constants::ylim >= 24 && pos.y / constants::ylim <= 28)
-	{
-		*tool = 'S';
-	}
-	if (pos.y / constants::ylim >= 30 && pos.y / constants::ylim <= 34)
-	{
-		*tool = 'F';
-	}
-	if (pos.y / constants::ylim >= 36 && pos.y / constants::ylim <= 40)
-	{
-		*tool = 'D';
-	}
-	if (pos.y / constants::ylim >= 42 && pos.y / constants::ylim <= 46)
-	{
-		*tool = ' ';
-	}
+	return tool;
 }
 
 int mapdrawer()
 {
 	POINT pos;
-	std::vector<std::vector<char>> board(constants::size_Y, std::vector<char>(constants::size_X));
+	std::vector<std::vector<char>> board(100, std::vector<char>(100));
 
-	for (int y = 0; y < constants::size_Y; y++)
+	for (int y = 0; y < board.size(); y++)
 	{
-		for (int x = 0; x < constants::size_X; x++)
+		for (int x = 0; x < board[y].size(); x++)
 		{
 			g_board[y][x] = ' ';
 		}
 	}
-	for (int x = 0; x < 48; x++)
+	for (int x = 0; x < board[0].size(); x++)
 	{
 		g_board[0][x] = 'D';
-		g_board[47][x] = 'D';
+		g_board[board.size() - 1][x] = 'D';
 	}
 
 	std::ifstream fin("resources/maps/active.txt");
 	char sym;
-	for (int y = 0; y < 48; y++)
+	for (int y = 0; y < board.size(); y++)
 	{
-		for (int x = 0; x < 48; x++)
+		for (int x = 0; x < board[y].size(); x++)
 		{
 			fin >> sym;
 			if (sym == '~')
@@ -174,6 +173,7 @@ int mapdrawer()
 	char tool = '#';
 	int cooldownfps = 1;
 	float fps = 80;
+	int keyCd = 40;
 	while (true)
 	{
 		tp2 = std::chrono::system_clock::now();
@@ -260,13 +260,22 @@ int mapdrawer()
 		}
 		if (GetAsyncKeyState((unsigned short)VK_MBUTTON))
 		{
-			if (pos.x / constants::xlim >= 47)
+			g_board[pos.y / constants::ylim][pos.x / constants::xlim] = tool;
+		}
+		if (GetAsyncKeyState((unsigned short)'W'))
+		{
+			if (keyCd <= 0)
 			{
-				toolchanger(pos, &tool);
+				tool = toolchanger(tool, 'u');
+				keyCd = 40;
 			}
-			else
+		}
+		if (GetAsyncKeyState((unsigned short)'S'))
+		{
+			if (keyCd <= 0)
 			{
-				g_board[pos.y / constants::ylim][pos.x / constants::xlim] = tool;
+				tool = toolchanger(tool, 'd');
+				keyCd = 40;
 			}
 		}
 
@@ -278,6 +287,10 @@ int mapdrawer()
 			}
 		}
 		board[pos.y / constants::ylim][pos.x / constants::xlim] = 'Q';
+		if (keyCd > 0)
+		{
+			keyCd -= 1;
+		}
 
 		render(board, int(pos.x / constants::xlim), int(pos.y / constants::ylim), tool, fps);
 	}
