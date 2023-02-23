@@ -1,0 +1,4 @@
+[1:1:45] [INFO]: Game started
+[1:1:47] [INFO]: Game stopped
+[1:1:47] [DEBUG]: Avg FPS: 48
+[1:11:39] [INFO]: Game started

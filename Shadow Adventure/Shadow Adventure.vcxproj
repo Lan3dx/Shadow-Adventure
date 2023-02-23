@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\camera\camera.h" />
     <ClInclude Include="include\control.h" />
     <ClInclude Include="include\elistener.h" />
     <ClInclude Include="include\entities\bullet.h" />
@@ -172,7 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\camera\camera.cpp" />
     <ClCompile Include="src\control.cpp" />
     <ClCompile Include="src\elistener.cpp" />
     <ClCompile Include="src\entities\bullet.cpp" />

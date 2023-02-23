@@ -36,12 +36,6 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{a852b55c-aeea-47ac-8dc7-553e0f54a3da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\camera">
-      <UniqueIdentifier>{aabf249f-6296-494c-80bc-3c64a117424c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\src\camera">
-      <UniqueIdentifier>{03017644-8682-4929-a137-c28b54311894}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\control.h">
@@ -107,9 +101,6 @@
     <ClInclude Include="include\windows\mapchanger.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="include\camera\camera.h">
-      <Filter>Header Files\camera</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -168,9 +159,6 @@
     </ClCompile>
     <ClCompile Include="src\windows\mapchanger.cpp">
       <Filter>Source Files\src\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\camera\camera.cpp">
-      <Filter>Source Files\src\camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

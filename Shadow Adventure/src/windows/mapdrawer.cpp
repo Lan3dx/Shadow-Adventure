@@ -4,91 +4,46 @@
 
 namespace constants
 {
-	const int size_X = 51; // array size
-	const int size_Y = 48;
-
-	const int xlim = 38; // array smoothing variables relative to screen coordinates
-	const int ylim = 23;
+	const int xlim = 19; // array smoothing variables relative to screen coordinates
+	const int ylim = 11;
 }
 
-std::vector<std::vector<char>> g_board(constants::size_Y, std::vector<char>(constants::size_X));
+std::vector<std::vector<char>> g_board(100, std::vector<char>(101));
 
-void render(std::vector<std::vector<char>> board, int x, int y, char tool, float fps) // render
+void render(std::vector<std::vector<char>> board, int x, int y, char tool, float fps, int left_corner, int up_corner) // render
 {
 	std::string str = "";
-	for (int x = 0; x < constants::size_X+1; x++)
+	for (int x = left_corner; x < left_corner + 49; x++)
 	{
 		str += ". ";
 	}
 	std::cout << str << '\n';
-	for (int y = 0; y < constants::size_Y; y++)
+	for (int y = up_corner; y < up_corner + 48; y++)
 	{
 		str = ". ";
-		for (int x = 0; x < constants::size_X; x++)
+		for (int x = left_corner; x < left_corner + 48; x++)
 		{
 			str += board[y][x];
-			if (x == constants::size_X - 2)
+			if (x == left_corner + 47)
 			{
-				if (y == 2)
-				{
-					str += "#";
-				}
-				if (y == 8)
-				{
-					str += "|";
-				}
-				if (y == 14)
-				{
-					str += "-";
-				}
-				if (y == 20)
-				{
-					str += "+";
-				}
-				if (y == 26)
-				{
-					str += "S";
-				}
-				if (y == 32)
-				{
-					str += "F";
-				}
-				if (y == 38)
-				{
-					str += "D";
-				}
-				if (y == 44)
-				{
-					str += "C";
-				}
-			}
-			else if (x == constants::size_X - 1)
-			{
-				if (y == 50 || y == 44 || y == 38 || y == 32 || y == 26 || y == 20 || y == 14 || y == 8 || y == 2)
-				{
-					str += ".";
-				}
-				else
-				{
-					str += " .";
-				}
+				str += ' .';
 			}
 			else
 			{
-				str += " ";
+				str += ' ';
 			}
 		}
 		std::cout << str << '\n';
 	}
 	str = "";
-	for (int x = 0; x < constants::size_X+1; x++)
+	for (int x = left_corner; x < left_corner + 49; x++)
 	{
 		str += ". ";
 	}
 	std::cout << str << '\n';
 	std::cout << "        X: " << x << " | Y: " << y << " | tool: " << tool << " | FPS: " << round(int(1.0f / fps)) << " | Use your mouse - middle mouse button           " << '\n';
 	std::cout << "  [#] - wall   [|] - ladder   [-] - scaffold   [+] - stairs   [S] -  booster   [F] - wall   [D] - death" << '\n';
-	std::cout << "  [ENTER] - save map   [TAB] - change active map   [ESC] - exit  [<-] [->] - move camera" << '\n';
+	std::cout << "  [ENTER] - save map   [TAB] - change active map   [ESC] - exit  [ARROWS] - move camera" << '\n';
 }
 
 char toolchanger(char ctool, char type) // change the active character to draw
@@ -129,7 +84,7 @@ char toolchanger(char ctool, char type) // change the active character to draw
 int mapdrawer()
 {
 	POINT pos;
-	std::vector<std::vector<char>> board(100, std::vector<char>(100));
+	std::vector<std::vector<char>> board(100, std::vector<char>(101));
 
 	for (int y = 0; y < board.size(); y++)
 	{
@@ -170,10 +125,13 @@ int mapdrawer()
 	tp1 = tp2;
 	float fElapsedTime = elapsedTime.count();
 
+	int left_corner = 0;
+	int up_corner = 0;
+
 	char tool = '#';
 	int cooldownfps = 1;
 	float fps = 80;
-	int keyCd = 40;
+	int keyCd = 20;
 	while (true)
 	{
 		tp2 = std::chrono::system_clock::now();
@@ -191,14 +149,15 @@ int mapdrawer()
 			cooldownfps -= 1;
 		}
 
-		for (int x = 0; x < constants::size_X - 2; x++)
+		for (int x = 0; x < board[0].size(); x++)
 		{
 			g_board[0][x] = 'D';
+			g_board[board.size() - 1][x] = 'D';
 		}
-		for (int y = 0; y < constants::size_Y; y++)
+		for (int y = 0; y < board.size(); y++)
 		{
 			g_board[y][0] = '#';
-			g_board[y][47] = '#';
+			g_board[y][board[0].size() - 1] = '#';
 		}
 
 		clear();
@@ -210,10 +169,10 @@ int mapdrawer()
 		}
 		if (GetAsyncKeyState((unsigned short)VK_TAB))
 		{
-			auto t_board = g_board;
-			for (int y = 0; y < 48; y++)
+			std::vector<std::vector<char>> t_board = g_board;
+			for (int y = 0; y < board.size(); y++)
 			{
-				for (int x = 0; x < 48; x++)
+				for (int x = 0; x < board[y].size(); x++)
 				{
 					if (t_board[y][x] == ' ')
 					{
@@ -222,9 +181,9 @@ int mapdrawer()
 				}
 			}
 			std::ofstream fout("resources/maps/active.txt");
-			for (int i = 0; i < 48; i++)
+			for (int i = 0; i < board.size(); i++)
 			{
-				for (int j = 0; j < 48; j++)
+				for (int j = 0; j < board[0].size(); j++)
 				{
 					fout << t_board[i][j];
 				}
@@ -236,10 +195,10 @@ int mapdrawer()
 		}
 		if (GetAsyncKeyState((unsigned short)VK_RETURN))
 		{
-			auto t_board = g_board;
-			for (int y = 0; y < 48; y++)
+			std::vector<std::vector<char>> t_board = g_board;
+			for (int y = 0; y < board.size(); y++)
 			{
-				for (int x = 0; x < 48; x++)
+				for (int x = 0; x < board[0].size(); x++)
 				{
 					if(t_board[y][x] == ' ')
 					{
@@ -248,9 +207,9 @@ int mapdrawer()
 				}
 			}
 			std::ofstream fout("resources/maps/active.txt");
-			for (int i = 0; i < 48; i++)
+			for (int i = 0; i < board.size(); i++)
 			{
-				for (int j = 0; j < 48; j++)
+				for (int j = 0; j < board[0].size(); j++)
 				{
 					fout << t_board[i][j];
 				}
@@ -267,7 +226,7 @@ int mapdrawer()
 			if (keyCd <= 0)
 			{
 				tool = toolchanger(tool, 'u');
-				keyCd = 40;
+				keyCd = 20;
 			}
 		}
 		if (GetAsyncKeyState((unsigned short)'S'))
@@ -275,13 +234,57 @@ int mapdrawer()
 			if (keyCd <= 0)
 			{
 				tool = toolchanger(tool, 'd');
-				keyCd = 40;
+				keyCd = 20;
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)VK_RIGHT))
+		{
+			if (keyCd <= 0)
+			{
+				if (left_corner + 48.0 != board[0].size())
+				{
+					left_corner += 1;
+				}
+				keyCd = 20;
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)VK_LEFT))
+		{
+			if (keyCd <= 0)
+			{
+				if (left_corner != 0)
+				{
+					left_corner -= 1;
+				}
+				keyCd = 20;
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)VK_UP))
+		{
+			if (keyCd <= 0)
+			{
+				if (up_corner != 0)
+				{
+					up_corner -= 1;
+				}
+				keyCd = 20;
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)VK_DOWN))
+		{
+			if (keyCd <= 0)
+			{
+				if (up_corner + 48.0 != board.size())
+				{
+					up_corner += 1;
+				}
+				keyCd = 20;
 			}
 		}
 
-		for (int y = 0; y < constants::size_Y; y++)
+		for (int y = 0; y < board.size(); y++)
 		{
-			for (int x = 0; x < constants::size_X; x++)
+			for (int x = 0; x < board[0].size(); x++)
 			{
 				board[y][x] = g_board[y][x];
 			}
@@ -292,7 +295,7 @@ int mapdrawer()
 			keyCd -= 1;
 		}
 
-		render(board, int(pos.x / constants::xlim), int(pos.y / constants::ylim), tool, fps);
+		render(board, int(pos.x / constants::xlim), int(pos.y / constants::ylim), tool, fps, left_corner, up_corner);
 	}
 
 	return 0;
