@@ -1,2 +1,0 @@
-[15:24:33] [INFO]: Game started
-[15:24:35] [INFO]: Spawn entity: player0

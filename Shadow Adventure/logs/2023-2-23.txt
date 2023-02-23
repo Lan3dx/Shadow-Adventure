@@ -1,3 +1,0 @@
-[23:46:36] [INFO]: Game started
-[23:46:39] [INFO]: Game stopped
-[23:46:39] [DEBUG]: Avg FPS: 44
