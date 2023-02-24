@@ -3,7 +3,7 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, float fps, Corners corners) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners) // output
 {
 	int y1 = 1;
 	int x1 = 1;
@@ -57,7 +57,7 @@ int game() // Game
 	auto mob_shot_cd = 90;
 	auto avgfps = 0;
 	auto avgfpscount = 0;
-	auto fps = 1.0f; // frame per second
+	double fps = 1; // frame per second
 	PMAP players; // players map
 	MMAP mobs; // mobs map
 	std::string selected; // active player

@@ -13,7 +13,7 @@ std::vector<std::vector<char>> g_board(100, std::vector<char>(101));
 void render(std::vector<std::vector<char>> board, int x, int y, char tool, float fps, int left_corner, int up_corner) // render
 {
 	std::string str = "";
-	for (int x = left_corner; x < left_corner + 49; x++)
+	for (int x = left_corner; x < left_corner + 50; x++)
 	{
 		str += ". ";
 	}
@@ -26,17 +26,17 @@ void render(std::vector<std::vector<char>> board, int x, int y, char tool, float
 			str += board[y][x];
 			if (x == left_corner + 47)
 			{
-				str += ' .';
+				str += " .";
 			}
 			else
 			{
-				str += ' ';
+				str += " ";
 			}
 		}
 		std::cout << str << '\n';
 	}
 	str = "";
-	for (int x = left_corner; x < left_corner + 49; x++)
+	for (int x = left_corner; x < left_corner + 50; x++)
 	{
 		str += ". ";
 	}
