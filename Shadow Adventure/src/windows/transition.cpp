@@ -1,6 +1,7 @@
 #include "../../include/windows/transition.h"
 #include "../../include/sys/includes.h"
 
+// deprecated
 void render(std::vector<std::vector<char>> map)
 {
     clear();
@@ -15,7 +16,7 @@ void render(std::vector<std::vector<char>> map)
         std::cout << line << '\n';
     }
 }
-
+// deprecated
 int line_transition()
 {
     for (int y = 6; y < 54; y++) // columns
@@ -39,7 +40,7 @@ int line_transition()
     }
     return 0;
 }
-
+// deprecated
 int spiral_transition(std::vector<std::vector<char>> board)
 {
     size_t top = 6, bottom = board.size() - 2;
