@@ -11,6 +11,7 @@
 - The player can shoot
 - You can create multiple players and manage each of them
 - Each action is accompanied by a soundtrack
+- the camera tracking system for the player
 
 ## Tech
 
