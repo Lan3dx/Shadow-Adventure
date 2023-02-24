@@ -20,6 +20,7 @@
 #include "../map.h"
 #include "../control.h"
 #include "../gravity.h"
+#include "../corners.h"
 #include "../elistener.h"
 #include "../entities/player.h"
 #include "../entities/bullet.h"

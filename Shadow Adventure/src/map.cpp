@@ -8,11 +8,11 @@ std::vector<std::vector<block>> map_init() // return clear map
 	// Create a map
 
 	std::ifstream fin("resources/maps/active.txt");
-	std::vector<std::vector<block> > map(48, std::vector<block>(48));
+	std::vector<std::vector<block> > map(100, std::vector<block>(101));
 	char sym;
-	for (int y = 0; y < 48; y++)
+	for (int y = 0; y < 100; y++)
 	{
-		for (int x = 0; x < 48; x++)
+		for (int x = 0; x < 101; x++)
 		{
 			fin >> sym;
 			if (sym == '~')
@@ -25,7 +25,7 @@ std::vector<std::vector<block>> map_init() // return clear map
 				map[y][x].character = sym;
 				map[y][x].color = 10;
 			}
-			if (x == 0 || x == 47) // walls have durability is -1, player can't destroy them
+			if (x == 0 || x == 100) // walls have durability is -1, player can't destroy them
 			{
 				map[y][x].durability = -1;
 			}

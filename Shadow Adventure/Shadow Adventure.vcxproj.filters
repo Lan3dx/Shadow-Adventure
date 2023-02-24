@@ -101,6 +101,9 @@
     <ClInclude Include="include\windows\mapchanger.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="include\corners.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="src\windows\mapchanger.cpp">
       <Filter>Source Files\src\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\corners.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

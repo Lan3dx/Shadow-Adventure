@@ -38,9 +38,9 @@ void map_render(std::vector<std::vector<char>> map) // render
             if (y == 25 && x == 1) line += " <<<  ";
             line += map[y][x];
             line += " ";
-            if (y == 23 && x == map[y].size() - 2) line += "  >>> ";
-            if (y == 24 && x == map[y].size() - 2) line += "  >>> ";
-            if (y == 25 && x == map[y].size() - 2) line += "  >>> ";
+            if (y == 23 && x == 46) line += "  >>> ";
+            if (y == 24 && x == 46) line += "  >>> ";
+            if (y == 25 && x == 46) line += "  >>> ";
         }
         if (y != 24 && y != 23 && y != 25) line += "      ";
         else line += "";
@@ -53,19 +53,19 @@ void map_render(std::vector<std::vector<char>> map) // render
 std::vector<std::vector<char>> mapchanger() // main func
 {
     clear();
-    for (int i = 0; i < 60; i++) // clear screen
+    for (int i = 0; i < 110; i++) // clear screen
     {
         std::string line;
-        for (int j = 0; j < 60; j++)
+        for (int j = 0; j < 110; j++)
         {
             line += "  ";
         }
         std::cout << line << '\n';
     }
-    std::vector<std::vector<char> > map(48, std::vector<char>(51));
-    for (int y = 0; y < 48; y++)
+    std::vector<std::vector<char> > map(100, std::vector<char>(101));
+    for (int y = 0; y < 100; y++)
     {
-        for (int x = 0; x < 51; x++)
+        for (int x = 0; x < 101; x++)
         {
             map[y][x] = ' ';
         }
@@ -73,7 +73,7 @@ std::vector<std::vector<char>> mapchanger() // main func
     std::vector<std::string> maps;
     int key_cd = 50;
     std::string path = "resources/maps";
-    for (const auto& entry : std::filesystem::directory_iterator(path)) //
+    for (const auto& entry : std::filesystem::directory_iterator(path))
     {
         std::wstring map = entry.path().native();
         std::string ecranum = R"(\)";
@@ -83,9 +83,9 @@ std::vector<std::vector<char>> mapchanger() // main func
     size_t selected = 0;
     std::ifstream fin(maps[selected]);
     char sym;
-    for (int y = 0; y < 48; y++)
+    for (int y = 0; y < 100; y++)
     {
-        for (int x = 0; x < 48; x++)
+        for (int x = 0; x < 101; x++)
         {
             fin >> sym;
             if (sym == '~')
@@ -120,9 +120,9 @@ std::vector<std::vector<char>> mapchanger() // main func
                 }
                 std::ifstream fin(maps[selected]);
                 char sym;
-                for (int y = 0; y < 48; y++)
+                for (int y = 0; y < 100; y++)
                 {
-                    for (int x = 0; x < 48; x++)
+                    for (int x = 0; x < 101; x++)
                     {
                         fin >> sym;
                         if (sym == '~')
@@ -153,9 +153,9 @@ std::vector<std::vector<char>> mapchanger() // main func
                 }
                 std::ifstream fin(maps[selected]);
                 char sym;
-                for (int y = 0; y < 48; y++)
+                for (int y = 0; y < 100; y++)
                 {
-                    for (int x = 0; x < 48; x++)
+                    for (int x = 0; x < 101; x++)
                     {
                         fin >> sym;
                         if (sym == '~')

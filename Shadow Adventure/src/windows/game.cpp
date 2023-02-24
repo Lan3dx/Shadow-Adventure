@@ -3,27 +3,32 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, float fps) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, float fps, Corners corners) // output
 {
+	int y1 = 1;
+	int x1 = 1;
 	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << "                       " << std::endl; // selected player
-	for (int y = 1; y < map.size()-1; y++) // columns
+	for (int y = corners.up; y < corners.up + 48 - 1; y++) // columns
 	{
 		std::cout << ' ';
 		std::string line;
-		for (int x = 1; x < map[y].size()-1; x++) // lines
+		x1 = 1;
+		for (int x = corners.left; x < corners.left + 48 - 1; x++) // lines
 		{
 			line += map[y][x].character;
 			line += " ";
-			if (y == 5 && x == map[y].size()-2) line += "W - jump";
-			if (y == 6 && x == map[y].size() - 2) line += "S - down";
-			if (y == 7 && x == map[y].size() - 2) line += "A - left";
-			if (y == 8 && x == map[y].size() - 2) line += "D - right";
-			if (y == 10 && x == map[y].size() - 2) line += "R - spawn";
-			if (y == 11 && x == map[y].size() - 2) line += "K - kill";
-			if (y == 12 && x == map[y].size() - 2) line += "C - change";
-			if (y == 13 && x == map[y].size() - 2) line += "Q/E - shoot";
-			if (y == 15 && x == map[y].size() - 2) line += "ESC - exit";
+			if (y1 == 5 && x1 == 48 - 2) line += "W - jump";
+			if (y1 == 6 && x1 == 48 - 2) line += "S - down";
+			if (y1 == 7 && x1 == 48 - 2) line += "A - left";
+			if (y1 == 8 && x1 == 48 - 2) line += "D - right";
+			if (y1 == 10 && x1 == 48 - 2) line += "R - spawn";
+			if (y1 == 11 && x1 == 48 - 2) line += "K - kill";
+			if (y1 == 12 && x1 == 48 - 2) line += "C - change";
+			if (y1 == 13 && x1 == 48 - 2) line += "Q/E - shoot";
+			if (y1 == 15 && x1 == 48 - 2) line += "ESC - exit";
+			x1 += 1;
 		}
+		y1 += 1;
 		std::cout << line;
 		std::cout << '\n'; // next column
 	}
@@ -45,6 +50,7 @@ int game() // Game
 	MMAP mobs; // mobs map
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
+	Corners corners{ 5, 5 };
 	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
 
 	// MOB args
@@ -187,8 +193,9 @@ int game() // Game
 
 		clear(); // clear screen
 
+		cornerListener(players,selected,board,&corners); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps); // screen output 
+		render(std::ref(board), selected, fps, corners); // screen output 
 	}
 
 	return 0;
