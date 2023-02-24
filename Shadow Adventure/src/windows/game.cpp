@@ -8,6 +8,12 @@ void render(std::vector<std::vector<block>>& map, std::string selected, float fp
 	int y1 = 1;
 	int x1 = 1;
 	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << "                       " << std::endl; // selected player
+	std::string s = "";
+	for (size_t i = 0; i < 48; i++)
+	{
+		s += ". ";
+	}
+	std::cout << s << '\n';
 	for (int y = corners.up; y < corners.up + 48 - 1; y++) // columns
 	{
 		std::cout << ' ';
@@ -32,6 +38,12 @@ void render(std::vector<std::vector<block>>& map, std::string selected, float fp
 		std::cout << line;
 		std::cout << '\n'; // next column
 	}
+	s = "";
+	for (size_t i = 0; i < 48; i++)
+	{
+		s += ". ";
+	}
+	std::cout << s << '\n';
 }
 
 int game() // Game
