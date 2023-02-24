@@ -158,6 +158,7 @@
     <ClInclude Include="include\entities\sys\render.h" />
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\gravity.h" />
+    <ClInclude Include="include\mapgen.h" />
     <ClInclude Include="include\sys\config.h" />
     <ClInclude Include="include\sys\constants.h" />
     <ClInclude Include="include\sys\includes.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="src\entities\sys\render.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\gravity.cpp" />
+    <ClCompile Include="src\mapgen.cpp" />
     <ClCompile Include="src\sys\config.cpp" />
     <ClCompile Include="src\sys\logger.cpp" />
     <ClCompile Include="src\windows\author.cpp" />

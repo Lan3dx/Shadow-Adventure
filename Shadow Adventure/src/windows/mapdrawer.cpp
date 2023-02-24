@@ -1,6 +1,7 @@
 #include "../../include/windows/mapdrawer.h"
 #include "../../include/windows/mapchanger.h"
 #include "../../include/sys/includes.h"
+#include "../../include/mapgen.h"
 
 namespace constants
 {
@@ -42,8 +43,8 @@ void render(std::vector<std::vector<char>> board, int x, int y, char tool, float
 	}
 	std::cout << str << '\n';
 	std::cout << "        X: " << x << " | Y: " << y << " | tool: " << tool << " | FPS: " << round(int(1.0f / fps)) << " | Use your mouse - middle mouse button           " << '\n';
-	std::cout << "  [#] - wall   [|] - ladder   [-] - scaffold   [+] - stairs   [S] -  booster   [F] - wall   [D] - death" << '\n';
-	std::cout << "  [ENTER] - save map   [TAB] - change active map   [ESC] - exit  [ARROWS] - move camera" << '\n';
+	std::cout << "  (#) - wall   (|) - ladder   (-) - scaffold   (+) - stairs   (S) -  booster   (F) - wall   (D) - death" << '\n';
+	std::cout << "  [ENTER] - save map  [TAB] - other maps  [ARROWS] - move camera  [R] - random gen  [ESC] - exit" << '\n';
 }
 
 char toolchanger(char ctool, char type) // change the active character to draw
@@ -234,6 +235,14 @@ int mapdrawer()
 			if (keyCd <= 0)
 			{
 				tool = toolchanger(tool, 'd');
+				keyCd = 20;
+			}
+		}
+		if (GetAsyncKeyState((unsigned short)'R'))
+		{
+			if (keyCd <= 0)
+			{
+				g_board = gen();
 				keyCd = 20;
 			}
 		}
