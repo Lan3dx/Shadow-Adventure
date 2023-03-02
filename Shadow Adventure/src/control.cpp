@@ -58,8 +58,12 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 				{
 					if (!(player.getCWS() > 4))
 					{
-						player.move('d'); // move player
-						player.setCWS();
+						if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then play sound
+						{
+								PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
+						}
+							player.move('d'); // move player
+							player.setCWS();
 					}
 				}
 			}

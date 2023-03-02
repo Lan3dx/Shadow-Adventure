@@ -23,15 +23,15 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 		{
 			line += map[y][x].character;
 			line += " ";
-			if (y1 == 5 && x1 == 48 - 2) line += "W - jump";
-			if (y1 == 6 && x1 == 48 - 2) line += "S - down";
-			if (y1 == 7 && x1 == 48 - 2) line += "A - left";
-			if (y1 == 8 && x1 == 48 - 2) line += "D - right";
-			if (y1 == 10 && x1 == 48 - 2) line += "R - spawn";
-			if (y1 == 11 && x1 == 48 - 2) line += "K - kill";
-			if (y1 == 12 && x1 == 48 - 2) line += "C - change";
-			if (y1 == 13 && x1 == 48 - 2) line += "Q/E - shoot";
-			if (y1 == 15 && x1 == 48 - 2) line += "ESC - exit";
+			if (y1 == 5 && x1 == 48 - 1) line += "W - jump";
+			if (y1 == 6 && x1 == 48 - 1) line += "S - down";
+			if (y1 == 7 && x1 == 48 - 1) line += "A - left";
+			if (y1 == 8 && x1 == 48 - 1) line += "D - right";
+			if (y1 == 10 && x1 == 48 - 1) line += "R - spawn";
+			if (y1 == 11 && x1 == 48 - 1) line += "K - kill";
+			if (y1 == 12 && x1 == 48 - 1) line += "C - change";
+			if (y1 == 13 && x1 == 48 - 1) line += "Q/E - shoot";
+			if (y1 == 15 && x1 == 48 - 1) line += "ESC - exit";
 			x1 += 1;
 		}
 		y1 += 1;

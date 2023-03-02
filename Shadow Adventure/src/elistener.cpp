@@ -88,6 +88,7 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 				entity.kill(std::ref(board)); // kill player
 				entity.move(entity.getGType()); // move player
 				entity.spawn(std::ref(board)); // spawn player
+				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
 			}
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
