@@ -156,6 +156,7 @@
     <ClInclude Include="include\entities\sys\change.h" />
     <ClInclude Include="include\entities\sys\cooldowns_s.h" />
     <ClInclude Include="include\entities\sys\render.h" />
+    <ClInclude Include="include\libs\audiere.h" />
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\gravity.h" />
     <ClInclude Include="include\mapgen.h" />
