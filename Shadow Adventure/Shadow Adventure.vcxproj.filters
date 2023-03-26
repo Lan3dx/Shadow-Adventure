@@ -36,9 +36,6 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{a852b55c-aeea-47ac-8dc7-553e0f54a3da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\libs">
-      <UniqueIdentifier>{1f21ffef-c654-439b-881a-ef3029f6ce6b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\control.h">
@@ -109,9 +106,6 @@
     </ClInclude>
     <ClInclude Include="include\mapgen.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libs\audiere.h">
-      <Filter>Header Files\libs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

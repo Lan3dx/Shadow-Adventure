@@ -78,7 +78,7 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 			{
 				entity.move('u');
 			}
-			PlaySound(music::BOOST, NULL, SND_FILENAME | SND_ASYNC);
+			// boost music
 		}
 		for (int dot = 0; dot < entity.getX().size() || dot < entity.getY().size(); dot++) // check every player's element
 		{
@@ -88,7 +88,7 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 				entity.kill(std::ref(board)); // kill player
 				entity.move(entity.getGType()); // move player
 				entity.spawn(std::ref(board)); // spawn player
-				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
+				// death music
 			}
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map

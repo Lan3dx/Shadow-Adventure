@@ -1,5 +1,4 @@
 #include "../../include/entities/player.h"
-#include "../../include/sys/musicloader.h"
 
 PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
 {
@@ -90,7 +89,7 @@ void PLAYER::shoot(char type)
 {
 	if (type == 'r')
 	{
-		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		// shot music
 		for (int b = 0; b < MAX_AMMO; b++)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))
@@ -103,7 +102,7 @@ void PLAYER::shoot(char type)
 	}
 	else if (type == 'l')
 	{
-		PlaySound(music::SHOT, NULL, SND_FILENAME | SND_ASYNC);
+		// shot music
 		for (int b = 0; b < MAX_AMMO; b++)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))

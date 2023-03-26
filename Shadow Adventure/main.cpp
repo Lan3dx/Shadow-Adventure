@@ -8,8 +8,6 @@
 #include "include/windows/mapchanger.h"
 #include "include/windows/transition.h"
 
-#pragma comment (lib, "winmm.lib")
-
 bool game_status = true; // is started game or not
 
 int main()

@@ -63,7 +63,7 @@ int game() // Game
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5 };
-	PlaySound(music::MAIN, NULL, SND_FILENAME | SND_ASYNC);
+	// main music
 
 	// MOB args
 	//	1 arg - X cords
@@ -149,7 +149,7 @@ int game() // Game
 			if (!(key_cd > 0))
 			{
 				clog("INFO", "Kill entity: " + selected);
-				PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
+				// death music
 				players.rem(selected);
 				board = g_board;
 				change(&selected);
@@ -188,7 +188,7 @@ int game() // Game
 		{
 			if (!(key_cd > 0))
 			{
-				PlaySound(music::CHANGE, NULL, SND_FILENAME | SND_ASYNC);
+				// change music
 				change(&players, &selected);
 				key_cd = KEY_CD;
 			}

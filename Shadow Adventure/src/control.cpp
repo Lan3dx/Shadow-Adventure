@@ -27,7 +27,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 							{
 								player.move('u');
 							}
-							PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
+							// jump music
 							player.setCWS();
 						}
 					}
@@ -39,7 +39,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 							{
 								player.move('u');
 							}
-							PlaySound(music::JUMP, NULL, SND_FILENAME | SND_ASYNC);
+							// jump music
 							player.setCWS();
 						}
 					}
@@ -60,7 +60,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 					{
 						if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then play sound
 						{
-								PlaySound(music::LADDER, NULL, SND_FILENAME | SND_ASYNC);
+								// ladder music;
 						}
 							player.move('d'); // move player
 							player.setCWS();

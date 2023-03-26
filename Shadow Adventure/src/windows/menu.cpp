@@ -148,6 +148,9 @@ void render(std::vector<int> selected) // menu rendering
 int menu() // open menu window
 {
 	clear();
+
+	// menu music
+
 	for (int i = 0; i < 60; i++) // clear screen
 	{
 		std::string line;
@@ -159,7 +162,7 @@ int menu() // open menu window
 	}
 	std::vector<int> selected = { 1,0,0,0 };
 	int key_cd = 40;
-	PlaySound(music::MENU, NULL, SND_FILENAME | SND_ASYNC);
+
 	while (true)
 	{
 		if (key_cd != 0)

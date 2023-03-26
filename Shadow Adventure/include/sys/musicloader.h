@@ -5,12 +5,12 @@
 
 namespace music
 {
-	const LPCWSTR DEATH = TEXT("play ../../resources/music/DEATH.wav");
-	const LPCWSTR JUMP = TEXT("play ../../resources/music/JUMP.wav");
-	const LPCWSTR MAIN = TEXT("play ../../resources/music/MAIN.wav");
-	const LPCWSTR SHOT = TEXT("play ../../resources/music/SHOT.wav");
-	const LPCWSTR BOOST = TEXT("play ../../resources/music/BOOST.wav");
-	const LPCWSTR LADDER = TEXT("play ../../resources/music/LADDER.wav");
-	const LPCWSTR CHANGE = TEXT("play ../../resources/music/CHANGE.wav");
-	const LPCWSTR MENU = TEXT("play ../../resources/music/MENU.wav");
+	static const char* DEATH		= "../../resources/music/DEATH.wav";
+	static const char* JUMP		= "../../resources/music/JUMP.wav";
+	static const char* MAIN		= "../../resources/music/MAIN.wav";
+	static const char* SHOT		= "../../resources/music/SHOT.wav";
+	static const char* BOOST		= "../../resources/music/BOOST.wav";
+	static const char* LADDER	= "../../resources/music/LADDER.wav";
+	static const char* CHANGE	= "../../resources/music/CHANGE.wav";
+	static const char* MENU		= "../../resources/music/MENU.wav";
 }

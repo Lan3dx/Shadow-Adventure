@@ -143,7 +143,7 @@ void gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 		{
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
 			entity.kill(std::ref(board)); // kill player
-			PlaySound(music::DEATH, NULL, SND_FILENAME | SND_ASYNC);
+			// death music
 			entity.move(entity.getGType()); // move player
 			entity.spawn(std::ref(board)); // spawn player
 		}
