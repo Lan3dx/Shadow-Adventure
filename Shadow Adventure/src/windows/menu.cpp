@@ -149,7 +149,8 @@ int menu() // open menu window
 {
 	clear();
 
-	// menu music
+	//std::thread t1(playSound, music::MENU);
+	playSound(music::MENU);
 
 	for (int i = 0; i < 60; i++) // clear screen
 	{

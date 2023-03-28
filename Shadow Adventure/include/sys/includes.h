@@ -28,5 +28,7 @@
 #include "../entities/sys/render.h"
 #include "../entities/sys/cooldowns_s.h"
 #include "../entities/sys/change.h"
+#include "../sys/audiomgr.h"
 
 // third-party libs
+#include <fmod.hpp>

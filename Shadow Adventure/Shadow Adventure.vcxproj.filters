@@ -107,6 +107,9 @@
     <ClInclude Include="include\mapgen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\sys\audiomgr.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -171,6 +174,9 @@
     </ClCompile>
     <ClCompile Include="src\mapgen.cpp">
       <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys\audiomgr.cpp">
+      <Filter>Source Files\src\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
