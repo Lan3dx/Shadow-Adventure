@@ -29,10 +29,10 @@ void playSound(const char* filePath) {
 
   channel->setCallback([](FMOD_CHANNELCONTROL* chan, FMOD_CHANNELCONTROL_TYPE type, FMOD_CHANNELCONTROL_CALLBACK_TYPE callbackType, void* commandData1, void* commandData2) {
     FMOD::Sound* sound;
-  FMOD::Channel* channel = (FMOD::Channel*)chan;
-  channel->getCurrentSound(&sound);
-  sound->release();
-  return FMOD_OK;
+    FMOD::Channel* channel = (FMOD::Channel*)chan;
+    channel->getCurrentSound(&sound);
+    sound->release();
+    return FMOD_OK;
     });
 
   while (true) {
