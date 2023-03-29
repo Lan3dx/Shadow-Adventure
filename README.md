@@ -15,7 +15,7 @@
 
 ## Tech
 
-Shadow adventure is written on _c++_
+Shadow adventure is written on _c++_ with third-party lib FMOD
 
 ## Installation
 Just download this code and open the _.sln_ file. Launch it using the _F5_ key
