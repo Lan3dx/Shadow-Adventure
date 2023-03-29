@@ -84,6 +84,7 @@ int game() // Game
 	mobs.add("gun", mob2);
 
 	std::string s = "null";
+	std::string s1 = "null";
 
 	clog("INFO", "Game started");
 	while (true) // main program loop
@@ -201,12 +202,17 @@ int game() // Game
 			}
 		}
 
-		listenerP(&players, std::ref(board));
-		listenerM(&mobs, std::ref(board), &mob_shot_cd);
+		s1 = listenerP(&players, std::ref(board));
+		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
+		s1 = listenerM(&mobs, std::ref(board), &mob_shot_cd);
+		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 
-		gravitationP(&players, std::ref(board), std::ref(g_board));
-		gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
-		gravitationM(&mobs, std::ref(board), std::ref(g_board));
+		s1 = gravitationP(&players, std::ref(board), std::ref(g_board));
+		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+		s1 = gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
+		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board));
+		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 
 		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd, &mob_shot_cd); // -1 cooldown for all entities
 
@@ -222,6 +228,10 @@ int game() // Game
 		}
 		else if (s == "ladder") {
 			snds->play("ladder");
+			s = "null";
+		}
+		else if (s == "death") {
+			snds->play("death");
 			s = "null";
 		}
 

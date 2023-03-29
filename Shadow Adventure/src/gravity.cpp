@@ -1,7 +1,8 @@
 #include "../include/gravity.h"
 
-void gravitationB(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
+std::string gravitationB(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for bullets
 {
+	std::string returned = "null";
 	auto playerMap = players->get(); // old player map
 	std::map < std::string, PLAYER > npm = {}; // new player map
 
@@ -93,10 +94,12 @@ void gravitationB(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& bo
 		nmm.insert(std::make_pair(entityM.first, mob));
 	}
 	mobs->set(nmm);
+	return returned;
 }
 
-void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for mob
+std::string gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for mob
 {
+	std::string returned = "null";
 	auto entityMap = mobs->get(); // old mob map
 	std::map < std::string, MOB > nmm = {}; // new mob map
 	for (auto& entityS : entityMap)
@@ -131,9 +134,11 @@ void gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std::vecto
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
 	}
 	mobs->set(nmm); // set old mob map
+	return returned;
 }
-void gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for player
+std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for player
 {
+	std::string returned = "null";
 	auto entityMap = players->get(); // old players map
 	std::map < std::string, PLAYER > npm = {}; // new players map
 	for (auto& entityS : entityMap)
@@ -143,7 +148,7 @@ void gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 		{
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
 			entity.kill(std::ref(board)); // kill player
-			// death music
+			returned = "death";
 			entity.move(entity.getGType()); // move player
 			entity.spawn(std::ref(board)); // spawn player
 		}
@@ -170,4 +175,5 @@ void gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::ve
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}
 	players->set(npm); // set old players map
+	return returned;
 }

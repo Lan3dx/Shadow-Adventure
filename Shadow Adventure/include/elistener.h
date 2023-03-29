@@ -7,6 +7,6 @@
 #include "entities/mob.h"
 #include "map.h"
 
-void listenerB(BMAP*, std::vector<std::vector<block>>&); // listener for bullets 
-void listenerP(PMAP*, std::vector<std::vector<block>>&); // listener for players
-void listenerM(MMAP*, std::vector<std::vector<block>>&, int*); // listener func for mob
+std::string listenerB(BMAP*, std::vector<std::vector<block>>&); // listener for bullets 
+std::string listenerP(PMAP*, std::vector<std::vector<block>>&); // listener for players
+std::string listenerM(MMAP*, std::vector<std::vector<block>>&, int*); // listener func for mob

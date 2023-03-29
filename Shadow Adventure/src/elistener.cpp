@@ -1,7 +1,8 @@
 #include "../include/elistener.h"
 
-void listenerB(BMAP* bullets, std::vector<std::vector<block>>& board) // listener func for bullets
+std::string listenerB(BMAP* bullets, std::vector<std::vector<block>>& board) // listener func for bullets
 {
+	std::string returned = "null";
 	auto entityMap = bullets->get(); // old bullet map
 	std::map < std::string, BULLET > nbm = {}; // new bullet map
 	for (auto& entityS : entityMap)
@@ -10,9 +11,11 @@ void listenerB(BMAP* bullets, std::vector<std::vector<block>>& board) // listene
 		nbm.insert(std::make_pair(entityS.first, entity)); // add bullet to new bullets map
 	}
 	bullets->set(nbm); // set old bullets map
+	return returned;
 }
-void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* mob_shot_cd) // listener func for mob
+std::string listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* mob_shot_cd) // listener func for mob
 {
+	std::string returned = "null";
 	auto entityMap = mobs->get(); // old mob map
 	std::map < std::string, MOB > nmm = {}; // new mob map
 	for (auto& entityS : entityMap)
@@ -64,9 +67,11 @@ void listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* mob_shot
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
 	}
 	mobs->set(nmm); // set old mob map
+	return returned;
 }
-void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listener func for player
+std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listener func for player
 {
+	std::string returned = "null";
 	auto entityMap = players->get(); // old players map
 	std::map < std::string, PLAYER > npm = {}; // new players map
 	for (auto& entityS : entityMap)
@@ -78,7 +83,7 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 			{
 				entity.move('u');
 			}
-			// boost music
+			returned = "boost";
 		}
 		for (int dot = 0; dot < entity.getX().size() || dot < entity.getY().size(); dot++) // check every player's element
 		{
@@ -88,10 +93,11 @@ void listenerP(PMAP* players, std::vector<std::vector<block>>& board) // listene
 				entity.kill(std::ref(board)); // kill player
 				entity.move(entity.getGType()); // move player
 				entity.spawn(std::ref(board)); // spawn player
-				// death music
+				returned = "death";
 			}
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}
 	players->set(npm); // set old players map
+	return returned;
 }
