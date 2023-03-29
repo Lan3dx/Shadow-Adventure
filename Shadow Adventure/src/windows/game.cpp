@@ -48,6 +48,7 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 
 int game() // Game
 {
+	Sounds* snds = new Sounds();
 	auto g_board = map_init();
 	std::chrono::system_clock::time_point a = std::chrono::system_clock::now();
 	std::chrono::system_clock::time_point b = std::chrono::system_clock::now();
@@ -63,7 +64,8 @@ int game() // Game
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5 };
-	// main music
+	snds->play("main");
+	snds->update();
 
 	// MOB args
 	//	1 arg - X cords
@@ -81,13 +83,15 @@ int game() // Game
 	mobs.add("rock", mob1);
 	mobs.add("gun", mob2);
 
+	std::string s = "null";
+
 	clog("INFO", "Game started");
 	while (true) // main program loop
 	{
 		a = std::chrono::system_clock::now();
 		std::chrono::duration<double> work_time = a - b;
 
-		if (work_time.count() < 5)
+		if (work_time.count() < 2)
 		{
 			std::chrono::duration<double, std::milli> delta_ms(5 - work_time.count());
 			auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
@@ -109,19 +113,20 @@ int game() // Game
 		{
 			clog("INFO", "Game stopped");
 			clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount))); 
+			snds->~Sounds();
 			return 0;
 		}
 		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 72);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 72);
 		}
 		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
 		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 75);
+			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75);
 		}
 		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 80);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 80);
 		}
 		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
 		{
@@ -149,7 +154,7 @@ int game() // Game
 			if (!(key_cd > 0))
 			{
 				clog("INFO", "Kill entity: " + selected);
-				// death music
+				snds->play("death");
 				players.rem(selected);
 				board = g_board;
 				change(&selected);
@@ -164,6 +169,7 @@ int game() // Game
 				{
 					PLAYER pl = players.find(selected);
 					pl.shoot('r');
+					snds->play("shot");
 					players.rem(selected);
 					players.add(selected, pl);
 					shot_cd = SHOT_CD;
@@ -177,6 +183,7 @@ int game() // Game
 				if (shot_cd <= 0)
 				{
 					PLAYER pl = players.find(selected);
+					snds->play("shot");
 					pl.shoot('l');
 					players.rem(selected);
 					players.add(selected, pl);
@@ -188,7 +195,7 @@ int game() // Game
 		{
 			if (!(key_cd > 0))
 			{
-				// change music
+				snds->play("change");
 				change(&players, &selected);
 				key_cd = KEY_CD;
 			}
@@ -208,6 +215,17 @@ int game() // Game
 		cornerListener(players,selected,board,&corners); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
 		render(std::ref(board), selected, fps, corners); // screen output 
+
+		if (s == "jump") {
+			snds->play("jump");
+			s = "null";
+		}
+		else if (s == "ladder") {
+			snds->play("ladder");
+			s = "null";
+		}
+
+		snds->update();
 	}
 
 	return 0;

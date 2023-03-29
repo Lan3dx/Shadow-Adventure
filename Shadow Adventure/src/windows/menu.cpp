@@ -149,7 +149,9 @@ int menu() // open menu window
 {
 	clear();
 
-	std::thread t1(playSound, music::MENU);
+	Sounds* snds = new Sounds();
+	snds->play("menu");
+	snds->update();
 
 	for (int i = 0; i < 60; i++) // clear screen
 	{
@@ -175,10 +177,10 @@ int menu() // open menu window
 			{
 				key_cd = 40;
 				system("cls");
-				if (selected[0] == 1) { t1.join(); return 0; }
-				else if (selected[1] == 1) { t1.join(); return 1; }
-				else if (selected[2] == 1) { t1.join(); return 2; }
-				else if (selected[3] == 1) { t1.join(); return 3; }
+				if (selected[0] == 1) { snds->~Sounds(); return 0; }
+				else if (selected[1] == 1) { snds->~Sounds(); return 1; }
+				else if (selected[2] == 1) { snds->~Sounds(); return 2; }
+				else if (selected[3] == 1) { snds->~Sounds(); return 3; }
 			}
 		}
 		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
@@ -204,7 +206,7 @@ int menu() // open menu window
 			}
 		}
 		render(selected);
-
+		snds->update();
 		clear();
 	}
 	return 0;

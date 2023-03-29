@@ -1,9 +1,12 @@
 #include <iostream>
 
+#include "../include/sys/includes.h"
 #include "../include/control.h"
 
-void control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key) // control func for selected player
+std::string control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key) // control func for selected player
 {
+	std::string returned = "null";
+
 	if (players->get().contains(selected)) // if players map have selected player
 	{
 		std::map < std::string, PLAYER > npm; // new player map
@@ -27,8 +30,8 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 							{
 								player.move('u');
 							}
-							// jump music
 							player.setCWS();
+							returned = "ladder";
 						}
 					}
 					else
@@ -39,7 +42,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 							{
 								player.move('u');
 							}
-							// jump music
+							returned = "jump";
 							player.setCWS();
 						}
 					}
@@ -60,7 +63,7 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 					{
 						if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then play sound
 						{
-								// ladder music;
+							returned = "ladder";
 						}
 							player.move('d'); // move player
 							player.setCWS();
@@ -108,4 +111,5 @@ void control(PMAP* players, std::string selected, std::vector<std::vector<block>
 			players->add(selected, player);
 		}
 	}
+	return returned;
 }
