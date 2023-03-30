@@ -98,7 +98,7 @@ int game() // Game
 	clog("INFO", "Game started");
 	while (true) // main program loop
 	{
-		if (selected != "")
+		if (!players.get().empty())
 		{
 			selectedhp = players.find(selected).getHP();
 		}
