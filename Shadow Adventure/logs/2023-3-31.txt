@@ -28,3 +28,28 @@
 [2:14:37] [INFO]: Spawn entity: player0
 [2:14:39] [INFO]: Spawn entity: player1
 [2:14:43] [INFO]: Kill entity: player0
+[2:15:51] [INFO]: Game started
+[2:15:51] [INFO]: Spawn entity: player0
+[2:15:54] [INFO]: Spawn entity: player1
+[2:15:54] [INFO]: Kill entity: player1
+[2:16:0] [INFO]: Game started
+[2:16:1] [INFO]: Spawn entity: player0
+[2:16:2] [INFO]: Kill entity: player0
+[2:16:3] [INFO]: Spawn entity: player0
+[2:16:3] [INFO]: Kill entity: player0
+[2:16:4] [INFO]: Spawn entity: player0
+[2:16:6] [INFO]: Spawn entity: player1
+[2:16:7] [INFO]: Spawn entity: player2
+[2:16:13] [INFO]: Kill entity: player0
+[2:17:29] [INFO]: Game started
+[2:17:29] [INFO]: Spawn entity: player0
+[2:17:31] [INFO]: Spawn entity: player1
+[2:17:33] [INFO]: Kill entity: player1
+[2:19:16] [INFO]: Game started
+[2:19:16] [INFO]: Spawn entity: player0
+[2:19:19] [INFO]: Spawn entity: player1
+[2:19:19] [INFO]: Kill entity: player1
+[2:19:23] [INFO]: Spawn entity: player1
+[2:19:24] [INFO]: Spawn entity: player2
+[2:19:27] [INFO]: Kill entity: player1
+[2:19:29] [INFO]: Kill entity: player0

@@ -227,7 +227,7 @@ int game() // Game
 		s1 = listenerD(&players, &mobs, std::ref(board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 
-		if (players.get().size() != 0)
+		if ((players.get().size() != 0) && selected != "")
 		{
 			selectedhp = players.find(selected).getHP();
 		}
