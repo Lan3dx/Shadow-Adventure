@@ -1,6 +1,6 @@
 #include "../../include/entities/mob.h"
 
-MOB::MOB(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, bool stdMobile, char Gt, cooldowns cd) // constructor
+MOB::MOB(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, bool stdMobile, char Gt, cooldowns cd, int chp) // constructor
 {
 	gravity = stdGravity; // gravity (t) (f) 
 	mobile = stdMobile; // can be moved
@@ -10,6 +10,7 @@ MOB::MOB(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGra
 	character = stdChar; // symbol
 	cooldown = cd;
 	std_COOLDOWN = cd;
+	HP = chp;
 }
 
 void MOB::spawn(std::vector<std::vector<block>>& board) // place entity on map
@@ -74,6 +75,10 @@ int MOB::getCWS() // get cooldown for (W) (S)
 int MOB::getCG() // get cooldown of gravity
 {
 	return cooldown.gravity;
+}
+int MOB::getHP()
+{
+	return HP;
 }
 
 void MOB::move(char type) // move entity on map
@@ -140,6 +145,10 @@ void MOB::setCG(int lcg) // set cooldown of gravity over
 void MOB::setCHAR(char ch) // set character of MOB
 {
 	character = ch;
+}
+void MOB::setHP(int chp)
+{
+	HP = chp;
 }
 
 bool MOB::voidUnder(std::vector<std::vector<block>>& board) // if MOB hit the floor

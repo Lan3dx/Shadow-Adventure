@@ -1,6 +1,6 @@
 #include "../../include/entities/player.h"
 
-PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
+PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd, int chp) // constructor
 {
 	gravity = stdGravity; // gravity (t) (f) 
 	GType = Gt; // gravity type (u,d,l,r)
@@ -10,6 +10,7 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	cooldown = cd;
 	std_COOLDOWN = cd;
 	bullets.set({});
+	HP = chp;
 }
 
 void PLAYER::spawn(std::vector<std::vector<block>> &board) // place entity on map
@@ -47,6 +48,10 @@ int PLAYER::getCWS() // get cooldown for (W) (S)
 int PLAYER::getCG() // get cooldown of gravity
 {
 	return cooldown.gravity;
+}
+int PLAYER::getHP()
+{
+	return HP;
 }
 
 void PLAYER::move(char type) // move entity on map
@@ -142,6 +147,10 @@ void PLAYER::setCG(int lcg) // set cooldown of gravity over
 void PLAYER::setCHAR(char ch) // set character of player
 {
 	character = ch;
+}
+void PLAYER::setHP(int chp)
+{
+	HP = chp;
 }
 
 bool PLAYER::voidUnder(std::vector<std::vector<block>>& board) // if player hit the floor

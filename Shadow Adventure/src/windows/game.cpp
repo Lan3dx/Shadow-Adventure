@@ -86,8 +86,8 @@ int game() // Game
 	//
 	//	Have fun ;D
 
-	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 5,10,5 });
-	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 5,10,5 });
+	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true, true, 'd', { 5,10,5 }, 10);
+	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 5,10,5 }, 10);
 	mobs.add("rock", mob1);
 	mobs.add("gun", mob2); // if name is "gun" then mob can shoot
 
@@ -150,7 +150,7 @@ int game() // Game
 					if (!players.get().contains("player" + std::to_string(b)))
 					{
 						clog("INFO", "Spawn entity: player" + std::to_string(b));
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 });
+						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 }, 10);
 						players.add("player" + std::to_string(b), player);
 						break;
 					}

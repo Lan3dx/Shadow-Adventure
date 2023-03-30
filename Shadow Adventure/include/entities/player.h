@@ -16,6 +16,7 @@ private:
 	};
 	char GType;
 	bool gravity; // gravity
+	int HP; // health point
 	std::vector<int> x; // pos 
 	std::vector<int> y; // pos
 	char character; // symbol for entity
@@ -24,7 +25,7 @@ private:
 	BMAP bullets;
 
 public:
-	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns); // constructor
+	PLAYER(std::vector<int>, std::vector<int>, char, bool, char, cooldowns, int); // constructor
 
 	void spawn(std::vector<std::vector<block>>&);// place entity on map
 	void kill(std::vector<std::vector<block>>&);// delete entity from map
@@ -35,6 +36,7 @@ public:
 	int getCAD(); // get cooldown for (A) (D)
 	int getCWS(); // get cooldown for (W) (S)
 	int getCG(); // get cooldown of gravity
+	int getHP(); // get health point
 
 	bool voidUnder(std::vector<std::vector<block>>&); // if the player hit the floor
 	bool collisions(std::vector<std::vector<block>>&, int); // if the player touched a solid block
@@ -55,6 +57,7 @@ public:
 	void setCWS(int); // set cooldown for (W) (S) !over
 	void setCG(int); // set cooldown of gravity !over
 	void setCHAR(char); // set character of player
+	void setHP(int); // set health point
 
 	char getGType(); // get gravity type
 
