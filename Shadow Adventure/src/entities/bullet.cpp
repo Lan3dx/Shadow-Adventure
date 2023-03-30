@@ -1,6 +1,6 @@
 #include "../../include/entities/bullet.h"
 
-BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd) // constructor
+BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd, int cdmg) // constructor
 {
 	gravity = stdGravity; // gravity
 	GType = Gt; // ggravity type
@@ -9,6 +9,7 @@ BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, coold
 	character = stdChar; // symbol
 	cooldown = cd;
 	std_COOLDOWN = cd;
+	damage = cdmg;
 }
 
 void BULLET::move(char type) // move entity on map
@@ -37,6 +38,10 @@ void BULLET::setCS(int lc) // set cooldown for gravity !over
 {
 	cooldown.CS = lc;
 }
+void BULLET::setDMG(int cdmg)
+{
+	damage = cdmg;
+}
 
 int BULLET::getX() { return x; } // get x
 int BULLET::getY() { return y; } // get y
@@ -48,6 +53,10 @@ int BULLET::getCG() // get cooldown for gravity
 int BULLET::getCS() // get cooldown for gravity
 {
 	return cooldown.CS;
+}
+int BULLET::getDMG()
+{
+	return damage;
 }
 
 bool BULLET::getGravity() { return gravity; } // get gravity (t) (f)

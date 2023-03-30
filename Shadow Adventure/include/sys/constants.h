@@ -6,5 +6,7 @@ static int SHOT_CD = 20; // cooldown for shot
 static int KEY_CD = 20; // cooldown for any key
 static int FPS_CD = 40; // cooldown for frame per second
 static int JUMP_HEIGHT = 3; // player jump height
+static int PLAYER_DMG = 5; // default player damage
+static int MOB_DMG = 10; // default mob damage
 struct block { char character; int durability; int color; }; // user's type point
 struct Corners { int left; int up; };

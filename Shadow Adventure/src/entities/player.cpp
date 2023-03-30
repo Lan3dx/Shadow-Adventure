@@ -94,12 +94,11 @@ void PLAYER::shoot(char type)
 {
 	if (type == 'r')
 	{
-		// shot music
 		for (int b = 0; b < MAX_AMMO; b++)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))
 			{
-				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 1,0 });
+				BULLET bullet(x[0], y[0] + 1, 'B', true, 'r', { 1,0 }, PLAYER_DMG);
 				bullets.add("bullet" + std::to_string(b), bullet);
 				break;
 			}
@@ -107,12 +106,11 @@ void PLAYER::shoot(char type)
 	}
 	else if (type == 'l')
 	{
-		// shot music
 		for (int b = 0; b < MAX_AMMO; b++)
 		{
 			if (!bullets.get().contains("bullet" + std::to_string(b)))
 			{
-				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 1,0 });
+				BULLET bullet(x[0], y[0] - 1, 'B', true, 'l', { 1,0 }, PLAYER_DMG);
 				bullets.add("bullet" + std::to_string(b), bullet);
 				break;
 			}

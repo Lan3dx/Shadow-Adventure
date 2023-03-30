@@ -18,11 +18,12 @@ private:
 	bool gravity; // gravity t/f
 	int x; // pos x
 	int y; // pos y
+	int damage; // damage points
 	cooldowns cooldown; // cooldown for bullet
 	cooldowns std_COOLDOWN;
 
 public:
-	BULLET(int, int, char, bool, char, cooldowns); // constructor
+	BULLET(int, int, char, bool, char, cooldowns, int); // constructor
 
 	void setX(int); // set x
 	void setY(int); // set y
@@ -32,12 +33,14 @@ public:
 	void setCG(int); // set cooldown for gravity ! overload
 	void setCS(); // set cooldown for shot
 	void setCS(int); // set cooldown for shot ! overload
+	void setDMG(int); // set damage points
 
 	int getX(); // get x
 	int getY(); // get y
 
 	int getCG(); // get cooldown for gravity
 	int getCS(); // get cooldown for shot
+	int getDMG(); // get damage points
 
 	bool getGravity(); // get gravity (t) (f)
 	bool touch(std::vector<std::vector<block>>&); // if the bullet hit the wall

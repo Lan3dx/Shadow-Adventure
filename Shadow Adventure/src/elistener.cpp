@@ -89,11 +89,18 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board) // 
 		{
 			if (board[entity.getX()[dot]][entity.getY()[dot]].character == 'B')
 			{
-				entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
-				entity.kill(std::ref(board)); // kill player
-				entity.move(entity.getGType()); // move player
-				entity.spawn(std::ref(board)); // spawn player
-				returned = "death";
+				if (entity.getHP() <= 0)
+				{
+					entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
+					entity.kill(std::ref(board)); // kill player
+					entity.move(entity.getGType()); // move player
+					entity.spawn(std::ref(board)); // spawn player
+					returned = "death";
+				}
+				else 
+				{
+					entity.setHP(entity.getHP() - 5);
+				}
 			}
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
