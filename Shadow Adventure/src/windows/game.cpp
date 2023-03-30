@@ -21,7 +21,15 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 		x1 = 1;
 		for (int x = corners.left; x < corners.left + 48 - 1; x++) // lines
 		{
-			line += map[y][x].character;
+			if ((x1 < 5 && map[y][x].character == '#') || (y1 < 5 && map[y][x].character == '#')) {
+				line += '"';
+			}
+			else if ((x1 > 43 && map[y][x].character == '#') || (y1 > 43 && map[y][x].character == '#')) {
+				line += '"';
+			}
+			else { 
+				line += map[y][x].character; 
+			}
 			line += " ";
 			if (y1 == 5 && x1 == 48 - 1) line += "W - jump";
 			if (y1 == 6 && x1 == 48 - 1) line += "S - down";
@@ -81,7 +89,7 @@ int game() // Game
 	MOB mob1(std::vector<int>{ 25, 26, 25, 26  }, std::vector<int>{ 6, 6, 5, 5 }, 'M', true,true, 'd', { 5,10,5 });
 	MOB mob2(std::vector<int>{ 20, 21, 20, 21  }, std::vector<int>{ 40, 40, 39, 39 }, 'O', true, true, 'd', { 5,10,5 });
 	mobs.add("rock", mob1);
-	mobs.add("gun", mob2);
+	mobs.add("gun", mob2); // if name is "gun" then mob can shoot
 
 	std::string s = "null";
 	std::string s1 = "null";
