@@ -63,7 +63,10 @@ std::string listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* m
 			entity.shoot('l');
 			*mob_shot_cd = 90;
 		}
-
+		if (entity.getHP() <= 0)
+		{
+			entity.kill(std::ref(board));
+		}
 		nmm.insert(std::make_pair(entityS.first, entity)); // add to new mobs map
 	}
 	mobs->set(nmm); // set old mob map
@@ -85,23 +88,14 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board) // 
 			}
 			returned = "boost";
 		}
-		for (int dot = 0; dot < entity.getX().size() || dot < entity.getY().size(); dot++) // check every player's element
+		if (entity.getHP() <= 0)
 		{
-			if (board[entity.getX()[dot]][entity.getY()[dot]].character == 'B')
-			{
-				if (entity.getHP() <= 0)
-				{
-					entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
-					entity.kill(std::ref(board)); // kill player
-					entity.move(entity.getGType()); // move player
-					entity.spawn(std::ref(board)); // spawn player
-					returned = "death";
-				}
-				else 
-				{
-					entity.setHP(entity.getHP() - 5);
-				}
-			}
+			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
+			entity.kill(std::ref(board)); // kill player
+			entity.move(entity.getGType()); // move player
+			entity.spawn(std::ref(board)); // spawn player
+			entity.setHP(10);
+			returned = "death";
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
 	}

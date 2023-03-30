@@ -110,6 +110,9 @@
     <ClInclude Include="include\sys\audiomgr.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\entities\sys\dlistener.h">
+      <Filter>Header Files\entities\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="src\sys\audiomgr.cpp">
       <Filter>Source Files\src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\sys\dlistener.cpp">
+      <Filter>Source Files\src\entities\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -175,6 +175,7 @@
     <ClInclude Include="include\entities\player.h" />
     <ClInclude Include="include\entities\sys\change.h" />
     <ClInclude Include="include\entities\sys\cooldowns_s.h" />
+    <ClInclude Include="include\entities\sys\dlistener.h" />
     <ClInclude Include="include\entities\sys\render.h" />
     <ClInclude Include="include\map.h" />
     <ClInclude Include="include\gravity.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="src\entities\player.cpp" />
     <ClCompile Include="src\entities\sys\change.cpp" />
     <ClCompile Include="src\entities\sys\cooldowns_s.cpp" />
+    <ClCompile Include="src\entities\sys\dlistener.cpp" />
     <ClCompile Include="src\entities\sys\render.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\gravity.cpp" />

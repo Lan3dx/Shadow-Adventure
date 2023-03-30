@@ -22,6 +22,7 @@
 #include "../gravity.h"
 #include "../corners.h"
 #include "../elistener.h"
+#include "../entities/sys/dlistener.h"
 #include "../entities/player.h"
 #include "../entities/bullet.h"
 #include "../entities/mob.h"

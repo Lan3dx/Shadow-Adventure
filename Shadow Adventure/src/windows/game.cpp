@@ -3,11 +3,11 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp) // output
 {
 	int y1 = 1;
 	int x1 = 1;
-	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << "                       " << std::endl; // selected player
+	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << " | HP: " << hp << "                       " << std::endl; // selected player
 	std::string s = "";
 	for (size_t i = 0; i < 48; i++)
 	{
@@ -66,6 +66,7 @@ int game() // Game
 	auto mob_shot_cd = 90;
 	auto avgfps = 0;
 	auto avgfpscount = 0;
+	auto selectedhp = 0;
 	double fps = 1; // frame per second
 	PMAP players; // players map
 	MMAP mobs; // mobs map
@@ -97,6 +98,11 @@ int game() // Game
 	clog("INFO", "Game started");
 	while (true) // main program loop
 	{
+		if (selected != "")
+		{
+			selectedhp = players.find(selected).getHP();
+		}
+
 		a = std::chrono::system_clock::now();
 		std::chrono::duration<double> work_time = a - b;
 
@@ -222,13 +228,16 @@ int game() // Game
 		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 
+		s1 = listenerD(&players, &mobs, std::ref(board));
+		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+
 		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd, &mob_shot_cd); // -1 cooldown for all entities
 
 		clear(); // clear screen
 
 		cornerListener(players,selected,board,&corners); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");
