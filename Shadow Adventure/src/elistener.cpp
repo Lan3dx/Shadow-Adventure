@@ -21,6 +21,11 @@ std::string listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* m
 	for (auto& entityS : entityMap)
 	{
 		MOB entity = entityS.second;
+		if (entity.getHP() <= 0)
+		{
+			entity.kill(std::ref(board));
+			continue;
+		}
 		if (entity.getMobile())
 		{
 			for (int dot = 0; dot < entity.getY().size(); dot++)
