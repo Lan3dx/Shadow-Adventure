@@ -1,44 +1,38 @@
 #include "../../../include/entities/sys/dlistener.h"
 
-int getDamage(int X, int Y, PMAP* players, MMAP* mobs, std::string type)
+int getDamage(int X, int Y, PMAP* players, MMAP* mobs)
 {
-	if (type == "player")
+	auto entityMap = players->get();
+	for (auto& entityS : entityMap)
 	{
-		auto entityMap = players->get();
-		for (auto& entityS : entityMap)
+		PLAYER entity = entityS.second;
+
+		BMAP ebulletMap = entity.getBullets();
+		auto bullets = ebulletMap.get();
+
+		for (auto& entityB : bullets)
 		{
-			PLAYER entity = entityS.second;
-
-			BMAP ebulletMap = entity.getBullets();
-			auto bullets = ebulletMap.get();
-
-			for (auto& entityB : bullets)
+			BULLET bullet = entityB.second;
+			if (Y == bullet.getY() && X == bullet.getX())
 			{
-				BULLET bullet = entityB.second;
-				if (Y == bullet.getY() && X == bullet.getX())
-				{
-					return bullet.getDMG();
-				}
+				return bullet.getDMG();
 			}
 		}
 	}
-	else if (type == "mob") 
+	auto entityMap1 = mobs->get();
+	for (auto& entityS : entityMap1)
 	{
-		auto entityMap = mobs->get();
-		for (auto& entityS : entityMap)
+		MOB entity1 = entityS.second;
+
+		BMAP ebulletMap = entity1.getBullets();
+		auto bullets1 = ebulletMap.get();
+
+		for (auto& entityB1 : bullets1)
 		{
-			MOB entity = entityS.second;
-
-			BMAP ebulletMap = entity.getBullets();
-			auto bullets = ebulletMap.get();
-
-			for (auto& entityB : bullets)
+			BULLET bullet1 = entityB1.second;
+			if (X == bullet1.getY() && Y == bullet1.getX())
 			{
-				BULLET bullet = entityB.second;
-				if (X == bullet.getY() && Y == bullet.getX())
-				{
-					return bullet.getDMG();
-				}
+				return bullet1.getDMG();
 			}
 		}
 	}
@@ -59,8 +53,7 @@ std::string listenerD(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>
 		{
 			if (board[entity.getX()[dot]][entity.getY()[dot]].character == 'B')
 			{
-				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs, "player"));
-				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs, "mob"));
+				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs));
 			}
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add player to new players map
@@ -77,8 +70,7 @@ std::string listenerD(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>
 		{
 			if (board[entity.getX()[dot]][entity.getY()[dot]].character == 'B')
 			{
-				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs, "player"));
-				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs, "mob"));
+				entity.setHP(entity.getHP() - getDamage(entity.getX()[dot], entity.getY()[dot], players, mobs));
 			}
 		}
 		nmm.insert(std::make_pair(entityS1.first, entity)); // add player to new mobs map
