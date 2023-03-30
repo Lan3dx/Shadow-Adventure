@@ -98,11 +98,6 @@ int game() // Game
 	clog("INFO", "Game started");
 	while (true) // main program loop
 	{
-		if (!players.get().empty())
-		{
-			selectedhp = players.find(selected).getHP();
-		}
-
 		a = std::chrono::system_clock::now();
 		std::chrono::duration<double> work_time = a - b;
 
@@ -158,6 +153,7 @@ int game() // Game
 						clog("INFO", "Spawn entity: player" + std::to_string(b));
 						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 }, 10);
 						players.add("player" + std::to_string(b), player);
+						change(&players, &selected);
 						break;
 					}
 				}
@@ -230,6 +226,11 @@ int game() // Game
 
 		s1 = listenerD(&players, &mobs, std::ref(board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+
+		if (players.get().size() != 0)
+		{
+			selectedhp = players.find(selected).getHP();
+		}
 
 		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd, &mob_shot_cd); // -1 cooldown for all entities
 
