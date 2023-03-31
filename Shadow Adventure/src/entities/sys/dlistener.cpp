@@ -2,24 +2,36 @@
 
 int getDamage(int X, int Y, PMAP* players, MMAP* mobs)
 {
+	int returned = 0;
+
+	// player
 	auto entityMap = players->get();
+	std::map < std::string, PLAYER > npm = {}; // new player map
 	for (auto& entityS : entityMap)
 	{
 		PLAYER entity = entityS.second;
-
 		BMAP ebulletMap = entity.getBullets();
 		auto bullets = ebulletMap.get();
 
+		std::map < std::string, BULLET > nbm = {}; // new bullet map
 		for (auto& entityB : bullets)
 		{
 			BULLET bullet = entityB.second;
 			if (Y == bullet.getY() && X == bullet.getX())
 			{
-				return bullet.getDMG();
+				returned = bullet.getDMG();
+				continue;
 			}
+			nbm.insert(std::make_pair(entityB.first, bullet)); // add bullet to new bullets map
 		}
+		entity.setBullets(nbm);
+		npm.insert(std::make_pair(entityS.first, entity)); // add player to new players map
 	}
+	players->set(npm);
+
+	// mob
 	auto entityMap1 = mobs->get();
+	std::map < std::string, MOB > nmm = {}; // new mob map
 	for (auto& entityS : entityMap1)
 	{
 		MOB entity1 = entityS.second;
@@ -27,16 +39,23 @@ int getDamage(int X, int Y, PMAP* players, MMAP* mobs)
 		BMAP ebulletMap = entity1.getBullets();
 		auto bullets1 = ebulletMap.get();
 
+		std::map < std::string, BULLET > nbm1 = {}; // new bullet map
 		for (auto& entityB1 : bullets1)
 		{
 			BULLET bullet1 = entityB1.second;
 			if (X == bullet1.getY() && Y == bullet1.getX())
 			{
-				return bullet1.getDMG();
+				returned = bullet1.getDMG();
+				continue;
 			}
+			nbm1.insert(std::make_pair(entityB1.first, bullet1)); // add bullet to new bullets map
 		}
+		entity1.setBullets(nbm1);
+		nmm.insert(std::make_pair(entityS.first, entity1));
 	}
-	return 0;
+	mobs->set(nmm);
+
+	return returned;
 }
 
 std::string listenerD(PMAP* players, MMAP* mobs, std::vector<std::vector<block>>& board)

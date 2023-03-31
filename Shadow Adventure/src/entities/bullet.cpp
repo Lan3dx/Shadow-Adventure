@@ -3,7 +3,7 @@
 BULLET::BULLET(int stdX, int stdY, char stdChar, bool stdGravity, char Gt, cooldowns cd, int cdmg) // constructor
 {
 	gravity = stdGravity; // gravity
-	GType = Gt; // ggravity type
+	GType = Gt; // gravity type
 	x = stdX; // pos x
 	y = stdY; // pos y
 	character = stdChar; // symbol
