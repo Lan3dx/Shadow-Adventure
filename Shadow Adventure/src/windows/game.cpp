@@ -84,6 +84,7 @@ int game() // Game
 	//	5 arg - mobile (t/f)
 	//	6 arg - gravity type (up(u)/down(d)/left(l)/right(r))
 	//	7 arg - cooldowns (AD keys cd, WS keys cd, gravity cd)
+	//  8 ark - health points
 	//
 	//	Have fun ;D
 
