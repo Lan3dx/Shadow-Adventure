@@ -16,21 +16,23 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 	std::cout << s << '\n';
 	for (int y = corners.up; y < corners.up + 48 - 1; y++) // columns
 	{
-		std::cout << ' ';
 		std::string line;
 		x1 = 1;
+		int sl = 0;
 		for (int x = corners.left; x < corners.left + 48 - 1; x++) // lines
 		{
-			if ((x1 < 5 && map[y][x].character == '#') || (y1 < 5 && map[y][x].character == '#')) {
+			if ((x1 < 5 && map[y][x].character == '#') || (y1 < 5 && map[y][x].character == '#')) 
+			{
 				line += '"';
 			}
-			else if ((x1 > 43 && map[y][x].character == '#') || (y1 > 43 && map[y][x].character == '#')) {
+			else if ((x1 > 43 && map[y][x].character == '#') || (y1 > 43 && map[y][x].character == '#')) 
+			{
 				line += '"';
 			}
-			else { 
+			else 
+			{ 
 				line += map[y][x].character; 
 			}
-			line += " ";
 			if (y1 == 5 && x1 == 48 - 1) line += "W - jump";
 			if (y1 == 6 && x1 == 48 - 1) line += "S - down";
 			if (y1 == 7 && x1 == 48 - 1) line += "A - left";
@@ -41,15 +43,38 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 			if (y1 == 13 && x1 == 48 - 1) line += "Q/E - shoot";
 			if (y1 == 15 && x1 == 48 - 1) line += "ESC - exit";
 			x1 += 1;
-			for (size_t g = 0; g < animations.size(); g ++)
+			if (animations.size() != 0)
 			{
-				if (animations[g].X == y)
+				for (size_t g = 0; g < animations.size(); g++)
 				{
-					if (animations[g].Y == x)
+					if (animations[g].X == y)
 					{
-						line += animations[g].Text;
+						if (animations[g].Y == x-sl)
+						{
+							if (sl < animations[g].Text.length())
+							{
+								line += animations[g].Text[sl];
+								sl += 1;
+							}
+							else
+							{
+								line += " ";
+							}
+						}
+						else
+						{
+							line += " ";
+						}
+					}
+					else
+					{
+						line += " ";
 					}
 				}
+			}
+			else
+			{
+				line += " ";
 			}
 		}
 		y1 += 1;
