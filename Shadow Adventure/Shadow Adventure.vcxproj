@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\alistener.h" />
     <ClInclude Include="include\control.h" />
     <ClInclude Include="include\corners.h" />
     <ClInclude Include="include\elistener.h" />
@@ -195,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\alistener.cpp" />
     <ClCompile Include="src\control.cpp" />
     <ClCompile Include="src\corners.cpp" />
     <ClCompile Include="src\elistener.cpp" />

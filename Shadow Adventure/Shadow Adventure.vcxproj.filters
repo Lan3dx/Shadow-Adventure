@@ -113,6 +113,9 @@
     <ClInclude Include="include\entities\sys\dlistener.h">
       <Filter>Header Files\entities\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\alistener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -183,6 +186,9 @@
     </ClCompile>
     <ClCompile Include="src\entities\sys\dlistener.cpp">
       <Filter>Source Files\src\entities\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\alistener.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

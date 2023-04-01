@@ -30,6 +30,7 @@
 #include "../entities/sys/cooldowns_s.h"
 #include "../entities/sys/change.h"
 #include "../sys/audiomgr.h"
+#include "../alistener.h"
 
 // third-party libs
 #include <fmod.hpp>

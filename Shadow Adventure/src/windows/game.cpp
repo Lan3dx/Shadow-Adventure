@@ -3,7 +3,7 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations) // output
 {
 	int y1 = 1;
 	int x1 = 1;
@@ -41,6 +41,16 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 			if (y1 == 13 && x1 == 48 - 1) line += "Q/E - shoot";
 			if (y1 == 15 && x1 == 48 - 1) line += "ESC - exit";
 			x1 += 1;
+			for (size_t g = 0; g < animations.size(); g ++)
+			{
+				if (animations[g].X == y)
+				{
+					if (animations[g].Y == x)
+					{
+						line += animations[g].Text;
+					}
+				}
+			}
 		}
 		y1 += 1;
 		std::cout << line;
@@ -70,6 +80,7 @@ int game() // Game
 	double fps = 1; // frame per second
 	PMAP players; // players map
 	MMAP mobs; // mobs map
+	std::vector<animation> animations; // all animations
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5 };
@@ -225,8 +236,10 @@ int game() // Game
 		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 
-		s1 = listenerD(&players, &mobs, std::ref(board));
+		s1 = listenerD(&players, &mobs, std::ref(board), std::ref(animations));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+
+		listenerA(std::ref(animations));
 
 		if ((players.get().size() != 0) && selected != "")
 		{
@@ -239,7 +252,7 @@ int game() // Game
 
 		cornerListener(players,selected,board,&corners); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners, selectedhp); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp, animations); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");

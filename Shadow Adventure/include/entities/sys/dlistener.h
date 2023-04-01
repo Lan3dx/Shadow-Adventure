@@ -7,4 +7,4 @@
 #include "../mob.h"
 #include "../../map.h"
 
-std::string listenerD(PMAP*, MMAP*, std::vector<std::vector<block>>&);
+std::string listenerD(PMAP*, MMAP*, std::vector<std::vector<block>>&, std::vector<animation>&);
