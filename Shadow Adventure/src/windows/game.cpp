@@ -18,7 +18,10 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 	{
 		std::string line;
 		x1 = 1;
-		int sl = 0;
+		for (size_t g = 0; g < animations.size(); g++)
+		{
+			animations[g].counter = 0;
+		}
 		for (int x = corners.left; x < corners.left + 48 - 1; x++) // lines
 		{
 			if ((x1 < 5 && map[y][x].character == '#') || (y1 < 5 && map[y][x].character == '#')) 
@@ -49,12 +52,13 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 				{
 					if (animations[g].X == y)
 					{
-						if (animations[g].Y == x-sl)
+						if (animations[g].Y == x-animations[g].counter)
 						{
-							if (sl < animations[g].Text.length())
+							if (animations[g].counter < animations[g].Text.length())
 							{
-								line += animations[g].Text[sl];
-								sl += 1;
+								line += animations[g].Text[animations[g].counter];
+								animations[g].counter += 1;
+								continue;
 							}
 							else
 							{
