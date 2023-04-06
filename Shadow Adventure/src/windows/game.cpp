@@ -51,15 +51,40 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 			{
 				for (size_t g = 0; g < animations.size(); g++)
 				{
-					if (animations[g].X == y)
+					bool iscord = false;
+					for (size_t v = 0; v < animations.size(); v++)
 					{
-						if (animations[g].Y == x-animations[g].counter)
+						if (v != g)
 						{
-							if (animations[g].counter < animations[g].Text.length())
+							if (animations[v].X == animations[g].X)
 							{
-								line += animations[g].Text[animations[g].counter];
-								animations[g].counter += 1;
-								continue;
+								if (animations[v].Y == animations[g].Y)
+								{
+									iscord = true;
+									break;
+								}
+							}
+						}
+					}
+					if (!iscord)
+					{
+						if (animations[g].X == y)
+						{
+							if (animations[g].Y == x - animations[g].counter)
+							{
+								if (animations[g].counter < animations[g].Text.length())
+								{
+									line += animations[g].Text[animations[g].counter];
+									animations[g].counter += 1;
+									continue;
+								}
+								else
+								{
+									if (!isspaced) {
+										line += " ";
+										isspaced = true;
+									}
+								}
 							}
 							else
 							{
