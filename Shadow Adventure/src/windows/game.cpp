@@ -13,15 +13,15 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 	{
 		s += ". ";
 	}
+	for (size_t g = 0; g < animations.size(); g++)
+	{
+		animations[g].counter = 0;
+	}
 	std::cout << s << '\n';
 	for (int y = corners.up; y < corners.up + 48 - 1; y++) // columns
 	{
 		std::string line;
 		x1 = 1;
-		for (size_t g = 0; g < animations.size(); g++)
-		{
-			animations[g].counter = 0;
-		}
 		for (int x = corners.left; x < corners.left + 48 - 1; x++) // lines
 		{
 			if ((x1 < 5 && map[y][x].character == '#') || (y1 < 5 && map[y][x].character == '#')) 
@@ -281,7 +281,7 @@ int game() // Game
 
 		cornerListener(players,selected,board,&corners); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners, selectedhp, animations); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations)); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");
