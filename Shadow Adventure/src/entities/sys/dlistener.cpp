@@ -22,7 +22,7 @@ int getDamage(int X, int Y, PMAP* players, MMAP* mobs, std::vector<animation> &a
 				returned = bullet.getDMG();
 				std::string s = "-";
 				s += std::to_string(returned);
-				animation a = { X - 2, Y - 1, 50, s, 0 };
+				animation a = { bullet.getX() - 2, bullet.getY() - 1, 50, s, 0 };
 				animations.push_back(a);
 				continue;
 			}
@@ -52,7 +52,7 @@ int getDamage(int X, int Y, PMAP* players, MMAP* mobs, std::vector<animation> &a
 				returned = bullet1.getDMG();
 				std::string s = "-";
 				s += std::to_string(returned);
-				animation a = { X - 2, Y - 1, 50, s, 0 };
+				animation a = { bullet1.getY() - 2, bullet1.getX() - 1, 50, s, 0 };
 				animations.push_back(a);
 				continue;
 			}

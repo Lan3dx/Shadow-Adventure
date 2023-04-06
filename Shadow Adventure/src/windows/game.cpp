@@ -46,6 +46,7 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 			if (y1 == 13 && x1 == 48 - 1) line += "Q/E - shoot";
 			if (y1 == 15 && x1 == 48 - 1) line += "ESC - exit";
 			x1 += 1;
+			bool isspaced = false;
 			if (animations.size() != 0)
 			{
 				for (size_t g = 0; g < animations.size(); g++)
@@ -62,23 +63,35 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 							}
 							else
 							{
-								line += " ";
+								if (!isspaced) {
+									line += " ";
+									isspaced = true;
+								}
 							}
 						}
 						else
 						{
-							line += " ";
+							if (!isspaced) {
+								line += " ";
+								isspaced = true;
+							}
 						}
 					}
 					else
 					{
-						line += " ";
+						if (!isspaced) {
+							line += " ";
+							isspaced = true;
+						}
 					}
 				}
 			}
 			else
 			{
-				line += " ";
+				if (!isspaced) {
+					line += " ";
+					isspaced = true;
+				}
 			}
 		}
 		y1 += 1;
