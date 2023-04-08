@@ -43,13 +43,13 @@ void render(std::vector<std::vector<char>> board, int x, int y, char tool, float
 	}
 	std::cout << str << '\n';
 	std::cout << "        X: " << x << " | Y: " << y << " | tool: " << tool << " | FPS: " << round(int(1.0f / fps)) << " | Use your mouse - middle mouse button           " << '\n';
-	std::cout << "  (#) - wall   (|) - ladder   (-) - scaffold   (+) - stairs   (S) -  booster   (F) - wall   (D) - death" << '\n';
+	std::cout << "  (#) - wall   (|) - ladder   (-) - scaffold   (+) - stairs   (S) -  booster   (W) - water   (D) - death" << '\n';
 	std::cout << "  [ENTER] - save map  [TAB] - other maps  [ARROWS] - move camera  [R] - random gen  [ESC] - exit" << '\n';
 }
 
 char toolchanger(char ctool, char type) // change the active character to draw
 {
-	std::vector<char> tools = { '#','|','-','+','S','F','D',' ' };
+	std::vector<char> tools = { '#','|','-','+','S','W','D',' ' };
 	char tool = ctool;
 	for (size_t i = 0; i < tools.size(); i++)
 	{
