@@ -211,6 +211,14 @@ bool PLAYER::limit(std::vector<std::vector<block>>& board) // if the player is i
 	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'D') return true;
 	return false;
 }
+bool PLAYER::inwater(std::vector<std::vector<block>>& board)
+{
+	for (int dot = 0; dot < x.size() || dot < y.size(); dot++) // check every player's element
+	{
+		if (board[x[dot]][y[dot] + (uint64_t)1].character == 'W') return true;
+	}
+	return false;
+}
 bool PLAYER::onspeedbooster(std::vector<std::vector<block>>& board) // if player stay on speed booster element
 {
 	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S') return true;

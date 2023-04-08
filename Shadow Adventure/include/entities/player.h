@@ -44,6 +44,7 @@ public:
 	bool ladder(std::vector<std::vector<block>>&); // if player on ladder
 	bool limit(std::vector<std::vector<block>>&); // if the player is in prohibited territory
 	bool onspeedbooster(std::vector<std::vector<block>>&); // if player on speed booster element
+	bool inwater(std::vector<std::vector<block>>&); // if player in water block
 	bool onstairs(std::vector<std::vector<block>>&, int); // if player on stairs
 
 	void setPos(std::vector<int>, std::vector<int>); // set player pos
