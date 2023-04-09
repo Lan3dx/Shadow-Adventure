@@ -26,6 +26,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					{
 						pframe->y -= 1;
 						pframe->ischanged = true;
+						corners->lt = 50;
 					}
 					if (player.inwater(std::ref(g_board)))
 					{
@@ -71,6 +72,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 				{
 					pframe->y += 1;
 					pframe->ischanged = true;
+					corners->lt = 50;
 				}
 				if (player.limit(std::ref(board))) // if the player is in prohibited territory
 				{
@@ -80,6 +82,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					player.spawn(std::ref(board)); // spawn player
 					pframe->x = 5;
 					pframe->y = 40;
+					pframe->ischanged = true;
 					corners->lt = 50;
 				}
 				else
@@ -104,6 +107,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					{
 						pframe->x -= 1;
 						pframe->ischanged = true;
+						corners->lt = 50;
 					}
 					if (player.onstairs(std::ref(board), 75))
 					{

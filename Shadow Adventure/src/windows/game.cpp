@@ -151,7 +151,7 @@ int game() // Game
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5, 50 };
-	PlayerFrame pframe{ 0, 0, 4, true };
+	PlayerFrame pframe{ 0, 0, 6, true };
 	snds->play("main");
 	snds->update();
 
