@@ -305,8 +305,8 @@ int game() // Game
 		s1 = listenerM(&mobs, std::ref(board), &mob_shot_cd);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 
-		s1 = gravitationP(&players, std::ref(board), std::ref(g_board));
-		if (s1 == "death") { snds->play("death"); s1 = "null"; pframe.x = 5; pframe.y = 40; }
+		s1 = gravitationP(&players, std::ref(board), std::ref(g_board), selected, &pframe);
+		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 		s1 = gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board));

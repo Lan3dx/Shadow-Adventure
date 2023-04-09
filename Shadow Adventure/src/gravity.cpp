@@ -136,7 +136,7 @@ std::string gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std
 	mobs->set(nmm); // set old mob map
 	return returned;
 }
-std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board) // gravity func for player
+std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, std::string selected, PlayerFrame* pframe) // gravity func for player
 {
 	std::string returned = "null";
 	auto entityMap = players->get(); // old players map
@@ -146,6 +146,11 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 		PLAYER entity = entityS.second;
 		if (entity.limit(board)) // if the player is in prohibited territory
 		{
+			if (entityS.first == selected)
+			{
+				pframe->y = 40;
+				pframe->x = 5;
+			}
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
 			entity.kill(std::ref(board)); // kill player
 			returned = "death";
