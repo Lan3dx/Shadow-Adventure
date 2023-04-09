@@ -12,6 +12,7 @@ Sounds::Sounds() {
   system->createSound(music::MAIN, FMOD_DEFAULT, 0, &main);
   system->createSound(music::MENU, FMOD_DEFAULT, 0, &menu);
   system->createSound(music::SHOT, FMOD_DEFAULT, 0, &shot);
+  system->createSound(music::WATER, FMOD_DEFAULT, 0, &water);
   boost->setMode(FMOD_LOOP_OFF);
   change->setMode(FMOD_LOOP_OFF);
   death->setMode(FMOD_LOOP_OFF);
@@ -19,6 +20,7 @@ Sounds::Sounds() {
   ladder->setMode(FMOD_LOOP_OFF);
   main->setMode(FMOD_LOOP_OFF);
   shot->setMode(FMOD_LOOP_OFF);
+  water->setMode(FMOD_LOOP_OFF);
 }
 
 Sounds::~Sounds() {
@@ -30,6 +32,7 @@ Sounds::~Sounds() {
   this->main->release();
   this->menu->release();
   this->shot->release();
+  this->water->release();
   this->system->release();
   this->system->close();
 }
@@ -61,6 +64,9 @@ void Sounds::play(std::string name) {
   }
   else if (name == "menu") {
     system->playSound(this->menu, 0, false, &this->channel);
+  }
+  else if (name == "water") {
+    system->playSound(this->water, 0, false, &this->channel);
   }
   else {
     return;

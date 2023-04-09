@@ -13,4 +13,5 @@ namespace music
 	static const char*	 LADDER		= "resources/music/LADDER.wav";
 	static const char*   CHANGE		= "resources/music/CHANGE.wav";
 	static const char*		 MENU		= "resources/music/MENU.wav";
+	static const char*    WATER   = "resources/music/WATER.wav";
 }	

@@ -352,6 +352,10 @@ int game() // Game
 			snds->play("death");
 			s = "null";
 		}
+		else if (s == "water") {
+			snds->play("water");
+			s = "null";
+		}
 
 		snds->update();
 	}

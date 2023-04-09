@@ -6,7 +6,7 @@ class Sounds {
 public:
   FMOD::System* system;
   FMOD::Channel* channel;
-  FMOD::Sound* death, * jump, * main, * shot, * boost, * ladder, * change, * menu;
+  FMOD::Sound* death, * jump, * main, * shot, * boost, * ladder, * change, * menu, * water;
 
 public:
   Sounds();

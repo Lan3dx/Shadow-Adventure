@@ -93,6 +93,10 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 						{
 							returned = "ladder";
 						}
+						else if (player.inwater(std::ref(g_board))) // if the player is on the ladder, then play sound
+						{
+							returned = "water";
+						}
 						player.move('d'); // move player
 						player.setCWS();
 					}
