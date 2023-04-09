@@ -156,6 +156,7 @@ bool PLAYER::voidUnder(std::vector<std::vector<block>>& board) // if player hit 
 	if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
 		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '|' ||
 		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '-' ||
+		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'W' ||
 		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
 		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
 		board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'M' ||
@@ -169,7 +170,6 @@ bool PLAYER::collisions(std::vector<std::vector<block>>& board, int type) // if 
 	if (type == 80) 
 	{
 		if (board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '#' ||
-			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'F' ||
 			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '+' ||
 			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == 'S' ||
 			board[x[x.size() - 1] + (uint64_t)1][y[y.size() - 1]].character == '<' ||
@@ -180,7 +180,6 @@ bool PLAYER::collisions(std::vector<std::vector<block>>& board, int type) // if 
 	{
 		if (type == 77) if (board[x[dot]][y[dot] + (uint64_t)1].character == '#' ||
 							board[x[dot]][y[dot] + (uint64_t)1].character == 'D' ||
-							board[x[dot]][y[dot] + (uint64_t)1].character == 'F' ||
 							board[x[dot]][y[dot] + (uint64_t)1].character == 'S' ||
 							board[x[dot]][y[dot] + (uint64_t)1].character == '<' ||
 							board[x[dot]][y[dot] + (uint64_t)1].character == '>' ||
@@ -188,7 +187,6 @@ bool PLAYER::collisions(std::vector<std::vector<block>>& board, int type) // if 
 
 		if (type == 75) if (board[x[dot]][y[dot] - (uint64_t)1].character == '#' ||
 							board[x[dot]][y[dot] - (uint64_t)1].character == 'D' ||
-							board[x[dot]][y[dot] - (uint64_t)1].character == 'F' ||
 							board[x[dot]][y[dot] - (uint64_t)1].character == 'S' ||
 							board[x[dot]][y[dot] - (uint64_t)1].character == '<' ||
 							board[x[dot]][y[dot] - (uint64_t)1].character == '>' ||

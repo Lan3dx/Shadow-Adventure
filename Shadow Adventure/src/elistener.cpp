@@ -85,10 +85,6 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board) // 
 	for (auto& entityS : entityMap)
 	{
 		PLAYER entity = entityS.second;	
-		if (entity.inwater(board))
-		{
-			entity.move('u');
-		}
 		if (entity.onspeedbooster(board))
 		{
 			for (int i = 0; i < 7; i++)

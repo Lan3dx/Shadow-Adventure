@@ -17,7 +17,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 		{
 			player.kill(std::ref(board)); // kill a character on the map
 
-			if (key == 72) // up (jump)
+			if (key == 72) // up
 			{
 				player.setCHAR('^');
 				if (player.voidUnder(std::ref(board))) // if under player void
@@ -27,7 +27,16 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 						pframe->y -= 1;
 						pframe->ischanged = true;
 					}
-					if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
+					if (player.inwater(std::ref(g_board)))
+					{
+						if (!(player.getCWS() > 4))
+						{
+							player.move('u');
+						}
+						player.setCWS();
+						returned = "water";
+					}
+					else if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
 						{
@@ -66,6 +75,8 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					player.kill(std::ref(board)); // kill player
 					player.move(player.getGType()); // move player
 					player.spawn(std::ref(board)); // spawn player
+					pframe->x = 5;
+					pframe->y = 40;
 				}
 				else
 				{
@@ -75,8 +86,8 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 						{
 							returned = "ladder";
 						}
-							player.move('d'); // move player
-							player.setCWS();
+						player.move('d'); // move player
+						player.setCWS();
 					}
 				}
 			}
