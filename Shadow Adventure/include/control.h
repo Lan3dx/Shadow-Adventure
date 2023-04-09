@@ -10,4 +10,4 @@
 #include "entities/mob.h"
 #include "map.h"
 
-std::string control(PMAP*, std::string, std::vector<std::vector<block>>&, std::vector<std::vector<block>>&, int, PlayerFrame*);
+std::string control(PMAP*, std::string, std::vector<std::vector<block>>&, std::vector<std::vector<block>>&, int, PlayerFrame*, Corners*);

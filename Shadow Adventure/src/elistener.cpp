@@ -77,7 +77,7 @@ std::string listenerM(MMAP* mobs, std::vector<std::vector<block>>& board, int* m
 	mobs->set(nmm); // set old mob map
 	return returned;
 }
-std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board, std::string selected, PlayerFrame* pframe) // listener func for player
+std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board, std::string selected, PlayerFrame* pframe, Corners* corners) // listener func for player
 {
 	std::string returned = "null";
 	auto entityMap = players->get(); // old players map
@@ -99,6 +99,8 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board, std
 			{
 				pframe->x = 5;
 				pframe->y = 40;
+				pframe->ischanged = true;
+				corners->lt = 50;
 			}
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
 			entity.kill(std::ref(board)); // kill player

@@ -6,7 +6,11 @@ void cornerListener(PMAP players, std::string selected, std::vector<std::vector<
   {
     if (pframe->ischanged)
     {
-      pframe->ischanged = false;
+      corners->lt -= 1;
+      if (corners->lt <= 0)
+      {
+        pframe->ischanged = false;
+      }
 
       PLAYER player = players.find(selected);
 

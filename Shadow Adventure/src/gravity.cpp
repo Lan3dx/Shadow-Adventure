@@ -136,7 +136,7 @@ std::string gravitationM(MMAP* mobs, std::vector<std::vector<block>>& board, std
 	mobs->set(nmm); // set old mob map
 	return returned;
 }
-std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, std::string selected, PlayerFrame* pframe) // gravity func for player
+std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, std::string selected, PlayerFrame* pframe, Corners* corners) // gravity func for player
 {
 	std::string returned = "null";
 	auto entityMap = players->get(); // old players map
@@ -150,6 +150,8 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 			{
 				pframe->y = 40;
 				pframe->x = 5;
+				pframe->ischanged = true;
+				corners->lt = 50;
 			}
 			entity.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change coords player
 			entity.kill(std::ref(board)); // kill player

@@ -3,7 +3,7 @@
 #include "../include/sys/includes.h"
 #include "../include/control.h"
 
-std::string control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key, PlayerFrame* pframe) // control func for selected player
+std::string control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key, PlayerFrame* pframe, Corners* corners) // control func for selected player
 {
 	std::string returned = "null";
 
@@ -80,6 +80,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					player.spawn(std::ref(board)); // spawn player
 					pframe->x = 5;
 					pframe->y = 40;
+					corners->lt = 50;
 				}
 				else
 				{

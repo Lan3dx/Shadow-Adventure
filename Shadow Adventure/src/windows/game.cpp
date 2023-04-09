@@ -150,7 +150,7 @@ int game() // Game
 	std::vector<animation> animations; // all animations
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
-	Corners corners{ 5, 5 };
+	Corners corners{ 5, 5, 50 };
 	PlayerFrame pframe{ 0, 0, 4, true };
 	snds->play("main");
 	snds->update();
@@ -208,19 +208,19 @@ int game() // Game
 		}
 		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 72, &pframe);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 72, &pframe, &corners);
 		}
 		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
 		{
-			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75, &pframe);
+			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75, &pframe, &corners);
 		}
 		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 80, &pframe);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 80, &pframe, &corners);
 		}
 		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
 		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 77, &pframe);
+			control(&players, selected, std::ref(board), std::ref(g_board), 77, &pframe, &corners);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
@@ -235,6 +235,8 @@ int game() // Game
 						players.add("player" + std::to_string(b), player);
 						pframe.x = 5; 
 						pframe.y = 40;
+						pframe.ischanged = true;
+						corners.lt = 50;
 						change(&players, &selected);
 						break;
 					}
@@ -251,6 +253,13 @@ int game() // Game
 				players.rem(selected);
 				board = g_board;
 				change(&selected);
+				if ((players.get().size() != 0) && selected != "")
+				{
+					pframe.x = players.find(selected).getY()[1];
+					pframe.y = players.find(selected).getX()[1];
+					pframe.ischanged = true;
+					corners.lt = 50;
+				}
 				key_cd = KEY_CD;
 			}
 		}
@@ -295,17 +304,18 @@ int game() // Game
 					pframe.x = players.find(selected).getY()[1];
 					pframe.y = players.find(selected).getX()[1];
 					pframe.ischanged = true;
+					corners.lt = 50;
 				}
 				key_cd = KEY_CD;
 			}
 		}
 
-		s1 = listenerP(&players, std::ref(board), selected, &pframe);
+		s1 = listenerP(&players, std::ref(board), selected, &pframe, &corners);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 		s1 = listenerM(&mobs, std::ref(board), &mob_shot_cd);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 
-		s1 = gravitationP(&players, std::ref(board), std::ref(g_board), selected, &pframe);
+		s1 = gravitationP(&players, std::ref(board), std::ref(g_board), selected, &pframe, &corners);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 		s1 = gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
