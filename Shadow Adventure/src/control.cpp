@@ -31,7 +31,10 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 					{
 						if (!(player.getCWS() > 4))
 						{
-							player.move('u');
+							for (int j = 0; j < 2; j++)
+							{
+								player.move('u');
+							}
 						}
 						player.setCWS();
 						returned = "water";
