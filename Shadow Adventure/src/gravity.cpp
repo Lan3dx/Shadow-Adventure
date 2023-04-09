@@ -176,6 +176,15 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 								entity.move(entity.getGType()); // move player
 								entity.spawn(std::ref(board)); // spawn player
 								entity.setCG();
+								if (entityS.first == selected)
+								{
+									if (entity.getX()[1] == pframe->y + pframe->length + 1)
+									{
+										pframe->y += 1;
+										pframe->ischanged = true;
+										corners->lt = 50;
+									}
+								}
 							}
 						}
 					}
