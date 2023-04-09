@@ -3,7 +3,7 @@
 #include "../include/sys/includes.h"
 #include "../include/control.h"
 
-std::string control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key) // control func for selected player
+std::string control(PMAP* players, std::string selected, std::vector<std::vector<block>>& board, std::vector<std::vector<block>>& g_board, int key, PlayerFrame* pframe) // control func for selected player
 {
 	std::string returned = "null";
 
@@ -22,6 +22,11 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 				player.setCHAR('^');
 				if (player.voidUnder(std::ref(board))) // if under player void
 				{
+					if (player.getX()[1] == pframe->y - pframe->length + 1)
+					{
+						pframe->y -= 1;
+						pframe->ischanged = true;
+					}
 					if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
 					{
 						if (!(player.getCWS() > 4))
@@ -50,6 +55,11 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 			}
 			else if (key == 80) // down
 			{ 
+				if (player.getX()[1] == pframe->y + pframe->length + 1)
+				{
+					pframe->y += 1;
+					pframe->ischanged = true;
+				}
 				if (player.limit(std::ref(board))) // if the player is in prohibited territory
 				{
 					player.setPos({ 39, 40, 41 }, { 5, 5, 5 }); // change player cords
@@ -75,6 +85,11 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 				if (!(player.getCAD() > 0))
 				{
 					player.setCHAR('<');
+					if (player.getY()[1] == pframe->x - pframe->length)
+					{
+						pframe->x -= 1;
+						pframe->ischanged = true;
+					}
 					if (player.onstairs(std::ref(board), 75))
 					{
 						player.move('u');
@@ -92,6 +107,11 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 			{
 				if (!(player.getCAD() > 0))
 				{
+					if (player.getY()[1] == pframe->x + pframe->length)
+					{
+						pframe->x += 1;
+						pframe->ischanged = true;
+					}
 					player.setCHAR('>');
 					if (player.onstairs(std::ref(board), 77))
 					{

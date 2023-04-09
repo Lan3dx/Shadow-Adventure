@@ -151,6 +151,7 @@ int game() // Game
 	std::string selected; // active player
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5 };
+	PlayerFrame pframe{ 0, 0, 4, true };
 	snds->play("main");
 	snds->update();
 
@@ -207,19 +208,19 @@ int game() // Game
 		}
 		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
 		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 72);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 72, &pframe);
 		}
 		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
 		{
-			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75);
+			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75, &pframe);
 		}
 		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
 		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 80);
+			s = control(&players, selected, std::ref(board), std::ref(g_board), 80, &pframe);
 		}
 		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
 		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 77);
+			control(&players, selected, std::ref(board), std::ref(g_board), 77, &pframe);
 		}
 		if (GetAsyncKeyState((unsigned short)'R'))
 		{
@@ -232,6 +233,8 @@ int game() // Game
 						clog("INFO", "Spawn entity: player" + std::to_string(b));
 						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 }, 10);
 						players.add("player" + std::to_string(b), player);
+						pframe.x = 5;
+						pframe.y = 40;
 						change(&players, &selected);
 						break;
 					}
@@ -317,7 +320,7 @@ int game() // Game
 
 		clear(); // clear screen
 
-		cornerListener(players,selected,board,&corners); // move camera to player
+		cornerListener(players,selected,board,&corners, &pframe); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
 		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations)); // screen output 
 
