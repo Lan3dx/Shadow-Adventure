@@ -290,6 +290,12 @@ int game() // Game
 			{
 				snds->play("change");
 				change(&players, &selected);
+				if ((players.get().size() != 0) && selected != "")
+				{
+					pframe.x = players.find(selected).getY()[1];
+					pframe.y = players.find(selected).getX()[1];
+					pframe.ischanged = true;
+				}
 				key_cd = KEY_CD;
 			}
 		}
