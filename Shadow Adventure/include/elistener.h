@@ -8,5 +8,5 @@
 #include "map.h"
 
 std::string listenerB(BMAP*, std::vector<std::vector<block>>&); // listener for bullets 
-std::string listenerP(PMAP*, std::vector<std::vector<block>>&); // listener for players
+std::string listenerP(PMAP*, std::vector<std::vector<block>>&, std::string, PlayerFrame*); // listener for players
 std::string listenerM(MMAP*, std::vector<std::vector<block>>&, int*); // listener func for mob

@@ -158,15 +158,18 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 			{
 				if (!entity.ladder(board)) // if player NOT on ladder
 				{
-					if (!entity.collisions(board, entity.getGType())) // if player not in the map
+					if (!entity.inwater(board)) // if player NOT in water
 					{
-						if (!(entity.getCG() > 0))
+						if (!entity.collisions(board, entity.getGType())) // if player not in the map
 						{
-							board = g_board; // clear map
-							entity.kill(std::ref(board)); // kill player
-							entity.move(entity.getGType()); // move player
-							entity.spawn(std::ref(board)); // spawn player
-							entity.setCG();
+							if (!(entity.getCG() > 0))
+							{
+								board = g_board; // clear map
+								entity.kill(std::ref(board)); // kill player
+								entity.move(entity.getGType()); // move player
+								entity.spawn(std::ref(board)); // spawn player
+								entity.setCG();
+							}
 						}
 					}
 				}

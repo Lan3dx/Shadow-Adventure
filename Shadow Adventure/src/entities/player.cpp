@@ -211,7 +211,8 @@ bool PLAYER::limit(std::vector<std::vector<block>>& board) // if the player is i
 }
 bool PLAYER::inwater(std::vector<std::vector<block>>& board)
 {
-	if (board[x[x.size() - 1]][y[y.size() - 1]].character == 'W') { return true; }
+	if (board[x[x.size() - 1]][y[y.size() - 1]].character == 'W')
+		return true;
 	return false;
 }
 bool PLAYER::onspeedbooster(std::vector<std::vector<block>>& board) // if player stay on speed booster element
