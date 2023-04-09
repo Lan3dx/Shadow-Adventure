@@ -36,9 +36,9 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 							{
 								player.move('u');
 							}
+							player.setCWS();
+							returned = "water";
 						}
-						player.setCWS();
-						returned = "water";
 					}
 					else if (player.ladder(std::ref(g_board))) // if the player is on the ladder, then raise him by 1 element
 					{
