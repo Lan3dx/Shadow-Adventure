@@ -3,11 +3,11 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations, int fh) // output
 {
 	int y1 = 1;
 	int x1 = 1;
-	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << " | HP: " << hp << "                       " << std::endl; // selected player
+	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << " | HP: " << hp << " | FL: " << fh << "                       " << std::endl; // selected player
 	std::string s = "";
 	for (size_t i = 0; i < 48; i++)
 	{
@@ -144,6 +144,7 @@ int game() // Game
 	auto avgfps = 0;
 	auto avgfpscount = 0;
 	auto selectedhp = 0;
+	auto fallh = 0;
 	double fps = 1; // frame per second
 	PMAP players; // players map
 	MMAP mobs; // mobs map
@@ -330,6 +331,7 @@ int game() // Game
 		if ((players.get().size() != 0) && selected != "")
 		{
 			selectedhp = players.find(selected).getHP();
+			fallh = players.find(selected).getFL();
 		}
 
 		cdSet(&players, &mobs, &shot_cd, &key_cd, &fps_cd, &mob_shot_cd); // -1 cooldown for all entities
@@ -338,7 +340,7 @@ int game() // Game
 
 		cornerListener(players,selected,board,&corners, &pframe); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations)); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations), fallh); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");

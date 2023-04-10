@@ -17,6 +17,7 @@ private:
 	char GType;
 	bool gravity; // gravity
 	int HP; // health point
+	int lenfall; // fall length
 	std::vector<int> x; // pos 
 	std::vector<int> y; // pos
 	char character; // symbol for entity
@@ -37,6 +38,7 @@ public:
 	int getCWS(); // get cooldown for (W) (S)
 	int getCG(); // get cooldown of gravity
 	int getHP(); // get health point
+	int getFL(); // get fall length
 
 	bool voidUnder(std::vector<std::vector<block>>&); // if the player hit the floor
 	bool collisions(std::vector<std::vector<block>>&, int); // if the player touched a solid block
@@ -59,6 +61,7 @@ public:
 	void setCG(int); // set cooldown of gravity !over
 	void setCHAR(char); // set character of player
 	void setHP(int); // set health point
+	void setFL(int); // set fall length
 
 	char getGType(); // get gravity type
 

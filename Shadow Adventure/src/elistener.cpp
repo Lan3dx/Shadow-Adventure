@@ -91,6 +91,7 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board, std
 			{
 				entity.move('u');
 			}
+			entity.setFL(0);
 			returned = "boost";
 		}
 		if (entity.getHP() <= 0)
@@ -107,6 +108,7 @@ std::string listenerP(PMAP* players, std::vector<std::vector<block>>& board, std
 			entity.move(entity.getGType()); // move player
 			entity.spawn(std::ref(board)); // spawn player
 			entity.setHP(10);
+			entity.setFL(0);
 			returned = "death";
 		}
 		npm.insert(std::make_pair(entityS.first, entity)); // add to new players map

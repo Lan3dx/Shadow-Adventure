@@ -11,6 +11,7 @@ PLAYER::PLAYER(std::vector<int> stdX, std::vector<int> stdY, char stdChar, bool 
 	std_COOLDOWN = cd;
 	bullets.set({});
 	HP = chp;
+	lenfall = 0;
 }
 
 void PLAYER::spawn(std::vector<std::vector<block>> &board) // place entity on map
@@ -52,6 +53,10 @@ int PLAYER::getCG() // get cooldown of gravity
 int PLAYER::getHP()
 {
 	return HP;
+}
+int PLAYER::getFL()
+{
+	return this->lenfall;
 }
 
 void PLAYER::move(char type) // move entity on map
@@ -149,6 +154,10 @@ void PLAYER::setCHAR(char ch) // set character of player
 void PLAYER::setHP(int chp)
 {
 	HP = chp;
+}
+void PLAYER::setFL(int cfl)
+{
+	this->lenfall = cfl;
 }
 
 bool PLAYER::voidUnder(std::vector<std::vector<block>>& board) // if player hit the floor

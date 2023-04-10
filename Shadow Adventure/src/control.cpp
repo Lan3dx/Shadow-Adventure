@@ -61,6 +61,7 @@ std::string control(PMAP* players, std::string selected, std::vector<std::vector
 								player.move('u');
 							}
 							returned = "jump";
+							player.setFL(0);
 							player.setCWS();
 						}
 					}
