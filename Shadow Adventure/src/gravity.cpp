@@ -190,32 +190,24 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 						}
 						else
 						{
-							if (entity.getFL() > 10 && entity.getFL() < 15)
+							if (!entity.ladder(std::ref(g_board)))
 							{
-								if (!entity.ladder(std::ref(g_board)))
+								if (!entity.inwater(std::ref(g_board)))
 								{
-									if (!entity.inwater(std::ref(g_board)))
+									int dmg = 0;
+									if (entity.getFL() > 10 && entity.getFL() < 15)
 									{
-										entity.setHP(entity.getHP() - 5);
-										entity.setCG();
-										entity.setFL(0);
-										npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
-										continue;
+										dmg = 5;
 									}
-								}
-							}
-							if (entity.getFL() > 15)
-							{
-								if (!entity.ladder(std::ref(g_board)))
-								{
-									if (!entity.inwater(std::ref(g_board)))
+									else if (entity.getFL() > 15)
 									{
-										entity.setHP(entity.getHP() - 10);
-										entity.setCG();
-										entity.setFL(0);
-										npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
-										continue;
+										dmg = 10;
 									}
+									entity.setHP(entity.getHP() - dmg);
+									entity.setCG();
+									entity.setFL(0);
+									npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
+									continue;
 								}
 							}
 							entity.setFL(0);
@@ -225,34 +217,24 @@ std::string gravitationP(PMAP* players, std::vector<std::vector<block>>& board, 
 			}
 			else
 			{
-				if (entity.getFL() > 10 && entity.getFL() < 15)
+				if (!entity.ladder(std::ref(g_board)))
 				{
-					if (!entity.ladder(std::ref(g_board)))
+					if (!entity.inwater(std::ref(g_board)))
 					{
-						if (!entity.inwater(std::ref(g_board)))
+						int dmg = 0;
+						if (entity.getFL() > 10 && entity.getFL() < 15)
 						{
-							entity.setHP(entity.getHP() - 5);
-							entity.setCG();
-							returned = "death";
-							entity.setFL(0);
-							npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
-							continue;
+							dmg = 5;
 						}
-					}
-				}
-				if (entity.getFL() > 15)
-				{
-					if (!entity.ladder(std::ref(g_board)))
-					{
-						if (!entity.inwater(std::ref(g_board)))
+						else if (entity.getFL() > 15)
 						{
-							entity.setHP(entity.getHP() - 10);
-							entity.setCG();
-							returned = "death";
-							entity.setFL(0);
-							npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
-							continue;
+							dmg = 10;
 						}
+						entity.setHP(entity.getHP() - dmg);
+						entity.setCG();
+						entity.setFL(0);
+						npm.insert(std::make_pair(entityS.first, entity)); // add to new players map
+						continue;
 					}
 				}
 				entity.setFL(0);
