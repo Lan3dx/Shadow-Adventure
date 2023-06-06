@@ -116,6 +116,9 @@
     <ClInclude Include="include\alistener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\sys\iniparser.h">
+      <Filter>Header Files\sys</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -189,6 +192,9 @@
     </ClCompile>
     <ClCompile Include="src\alistener.cpp">
       <Filter>Source Files\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sys\iniparser.cpp">
+      <Filter>Source Files\src\sys</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -131,7 +131,10 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 	std::cout << s << '\n';
 }
 
-int game() // Game
+// mode:
+// 0 - default
+// 1 - test
+int game(int mode, double sleep_fps) // Game
 {
 	Sounds* snds = new Sounds();
 	auto g_board = map_init();
@@ -184,7 +187,7 @@ int game() // Game
 
 		if (work_time.count() < 2)
 		{
-			std::chrono::duration<double, std::milli> delta_ms(5 - work_time.count());
+			std::chrono::duration<double, std::milli> delta_ms(sleep_fps - work_time.count());
 			auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
 			std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
 		}

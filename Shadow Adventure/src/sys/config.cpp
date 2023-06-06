@@ -1,8 +1,10 @@
 #include <Windows.h>
 #include <iostream>
+#include <fstream>
 #include <chrono>
 
-#include "..\..\include\sys\config.h"
+#include "../../include/sys/iniparser.h" 
+#include "../../include/sys/config.h"
 
 // clearing the console screen
 void clear()
@@ -11,7 +13,7 @@ void clear()
 }
 
 // basic console settings
-void std_config()
+void screen_config()
 {
 	void* activeBuffer = GetStdHandle(STD_OUTPUT_HANDLE);  // get active buffer
 	SMALL_RECT zeroWindow = { 0, 0, 0, 0 }; 
@@ -28,4 +30,30 @@ void std_config()
 	GetConsoleCursorInfo(activeBuffer, &structCursorInfo); 
 	structCursorInfo.bVisible = FALSE; 
 	SetConsoleCursorInfo(activeBuffer, &structCursorInfo); 
+}
+
+void file_config(std::string filename)
+{
+  std::ifstream file(filename);
+  if (!file) 
+  {
+    std::ofstream newFile(filename);
+    if (newFile) 
+    {
+      if (filename == "settings/settings.ini") 
+      {
+        std::map<std::string, std::map<std::string, std::string>> iniData = parseIniFile(filename);
+        iniData["main"]["first_launched"] = "1";
+        iniData["main"]["FPSms"] = "5";
+        writeIniFile(iniData, filename);
+      }
+      return;
+    }
+    else {
+      return;
+    }
+  }
+  else {
+    return;
+  }
 }

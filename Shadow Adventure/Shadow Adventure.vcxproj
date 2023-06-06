@@ -185,6 +185,7 @@
     <ClInclude Include="include\sys\config.h" />
     <ClInclude Include="include\sys\constants.h" />
     <ClInclude Include="include\sys\includes.h" />
+    <ClInclude Include="include\sys\iniparser.h" />
     <ClInclude Include="include\sys\logger.h" />
     <ClInclude Include="include\sys\musicloader.h" />
     <ClInclude Include="include\windows\author.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="src\mapgen.cpp" />
     <ClCompile Include="src\sys\audiomgr.cpp" />
     <ClCompile Include="src\sys\config.cpp" />
+    <ClCompile Include="src\sys\iniparser.cpp" />
     <ClCompile Include="src\sys\logger.cpp" />
     <ClCompile Include="src\windows\author.cpp" />
     <ClCompile Include="src\windows\game.cpp" />
