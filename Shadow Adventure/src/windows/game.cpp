@@ -311,22 +311,25 @@ int game() // Game
 			}
 		}
 
+		// entities listeners
 		s1 = listenerP(&players, std::ref(board), selected, &pframe, &corners);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 		s1 = listenerM(&mobs, std::ref(board), &mob_shot_cd);
 		if (s1 == "death") { snds->play("death"); s1 = "null"; } else if (s1 == "boost") { snds->play("boost"); s1 = "null"; }
 
+		// entities gravitation
 		s1 = gravitationP(&players, std::ref(board), std::ref(g_board), selected, &pframe, &corners);
-		if (s1 == "death") { snds->play("death"); s1 = "null"; }
-		s1 = gravitationB(&players, &mobs, std::ref(board), std::ref(g_board));
-		if (s1 == "death") { snds->play("death"); s1 = "null"; }
-		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board));
-		if (s1 == "death") { snds->play("death"); s1 = "null"; }
+		if (s1 == "death") { snds->play("death"); s1 = "null"; } 
+		s1 = gravitationB(&players, &mobs, std::ref(board), std::ref(g_board)); 
+		if (s1 == "death") { snds->play("death"); s1 = "null"; } 
+		s1 = gravitationM(&mobs, std::ref(board), std::ref(g_board)); 
+		if (s1 == "death") { snds->play("death"); s1 = "null"; } 
 
+		// damage listener
 		s1 = listenerD(&players, &mobs, std::ref(board), std::ref(animations));
 		if (s1 == "death") { snds->play("death"); s1 = "null"; }
 
-		listenerA(std::ref(animations));
+		listenerA(std::ref(animations)); // animation listener
 
 		if ((players.get().size() != 0) && selected != "")
 		{

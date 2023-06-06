@@ -1,0 +1,15 @@
+[1:18:19] [INFO]: Game started
+[1:18:21] [INFO]: Spawn entity: player0
+[1:18:37] [INFO]: Game stopped
+[1:18:37] [DEBUG]: Avg FPS: 62
+[1:18:50] [INFO]: Game started
+[1:18:50] [INFO]: Spawn entity: player0
+[1:19:9] [INFO]: Game started
+[1:19:15] [INFO]: Spawn entity: player0
+[1:20:9] [INFO]: Game stopped
+[1:20:9] [DEBUG]: Avg FPS: 14
+[1:20:20] [INFO]: Game started
+[1:20:20] [INFO]: Spawn entity: player0
+[1:20:20] [INFO]: Spawn entity: player1
+[1:20:57] [INFO]: Game stopped
+[1:20:57] [DEBUG]: Avg FPS: 284
