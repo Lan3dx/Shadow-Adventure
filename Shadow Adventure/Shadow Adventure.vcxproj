@@ -190,6 +190,7 @@
     <ClInclude Include="include\sys\musicloader.h" />
     <ClInclude Include="include\windows\author.h" />
     <ClInclude Include="include\windows\game.h" />
+    <ClInclude Include="include\windows\gamesetup.h" />
     <ClInclude Include="include\windows\mapdrawer.h" />
     <ClInclude Include="include\windows\mapchanger.h" />
     <ClInclude Include="include\windows\menu.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="src\sys\logger.cpp" />
     <ClCompile Include="src\windows\author.cpp" />
     <ClCompile Include="src\windows\game.cpp" />
+    <ClCompile Include="src\windows\gamesetup.cpp" />
     <ClCompile Include="src\windows\mapdrawer.cpp" />
     <ClCompile Include="src\windows\mapchanger.cpp" />
     <ClCompile Include="src\windows\menu.cpp" />

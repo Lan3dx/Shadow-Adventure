@@ -44,7 +44,8 @@ void file_config(std::string filename)
       {
         std::map<std::string, std::map<std::string, std::string>> iniData = parseIniFile(filename);
         iniData["main"]["first_launched"] = "1";
-        iniData["main"]["FPSms"] = "5";
+        iniData["main"]["already_started"] = "0";
+        iniData["main"]["FPSms"] = "5.000000";
         writeIniFile(iniData, filename);
       }
       return;

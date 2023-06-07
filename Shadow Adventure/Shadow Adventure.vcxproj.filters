@@ -119,6 +119,9 @@
     <ClInclude Include="include\sys\iniparser.h">
       <Filter>Header Files\sys</Filter>
     </ClInclude>
+    <ClInclude Include="include\windows\gamesetup.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -195,6 +198,9 @@
     </ClCompile>
     <ClCompile Include="src\sys\iniparser.cpp">
       <Filter>Source Files\src\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windows\gamesetup.cpp">
+      <Filter>Source Files\src\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

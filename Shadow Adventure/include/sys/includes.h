@@ -16,6 +16,7 @@
 // user's libs
 #include "config.h"
 #include "logger.h"
+#include "iniparser.h"
 #include "musicloader.h"
 #include "../map.h"
 #include "../control.h"

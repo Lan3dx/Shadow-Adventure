@@ -1,3 +1,3 @@
 #pragma once
 
-int game(int, double); // game
+double game(int, double); // game

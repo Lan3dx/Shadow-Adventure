@@ -3,11 +3,13 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations, int fh) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations, int fh, int mode) // output
 {
 	int y1 = 1;
 	int x1 = 1;
-	std::cout << "    FPS: " << round(int(1.0/fps)) <<" | SELECTED: " << selected << " | HP: " << hp << " | FL: " << fh << "                       " << std::endl; // selected player
+	if (mode != 1) {
+		std::cout << "    FPS: " << round(int(1.0 / fps)) << " | SELECTED: " << selected << " | HP: " << hp << " | FL: " << fh << "                       " << std::endl; // selected player
+	}
 	std::string s = "";
 	for (size_t i = 0; i < 48; i++)
 	{
@@ -17,7 +19,9 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 	{
 		animations[g].counter = 0;
 	}
-	std::cout << s << '\n';
+	if (mode != 1) {
+		std::cout << s << '\n';
+	}
 	for (int y = corners.up; y < corners.up + 48 - 1; y++) // columns
 	{
 		std::string line;
@@ -120,21 +124,25 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 			}
 		}
 		y1 += 1;
-		std::cout << line;
-		std::cout << '\n'; // next column
+		if (mode != 1) {
+			std::cout << line;
+			std::cout << '\n'; // next column
+		}
 	}
 	s = "";
 	for (size_t i = 0; i < 48; i++)
 	{
 		s += ". ";
 	}
-	std::cout << s << '\n';
+	if (mode != 1) {
+		std::cout << s << '\n';
+	}
 }
 
 // mode:
 // 0 - default
 // 1 - test
-int game(int mode, double sleep_fps) // Game
+double game(int mode, double sleep_fps) // Game
 {
 	Sounds* snds = new Sounds();
 	auto g_board = map_init();
@@ -149,6 +157,8 @@ int game(int mode, double sleep_fps) // Game
 	auto selectedhp = 0;
 	auto fallh = 0;
 	double fps = 1; // frame per second
+	double fpsms = 0.005;
+	int modeiterations = 0;
 	PMAP players; // players map
 	MMAP mobs; // mobs map
 	std::vector<animation> animations; // all animations
@@ -156,8 +166,11 @@ int game(int mode, double sleep_fps) // Game
 	std::vector<std::vector<block>> board = g_board;  // Define board
 	Corners corners{ 5, 5, 50 };
 	PlayerFrame pframe{ 0, 0, 6, true };
-	snds->play("main");
-	snds->update();
+
+	if (mode != 1) {
+		snds->play("main");
+		snds->update();
+	}
 
 	// MOB args
 	//	1 arg - X cords
@@ -179,15 +192,24 @@ int game(int mode, double sleep_fps) // Game
 	std::string s = "null";
 	std::string s1 = "null";
 
-	clog("INFO", "Game started");
+	if (mode != 1) {
+		clog("INFO", "Game started");
+	}
+	else {
+		clog("INFO", "----------------------------------");
+		clog("INFO", "Optimization for the device");
+	}
 	while (true) // main program loop
 	{
 		a = std::chrono::system_clock::now();
 		std::chrono::duration<double> work_time = a - b;
 
 		if (work_time.count() < 2)
-		{
+		{ 
 			std::chrono::duration<double, std::milli> delta_ms(sleep_fps - work_time.count());
+			if (mode == 1) {
+				std::chrono::duration<double, std::milli> delta_ms(fpsms - work_time.count());
+			}
 			auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
 			std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
 		}
@@ -203,114 +225,116 @@ int game(int mode, double sleep_fps) // Game
 			fps_cd = FPS_CD;
 		}
 
-		if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
-		{
-			clog("INFO", "Game stopped");
-			clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount))); 
-			snds->~Sounds();
-			return 0;
-		}
-		if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
-		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 72, &pframe, &corners);
-		}
-		if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
-		{
-			auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75, &pframe, &corners);
-		}
-		if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
-		{
-			s = control(&players, selected, std::ref(board), std::ref(g_board), 80, &pframe, &corners);
-		}
-		if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
-		{
-			control(&players, selected, std::ref(board), std::ref(g_board), 77, &pframe, &corners);
-		}
-		if (GetAsyncKeyState((unsigned short)'R'))
-		{
-			if (!(key_cd > 0))
+		if (mode == 0) {
+			if (GetAsyncKeyState((unsigned short)VK_ESCAPE))
 			{
-				for (int b = 0; b < MAX_PLAYERS; b++)
+				clog("INFO", "Game stopped");
+				clog("DEBUG", "Avg FPS: " + std::to_string((avgfps / avgfpscount)));
+				snds->~Sounds();
+				return 0;
+			}
+			if (GetAsyncKeyState((unsigned short)'W') || GetAsyncKeyState((unsigned short)VK_UP))
+			{
+				s = control(&players, selected, std::ref(board), std::ref(g_board), 72, &pframe, &corners);
+			}
+			if (GetAsyncKeyState((unsigned short)'A') || GetAsyncKeyState((unsigned short)VK_LEFT))
+			{
+				auto s = control(&players, selected, std::ref(board), std::ref(g_board), 75, &pframe, &corners);
+			}
+			if (GetAsyncKeyState((unsigned short)'S') || GetAsyncKeyState((unsigned short)VK_DOWN))
+			{
+				s = control(&players, selected, std::ref(board), std::ref(g_board), 80, &pframe, &corners);
+			}
+			if (GetAsyncKeyState((unsigned short)'D') || GetAsyncKeyState((unsigned short)VK_RIGHT))
+			{
+				control(&players, selected, std::ref(board), std::ref(g_board), 77, &pframe, &corners);
+			}
+			if (GetAsyncKeyState((unsigned short)'R'))
+			{
+				if (!(key_cd > 0))
 				{
-					if (!players.get().contains("player" + std::to_string(b)))
+					for (int b = 0; b < MAX_PLAYERS; b++)
 					{
-						clog("INFO", "Spawn entity: player" + std::to_string(b));
-						PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 }, 10);
-						players.add("player" + std::to_string(b), player);
-						pframe.x = 5; 
-						pframe.y = 40;
+						if (!players.get().contains("player" + std::to_string(b)))
+						{
+							clog("INFO", "Spawn entity: player" + std::to_string(b));
+							PLAYER player(std::vector<int>{ 39, 40, 41 }, std::vector<int>{ 5, 5, 5 }, '>', true, 'd', { 5,10,5 }, 10);
+							players.add("player" + std::to_string(b), player);
+							pframe.x = 5;
+							pframe.y = 40;
+							pframe.ischanged = true;
+							corners.lt = 50;
+							change(&players, &selected);
+							break;
+						}
+					}
+					key_cd = KEY_CD;
+				}
+			}
+			if (GetAsyncKeyState((unsigned short)'K'))
+			{
+				if (!(key_cd > 0))
+				{
+					clog("INFO", "Kill entity: " + selected);
+					snds->play("death");
+					players.rem(selected);
+					board = g_board;
+					change(&selected);
+					if ((players.get().size() != 0) && selected != "")
+					{
+						pframe.x = players.find(selected).getY()[1];
+						pframe.y = players.find(selected).getX()[1];
 						pframe.ischanged = true;
 						corners.lt = 50;
-						change(&players, &selected);
-						break;
+					}
+					key_cd = KEY_CD;
+				}
+			}
+			if (GetAsyncKeyState((unsigned short)'E'))
+			{
+				if (players.get().contains(selected))
+				{
+					if (shot_cd <= 0)
+					{
+						PLAYER pl = players.find(selected);
+						pl.shoot('r');
+						snds->play("shot");
+						players.rem(selected);
+						players.add(selected, pl);
+						shot_cd = SHOT_CD;
 					}
 				}
-				key_cd = KEY_CD;
 			}
-		}
-		if (GetAsyncKeyState((unsigned short)'K'))
-		{
-			if (!(key_cd > 0))
+			if (GetAsyncKeyState((unsigned short)'Q'))
 			{
-				clog("INFO", "Kill entity: " + selected);
-				snds->play("death");
-				players.rem(selected);
-				board = g_board;
-				change(&selected);
-				if ((players.get().size() != 0) && selected != "")
+				if (players.get().contains(selected))
 				{
-					pframe.x = players.find(selected).getY()[1];
-					pframe.y = players.find(selected).getX()[1];
-					pframe.ischanged = true;
-					corners.lt = 50;
-				}
-				key_cd = KEY_CD;
-			}
-		}
-		if (GetAsyncKeyState((unsigned short)'E'))
-		{
-			if (players.get().contains(selected))
-			{
-				if (shot_cd <= 0)
-				{
-					PLAYER pl = players.find(selected);
-					pl.shoot('r');
-					snds->play("shot");
-					players.rem(selected);
-					players.add(selected, pl);
-					shot_cd = SHOT_CD;
+					if (shot_cd <= 0)
+					{
+						PLAYER pl = players.find(selected);
+						snds->play("shot");
+						pl.shoot('l');
+						players.rem(selected);
+						players.add(selected, pl);
+						shot_cd = SHOT_CD;
+					}
 				}
 			}
-		}
-		if (GetAsyncKeyState((unsigned short)'Q'))
-		{
-			if (players.get().contains(selected))
+			if (GetAsyncKeyState((unsigned short)'C'))
 			{
-				if (shot_cd <= 0)
+				if (!(key_cd > 0))
 				{
-					PLAYER pl = players.find(selected);
-					snds->play("shot");
-					pl.shoot('l');
-					players.rem(selected);
-					players.add(selected, pl);
-					shot_cd = SHOT_CD;
+					snds->play("change");
+					change(&players, &selected);
+					if ((players.get().size() != 0) && selected != "")
+					{
+						pframe.x = players.find(selected).getY()[1];
+						pframe.y = players.find(selected).getX()[1];
+						pframe.ischanged = true;
+						corners.lt = 50;
+					}
+					key_cd = KEY_CD;
 				}
-			}
-		}
-		if (GetAsyncKeyState((unsigned short)'C'))
-		{
-			if (!(key_cd > 0))
-			{
-				snds->play("change");
-				change(&players, &selected);
-				if ((players.get().size() != 0) && selected != "")
-				{
-					pframe.x = players.find(selected).getY()[1];
-					pframe.y = players.find(selected).getX()[1];
-					pframe.ischanged = true;
-					corners.lt = 50;
-				}
-				key_cd = KEY_CD;
 			}
 		}
 
@@ -346,7 +370,7 @@ int game(int mode, double sleep_fps) // Game
 
 		cornerListener(players,selected,board,&corners, &pframe); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations), fallh); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations), fallh, mode); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");
@@ -366,6 +390,24 @@ int game(int mode, double sleep_fps) // Game
 		}
 
 		snds->update();
+
+		if (mode == 1) {
+			if ((round(int(1.0f / fps)) >= 60) && (round(int(1.0f / fps)) <= 70)) {
+				modeiterations += 1;
+				if (modeiterations == 10) {
+					clog("INFO", "Successfully optimized!");
+					clog("INFO", "The FPSms value is set to: " + std::to_string(fpsms));
+					clog("INFO", "----------------------------------");
+					snds->~Sounds();
+					return fpsms;
+				}
+			}
+			else {
+				fpsms += 0.05;
+				modeiterations = 0;
+				clog("INFO", "Current FPSms: " + std::to_string(fpsms) + " | FPS = " + std::to_string(1.0 / fps));
+			}
+		}
 	}
 
 	return 0;
