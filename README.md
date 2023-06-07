@@ -19,7 +19,7 @@ Shadow adventure is written on _c++_ with third-party lib FMOD
 
 ## Installation
 - Just download this code and open the _.sln_ file
-- After building the project, move _fmod.dll_ from **Shadow Adventure/Ext** to **Shadow Adventure/x64/_Release/Debug_** next to the _.exe_ file
+- After building the project, move _fmod.dll_ from **Shadow Adventure/Ext** to **Shadow Adventure/x64/(_Release/Debug_)** next to the _.exe_ file
 - Launch it using the _F5_ key
 
 ## Development
