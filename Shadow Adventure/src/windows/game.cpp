@@ -141,7 +141,7 @@ void render(std::vector<std::vector<block>>& map, std::string selected, double f
 
 // mode:
 // 0 - default
-// 1 - test
+// 1 - optimization for device
 double game(int mode, double sleep_fps) // Game
 {
 	Sounds* snds = new Sounds();
@@ -180,7 +180,7 @@ double game(int mode, double sleep_fps) // Game
 	//	5 arg - mobile (t/f)
 	//	6 arg - gravity type (up(u)/down(d)/left(l)/right(r))
 	//	7 arg - cooldowns (AD keys cd, WS keys cd, gravity cd)
-	//  8 ark - health points
+	//  8 arg - health points
 	//
 	//	Have fun ;D
 
