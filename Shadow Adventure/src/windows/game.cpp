@@ -3,12 +3,12 @@
 #include "../../include/sys/constants.h"
 #include "../../include/windows/transition.h"
 
-void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations, int fh, int mode) // output
+void render(std::vector<std::vector<block>>& map, std::string selected, double fps, Corners corners, int hp, std::vector<animation>& animations, int mode) // output
 {
 	int y1 = 1;
 	int x1 = 1;
 	if (mode != 1) {
-		std::cout << "    FPS: " << round(int(1.0 / fps)) << " | SELECTED: " << selected << " | HP: " << hp << " | FL: " << fh << "                       " << std::endl; // selected player
+		std::cout << "    FPS: " << round(int(1.0 / fps)) << " | SELECTED: " << selected << " | HP: " << hp << "                       " << std::endl; // selected player
 	}
 	std::string s = "";
 	for (size_t i = 0; i < 48; i++)
@@ -370,7 +370,7 @@ double game(int mode, double sleep_fps) // Game
 
 		cornerListener(players,selected,board,&corners, &pframe); // move camera to player
 		entitiesRender(players, mobs, std::ref(board), std::ref(g_board)); // output all entitis
-		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations), fallh, mode); // screen output 
+		render(std::ref(board), selected, fps, corners, selectedhp, std::ref(animations), mode); // screen output 
 
 		if (s == "jump") {
 			snds->play("jump");
