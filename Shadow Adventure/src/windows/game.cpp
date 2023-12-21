@@ -157,7 +157,7 @@ double game(int mode, double sleep_fps) // Game
 	auto selectedhp = 0;
 	auto fallh = 0;
 	double fps = 1; // frame per second
-	double fpsms = 0.005;
+	double fpsms = 0.05;
 	int modeiterations = 0;
 	PMAP players; // players map
 	MMAP mobs; // mobs map
@@ -203,15 +203,21 @@ double game(int mode, double sleep_fps) // Game
 	{
 		a = std::chrono::system_clock::now();
 		std::chrono::duration<double> work_time = a - b;
-
-		if (work_time.count() < 2)
-		{ 
-			std::chrono::duration<double, std::milli> delta_ms(sleep_fps - work_time.count());
-			if (mode == 1) {
-				std::chrono::duration<double, std::milli> delta_ms(fpsms - work_time.count());
+		if (mode == 0) {
+			if (work_time.count() < 5)
+			{
+				std::chrono::duration<double, std::milli> delta_ms(sleep_fps - work_time.count());
+				auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
+				std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
 			}
-			auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
-			std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
+		}
+		else {
+			if (work_time.count() < 5)
+			{
+				std::chrono::duration<double, std::milli> delta_ms(fpsms - work_time.count());
+				auto delta_ms_duration = std::chrono::duration_cast<std::chrono::milliseconds>(delta_ms);
+				std::this_thread::sleep_for(std::chrono::milliseconds(delta_ms_duration.count()));
+			}
 		}
 
 		b = std::chrono::system_clock::now();
@@ -392,7 +398,7 @@ double game(int mode, double sleep_fps) // Game
 		snds->update();
 
 		if (mode == 1) {
-			if ((round(int(1.0f / fps)) >= 60) && (round(int(1.0f / fps)) <= 70)) {
+			if ((round(int(1.0 / fps)) >= 70) && (round(int(1.0 / fps)) <= 80)) {
 				modeiterations += 1;
 				if (modeiterations == 10) {
 					clog("INFO", "Successfully optimized!");
@@ -403,9 +409,8 @@ double game(int mode, double sleep_fps) // Game
 				}
 			}
 			else {
-				fpsms += 0.05;
+				fpsms += 0.01;
 				modeiterations = 0;
-				clog("INFO", "Current FPSms: " + std::to_string(fpsms) + " | FPS = " + std::to_string(1.0 / fps));
 			}
 		}
 	}
