@@ -28,6 +28,12 @@ Want to contribute? Great!
 
 Just open _.sln_ file and start coding!
 
+### Remark
+
+You need to run the application in the windows console node, not the terminal 
+
+_To change it: Settings > System > For developers > Terminal > Windows Console Node_
+
 ## License
 
 MIT
